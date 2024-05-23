@@ -1,0 +1,76 @@
+{
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "manifest_version": 2,
+  "name": "SellerFull",
+  "short_name": "SellerFull",
+  "version": "1.2.0",
+  "description": "SellerFull helps sellers to make dropshipping proccesses easily and effectively.",
+  "icons": {
+    "48": "img/logo_s.png",
+    "64": "img/logo_s.png",
+    "128": "img/logo_s.png"
+  },
+  "permissions": [
+    "<all_urls>",
+    "notifications",
+    "webNavigation",
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "proxy",
+    "activeTab",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": "img/logo_s.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["js/jquery-3.3.1.min.js", "js/chart.min.js", "init-content.js"],
+      "css": [
+        "css/fontawesome.min.css",
+        "css/solid.min.css",
+        "css/content.css",
+        "css/regular.min.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "scripts": ["js/jquery-3.3.1.min.js", "init-background.js"],
+    "persistent": true
+  },
+  "web_accessible_resources": [
+    "json/language.json",
+    "img/logo_new.svg",
+    "img/sf_extension.svg",
+    "img/chrome.svg",
+    "img/facebook.png",
+    "img/instagram.png",
+    "img/twitter.png",
+    "img/info.png",
+    "img/check.png",
+    "img/logo.png",
+    "img/logo_s.png",
+    "img/logo_uzun.png",
+    "img/TR.png",
+    "img/EN.png",
+    "img/loading.gif",
+    "fonts/Poppins-Medium.ttf",
+    "fonts/Poppins-Regular.ttf",
+    "fonts/Poppins-ExtraLight.ttf",
+    "fonts/Poppins-Thin.ttf",
+    "fonts/Poppins-Bold.ttf",
+    "css/fontawesome.min.css",
+    "css/regular.min.css",
+    "css/solid.min.css",
+    "webfonts/fa-regular-400.woff2",
+    "webfonts/fa-solid-900.woff2",
+    "injection.js",
+    "img/sf2amz.png",
+    "img/amz2sf.png"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}

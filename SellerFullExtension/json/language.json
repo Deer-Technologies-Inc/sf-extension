@@ -1,0 +1,646 @@
+{
+    "1000001": {
+        "TR": "İşleme devam etmeden önce lütfen ürünleri SellerFlash'tan silin. Aksi takdirde, sildiğiniz ürünler tekrar mağazaya eklenecektir.",
+        "EN": "Please delete products from SellerFlash before proceeding. Otherwise, the deleted products will be added back to the store"
+    },
+    "1000002": {
+        "TR": "Ürünleri SellerFlash'tan Sil",
+        "EN": "Delete Products from SellerFlash"
+    },
+    "1000003": {
+        "TR": "Ürünleri Engellenen Ürünler Listeme Ekle ve SellerFlash'tan Sil",
+        "EN": "Add Products to My Blocked Products List and Remove from SellerFlash"
+    },
+    "1000004": {
+        "TR": "Adresi Kopyala",
+        "EN": "Copy Address"
+    },
+    "1000005": {
+        "TR": "Adres Kopyalandı",
+        "EN": "Address Copied"
+    },
+    "1000006": {
+        "TR": "Adresleri Sil",
+        "EN": "Remove Addresses"
+    },
+    "1000007": {
+        "TR": "Lütfen bekleyin",
+        "EN": "Please wait"
+    },
+    "1000008": {
+        "TR": "Ürünler SellerFlash'ta silme listesine eklendi",
+        "EN": "Products added to delete list in SellerFlash"
+    },
+    "1000009": {
+        "TR": "Bir hata oluştu",
+        "EN": "An error occurred"
+    },
+    "1000010": {
+        "TR": "Silinebilir",
+        "EN": "Removable"
+    },
+    "1000011": {
+        "TR": "Bu adres asla silinmez",
+        "EN": "Un-Removable"
+    },
+    "1000012": {
+        "TR": "SellerFlash",
+        "EN": "SellerFlash"
+    },
+    "1000013": {
+        "TR": "Adresi Yapıştır",
+        "EN": "Paste Address"
+    },
+    "1000014": {
+        "TR": "Siparişi SellerFlash'ta görmek için buraya tıklayın",
+        "EN": "Click here to see your order details on SellerFlash"
+    },
+    "1000015": {
+        "TR": "Gönderilmedi",
+        "EN": "Unshipped"
+    },
+    "1000016": {
+        "TR": "Gönderildi",
+        "EN": "Shipped"
+    },
+    "1000017": {
+        "TR": "İptal Edildi",
+        "EN": "Cancelled"
+    },
+    "1000018": {
+        "TR": "İade Edildi",
+        "EN": "Refunded"
+    },
+    "1000019": {
+        "TR": "İade Talep Edildi",
+        "EN": "Return Requested"
+    },
+    "1000020": {
+        "TR": "Bilinmiyor",
+        "EN": "Unknown"
+    },
+    "1000021": {
+        "TR": "Sipariş detayları alınamamıştır. Lütfen daha sonra tekrar deneyiniz.",
+        "EN": "Order details could not be received. Please try again later."
+    },
+    "1000022": {
+        "TR": "SellerFlash Bilgi",
+        "EN": "SellerFlash Information"
+    },
+    "1000023": {
+        "TR": "Sipariş bilgisi alınamadı.",
+        "EN": "Unable to retrieve order information."
+    },
+    "1000024": {
+        "TR": "Kargo takibi ",
+        "EN": "Track for "
+    },
+    "1000025": {
+        "TR": "Kâr",
+        "EN": "Profit"
+    },
+    "1000026": {
+        "TR": "Takip Linki",
+        "EN": "Tracking URL"
+    },
+    "1000027": {
+        "TR": "Kargo Bilgilerini Kontrol Et",
+        "EN": "Check Shipping Information"
+    },
+    "1000028": {
+        "TR": " Amazon artık hiçbir siparişin alıcı hesabında oturum açmadan kargo bilgilerine erişilmesine izin vermiyor. <br> Aşağıdaki butonları kullanarak siparişlerinizin kargo bilgilerini ve teslimat durumunu düzenli aralıklarla SellerFlash'a kolayca aktarabilirsiniz.",
+        "EN": "Amazon no longer allows accessing the shipping information of any order without logging in to the buyer's account. <br> By using the buttons below, you can easily transfer the shipping information and delivery status of your orders to SellerFlash at regular intervals."
+    },
+    "1000029": {
+        "TR": "Teslimat Bilgilerini Kontrol Et",
+        "EN": "Check Delivery Information"
+    },
+    "1000030": {
+        "TR": "En İyi Dropshipping Yardımcınız",
+        "EN": "The Best Dropshipping Helper"
+    },
+    "1000031": {
+        "TR": "Kargo bilgileri kontrol ediliyor... ",
+        "EN": "Checking shipping information... "
+    },
+    "1000032": {
+        "TR": "Kontrol edilen: ",
+        "EN": "Checked by: "
+    },
+    "1000033": {
+        "TR": "Kargo bilgileri kontrol edildi",
+        "EN": "Shipping information checked"
+    },
+    "1000034": {
+        "TR": "Teslimat bilgileri kontrol ediliyor...",
+        "EN": "Checking delivery information..."
+    },
+    "1000035": {
+        "TR": "Teslimat bilgileri kontrol ediliyor...",
+        "EN": "Checking delivery information..."
+    },
+    "1000036": {
+        "TR": "Teslimat bilgileri kontrol edildi.",
+        "EN": "Delivery information checked"
+    },
+    "1000037": {
+        "TR": "Kargo bilgileri kontrol ediliyor...",
+        "EN": "Shipping information checked."
+    },
+    "1000038": {
+        "TR": "Sipariş bilgileri alınamadı. Lütfen sipariş adımına yeniden başlayınız.",
+        "EN": "Order information could not be retrieved. Please start the order step again."
+    },
+    "1000039": {
+        "TR": "<p><strong>Sonraki adıma geçmek için Devam Et butonuna tıklayınız.</strong></p>",
+        "EN": "<p><strong>Click the Continue button to proceed to the next step.</strong></p>"
+    },
+    "1000040": {
+        "TR": "<p><strong>Lütfen tüm bilgilerinizi kontrol edip siparişi tamamlayınız.</strong></p>",
+        "EN": "<p><strong>Please check all your information and complete the order.</strong></p>"
+    },
+    "1000041": {
+        "TR": "<p><strong>Dikkat! Sipariş bilgilerinde bir farklılık var</strong></p>",
+        "EN": "<p><strong>Attention! There is a difference in the order information</strong></p>"
+    },
+    "1000042": {
+        "TR": "<p><strong>Dikkat! Adres bilgilerinde bir farklılık var</strong></p>",
+        "EN": "<p><strong>Attention! There is a difference in the address information</strong></p>"
+    },
+    "1000043": {
+        "TR": "<p><strong>Dikkat! Alıcı bilgilerinde bir farklılık var</strong></p>",
+        "EN": "<p><strong>Attention! There is a difference in the recipient information</strong></p>"
+    },
+    "1000044": {
+        "TR": "Sipariş bilgileri yükleniyor. Lütfen bekleyin. <br> ",
+        "EN": "Loading order details. Please wait. <br>"
+    },
+    "1000045": {
+        "TR": "Ayarlar",
+        "EN": "Settings"
+    },
+    "1000046": {
+        "TR": "Yardım",
+        "EN": "Help"
+    },
+    "1000047": {
+        "TR": "Otomatik Devam Et",
+        "EN": "Continue Automatically"
+    },
+    "1000048": {
+        "TR": "Devam Et",
+        "EN": "Continue"
+    },
+    "1000049": {
+        "TR": "Sipariş detayları alınamamıştır. Lütfen daha sonra tekrar deneyiniz.",
+        "EN": "Order details could not be received. Please try again later."
+    },
+    "1000050": {
+        "TR": "Sipariş bilgileri alınamadı. Lütfen önce SellerCentral'dan sipariş bilgilerini aktarın.",
+        "EN": "Failed to retrieve order information. Please import order information from SellerCentral first."
+    },
+    "1000051": {
+        "TR": "Tarih",
+        "EN": "Date"
+    },
+    "1000052": {
+        "TR": "Telefon",
+        "EN": "Phone"
+    },
+    "1000053": {
+        "TR": "Ürünler",
+        "EN": "Products"
+    },
+    "1000054": {
+        "TR": "Çıkış Yap",
+        "EN": "Log Out"
+    },
+    "1000055": {
+        "TR": "Eğer chrome ektentisi sağ alt tarafta görünmüyorsa, <a>bu videoda</a> belirtilen ayarları yapmanız gerekmektedir.",
+        "EN": "If the chrome extension is not visible at the bottom right, you need to adjust the settings <a>in this video</a>."
+    },
+    "1000056": {
+        "TR": "SellerFlash eklentisi amazon siteleri üzerinde aktive olup çalışmaktadır.",
+        "EN": "SellerFlash extension is activated and working on amazon sites."
+    },
+    "1000057": {
+        "TR": "Kapalı",
+        "EN": "Closed"
+    },
+    "1000058": {
+        "TR": "Stoğu Sıfırla",
+        "EN": "Empty Stock"
+    },
+    "1000059": {
+        "TR": "Kaldır",
+        "EN": "Remove"
+    },
+    "1000060": {
+        "TR": "Filtre bilgileriniz alınamadı.",
+        "EN": "Unable to retrieve your filter information."
+    },
+    "1000061": {
+        "TR": "Ürün Araştırması ve ASIN Aktarma",
+        "EN": "Product Research and ASIN Transfer"
+    },
+    "1000062": {
+        "TR": "1-400 aralığında",
+        "EN": "Between 1-400"
+    },
+    "1000063": {
+        "TR": "Pazar Yeri",
+        "EN": "Market Place"
+    },
+    "1000064": {
+        "TR": "ASIN aramak istediğiniz sayfa aralığını girip dilerseniz filtreleme yaparak aşağıdaki Başlat butonuna tıklayın.",
+        "EN": "Enter the page range you want to search for the ASIN, filter if you wish and click the Start button below."
+    },
+    "1000065": {
+        "TR": "SKU’larınız için bir ön ek belirleyin",
+        "EN": "Set a prefix for your SKUs."
+    },
+    "1000066": {
+        "TR": "Başlat",
+        "EN": "Start"
+    },
+    "1000067": {
+        "TR": "Durdur",
+        "EN": "Stop"
+    },
+    "1000068": {
+        "TR": "ASIN'leri SellerFlash'a Aktar",
+        "EN": "Send ASINs to SellerFlash"
+    },
+    "1000069": {
+        "TR": "İlk sayfa değeri son sayfa değerinden büyük olamaz.",
+        "EN": "First page value cannot be greater than last page value."
+    },
+    "1000070": {
+        "TR": "✕",
+        "EN": "✕"
+    },
+    "1000071": {
+        "TR": "Kaydediliyor... Lütfen bekleyin.",
+        "EN": "Saving... Please wait."
+    },
+    "1000072": {
+        "TR": " sayfa kontrol edildi. ",
+        "EN": " pages checked. "
+    },
+    "1000073": {
+        "TR": " ASIN bulundu.",
+        "EN": " ASINs found."
+    },
+    "1000074": {
+        "TR": " ASIN listesi başarıyla kaydedildi.",
+        "EN": " ASIN list saved successfully."
+    },
+    "1000075": {
+        "TR": "ASIN listesi kaydedilemedi.",
+        "EN": "ASIN list can not be saved."
+    },
+    "1000076": {
+        "TR": "SellerFlash'a git",
+        "EN": "Go to SellerFlash"
+    },
+    "1000077": {
+        "TR": "Eklentiyi Aç",
+        "EN": "Open Extension"
+    },
+    "1000078": {
+        "TR": "SellerFlash Eklentisinin Özellikleri",
+        "EN": "SellerFlash Extension Features"
+    },
+    "1000079": {
+        "TR": "Hızlı ürün arama ve mağazaya ekleme",
+        "EN": "Quick product search and add to store"
+    },
+    "1000080": {
+        "TR": "Otomatik sipariş oluşturma",
+        "EN": "Automatic order creation"
+    },
+    "1000081": {
+        "TR": "Detaylı ürün arama filtreleri",
+        "EN": "Detailed product search filters"
+    },
+    "1000082": {
+        "TR": "Bulutla anında senkronizasyon",
+        "EN": "Instant sync with cloud"
+    },
+    "1000083": {
+        "TR": "Ve daha fazlası",
+        "EN": "And more"
+    },
+    "1000084": {
+        "TR": "SellerFlash'a giriş yapmak için lütfen ",
+        "EN": "In order to login SellerFlash please "
+    },
+    "1000085": {
+        "TR": "buraya tıklayınız",
+        "EN": "click here"
+    },
+    "1000086": {
+        "TR": "Son Teslim",
+        "EN": "Last Delivery"
+    },
+    "1000087": {
+        "TR": "SellerFlash sipariş bilgisini alırken lütfen bu ekranı kapatmadan bekleyiniz. Bu işlem 1-2 dakika sürebilir.",
+        "EN": "Please wait before closing this screen while SellerFlash receives order information. This process may take 1-2 minutes."
+    },
+    "1000088": {
+        "TR": "Siparişleri Kontrol Et",
+        "EN": "Check Orders"
+    },
+    "1000089": {
+        "TR": "Adres bilgisi alınmamış siparişlerinizi kontrol etmek ve adreslerini SellerFlash'a aktarmak için üstteki butona tıklayın.",
+        "EN": "Click the button above to check your orders without address information and transfer their addresses to SellerFlash."
+    },
+    "1000090": {
+        "TR": "İşlem yapılıyor... Lütfen bekleyin.",
+        "EN": "Processing... Please wait."
+    },
+    "1000091": {
+        "TR": "İşlem tamamlandı.",
+        "EN": "Process completed."
+    },
+    "1000092": {
+        "TR": "Siparişi İptal Et",
+        "EN": "Cancel Order"
+    },
+    "1000093": {
+        "TR": "Toplam Fiyat",
+        "EN": "Total Price"
+    },
+    "1000094": {
+        "TR": "Alıcı Sipariş No",
+        "EN": "Buyer Order ID"
+    },
+    "1000095": {
+        "TR": "Alıcı sipariş bilgileri SellerFlash'e aktarılmıştır.",
+        "EN": "Buyer order information transferred to SellerFlash."
+    },
+    "1000096": {
+        "TR": "SellerFlash Çalışıyor",
+        "EN": "SellerFlash is Active"
+    },
+    "1000097": {
+        "TR": "SellerFlash eklentisinden yararlanmak için ürün araması yapabilir veya ürün kategorilerinde gezinebilirsiniz.",
+        "EN": "You can search for products or browse product categories to take advantage of the SellerFlash extension."
+    },
+    "1000098": {
+        "TR": "Başlat",
+        "EN": "Start"
+    },
+    "1000099": {
+        "TR": "Durdur",
+        "EN": "Stop"
+    },
+    "1000100": {
+        "TR": "Temizle",
+        "EN": "Clear"
+    },
+    "1000101": {
+        "TR": "Otomatik fiyatlandırma tamamlandı!",
+        "EN": "Auto repricing completed!"
+    },
+    "1000102": {
+        "TR": "Otomatik fiyatlandırma temizleme işlemi tamamlandı!",
+        "EN": "Clear repricing completed!"
+    },
+    "1000103": {
+        "TR": "Ürün stokta bulunmuyor veya hedef pazaryerine gönderimi yapılamamaktadır.",
+        "EN": "The product is out of stock or cannot be sent to the target marketplace."
+    },
+    "1000104": {
+        "TR": "Sponsorlu ürünleri al",
+        "EN": "Get sponsored products"
+    },
+    "1000105": {
+        "TR": "Arama sonuçlarınız panel.sellerflash.com ortamına aktarılmak üzere kuyruğa eklenmiştir. <br> Ürünleriniz panel.sellerflash.com’da onaylamanız durumunda, Amazon mağazanıza eklenmiş olacaktır.",
+        "EN": "Your search results has been queued for transferring to panel.sellerflash.com. <br> The products will be send to your Amazon store, after your approval on panel.sellerflash.com"
+    },
+    "1000106": {
+        "TR": "Adres",
+        "EN": "Address"
+    },
+    "1000107": {
+        "TR": "Uyarıları Aktar",
+        "EN": "Transfer Alerts"
+    },
+    "1000108": {
+        "TR": "Uyarılar SellerFlash'a aktarılıyor. Lütfen bekleyin.",
+        "EN": "Alerts are transfered into SellerFlash. Please wait."
+    },
+    "1000109": {
+        "TR": "Uyarılar başarıyla aktarıldı.",
+        "EN": "Alerts transferred successfully."
+    },
+    "1000110": {
+        "TR": "Product Policy Compliance uyarılarını SellerFlash Ortak havuzuna aktarmak için tıklayınız.<br> Her pazaryeri için ayrı ayrı gönderim yapmanız gerekmektedir.",
+        "EN": "Click to import Product Policy Compliance alerts to the SellerFlash Partner repository.<br> You have to submit separately for each marketplace."
+    },
+    "1000111": {
+        "TR": "Uyarılar aktarılamadı.",
+        "EN": "Alerts could not be transferred."
+    },
+    "1000112": {
+        "TR": "Alıcı Sipariş Durumu",
+        "EN": "Buyer Order Status"
+    },
+    "1000113": {
+        "TR": "Satıcı Sipariş Durumu",
+        "EN": "Seller Order Status"
+    },
+    "1000114": {
+        "TR": "Satıcı Sipariş No",
+        "EN": "Seller Order ID"
+    },
+    "10000115": {
+        "TR": "Giriş yapmak için lütfen ",
+        "EN": "In order to login please "
+    },
+    "1000116": {
+        "TR": "Fiyat Hatalarını Aktar",
+        "EN": "Transfer Pricing Issues"
+    },
+    "1000117": {
+        "TR": "Fiyat hataları SellerFlash'a aktarılıyor. Lütfen bekleyin.",
+        "EN": "Pricing issues are transfered into SellerFlash. Please wait."
+    },
+    "1000118": {
+        "TR": "Fiyat hataları başarıyla aktarıldı.",
+        "EN": "Pricing issues transferred successfully."
+    },
+    "1000119": {
+        "TR": "Fiyat hataları aktarılamadı",
+        "EN": "Pricing issues could not be transferred"
+    },
+    "1000120": {
+        "TR": "Fiyat hataları uyarılarını SellerFlash ortak havuzuna aktarmak için tıklayınız.<br> Her pazaryeri için ayrı ayrı gönderim yapmanız gerekmektedir.",
+        "EN": "Click to import Pricing Issues alerts to the SellerFlash common pool.<br> You have to submit separately for each marketplace."
+    },
+    "1000121": {
+        "TR": "Ürünler abonelik seviyenizdeki limit aşımı nedeniyle eklenememiştir.",
+        "EN": "Products could not be added due to your subscription level exceeding the limit."
+    },
+    "1000122": {
+        "TR": "Ürünlerin abone seviyenize göre KISITLI şekilde eklemesi yapılmıştır.",
+        "EN": "The products have been added LIMITED according to your subscriber level."
+    },
+    "1000123": {
+        "TR": "Kayıt ekleme limitini aştınız! Lütfen limitasyona uyarak tekrar deneyiniz.",
+        "EN": "Insert limit exceeded! Please try again by following limitation."
+    },
+    "1000124": {
+        "TR": "Eklenen ASIN Sayısı: ",
+        "EN": "Added ASIN Count: "
+    },
+    "1000125": {
+        "TR": "Tekrar giriş yapmanız gerekmektedir: ",
+        "EN": "You need to sign-in again: "
+    },
+    "1000126": {
+        "TR": "Buraya tıklayın",
+        "EN": "Click here"
+    },
+    "1000127": {
+        "TR": "Alıcı sipariş bilgileri aktarılırken bir hata oluştu. Lütfen SellerFlash siparişler ekranınızı kontrol ediniz. Sipariş bilgileri aktarılamadı ise manuel olarak sipariş bilgilerini SellerFlash'e kaydediniz.",
+        "EN": "An error occurred while transferring buyer order information. Please check your SellerFlash orders screen. If the order information could not be transferred, manually save the order information to SellerFlash."
+    },
+    "1000128": {
+        "TR": "Sayfa Aralığı",
+        "EN": "Page Range"
+    },
+    "1000129": {
+        "TR": "Fiyat Aralığı",
+        "EN": "Price Range"
+    },
+    "1000130": {
+        "TR": "Yıldız",
+        "EN": "Rating"
+    },
+    "1000131": {
+        "TR": "Değerlendirme Sayısı",
+        "EN": "Review Count"
+    },
+    "1000132": {
+        "TR": "Min. Fiyat",
+        "EN": "Min. Price"
+    },
+    "1000133": {
+        "TR": "Max. Fiyat",
+        "EN": "Max. Price"
+    },
+    "1000134": {
+        "TR": "Min. Yıldız",
+        "EN": "Min. Rating"
+    },
+    "1000135": {
+        "TR": "Max. Yıldız",
+        "EN": "Max. Rating"
+    },
+    "1000136": {
+        "TR": "Min. Değerlendirme",
+        "EN": "Min. Review"
+    },
+    "1000137": {
+        "TR": "Max. Değerlendirme",
+        "EN": "Max. Review"
+    },
+    "1000138": {
+        "TR": "1.0-5.0 aralığında",
+        "EN": "Between 1.0-5.0"
+    },
+    "1000139": {
+        "TR": "Filtreleri Temizle",
+        "EN": "Clear Filters"
+    },
+    "1000140": {
+        "TR": "Ürün miktarı satın almanız gerekenden fazla!",
+        "EN": "Quantity of product is more than you need to buy!"
+    },
+    "1000141": {
+        "TR": "SellerFlash abonelik durumunuz uygun olmadığı için işleminiz gerçekleştirilememektedir.",
+        "EN": "Your operation cannot be performed because your SellerFlash subscription status is not suitable."
+    },
+    "1000142": {
+        "TR": "Bu üründe PRIME indirimi var",
+        "EN": "This product has a PRIME discount"
+    },
+    "1000143": {
+        "TR": "Sadece kupon indirimli ürünleri al",
+        "EN": "Get only coupon discount products"
+    },
+    "1000144": {
+        "TR": "Bu siparişte kupon indirimli ürün var",
+        "EN": "This order has a coupon discounted product"
+    },
+    "1000145": {
+        "TR": "ASIN aktarımı her 30 saniyede 1 kez yapılabilir. Lütfen birkaç saniye bekleyip tekrar deneyiniz.",
+        "EN": "ASIN transfer can be done once every 30 seconds. Please wait a few seconds and try again."
+    },
+    "1000146": {
+        "TR": "Bu üründe LIGHTNING DEAL veya benzeri bir indirim var. Bu indirimden yararlanmak için ürün detayına gidip ürünü manuel olarak sepete ekleyebilirsiniz.",
+        "EN": "This product has a LIGHTNING DEAL or similar discount. To take advantage of this discount, you can go to the product detail and add the product to the cart manually."
+    },
+    "1000147": {
+        "TR": "Kargoya verilen: ",
+        "EN": "Shipped: "
+    },
+    "1000148": {
+        "TR": "Teslim edilen: ",
+        "EN": "Delivered: "
+    },
+    "1000149": {
+        "TR": "SellerFlash'a aktarılmamış yeni siparişlerinizi aktarmak için üstteki butona tıklayınız.",
+        "EN": "Click the button above to transfer your new orders that have not been transferred to SellerFlash."
+    },
+    "1000150": {
+        "TR": "Siparişleri Aktar",
+        "EN": "Transfer Orders"
+    },
+    "1000151": {
+        "TR": "Envanteri Aktar",
+        "EN": "Transfer Inventory"
+    },
+    "1000152": {
+        "TR": "Envanteri Güncelle",
+        "EN": "Get Inventory Updates"
+    },
+    "1000153": {
+        "TR": "Sipariş Takip Bilgileri Güncelle",
+        "EN": "Get Shipping Tracking Updates"
+    },
+    "1000154": {
+        "TR": "Envanter Güncellemelerini Tamamla",
+        "EN": "Transfer Loading Result Reports"
+    },
+    "1000155": {
+        "TR": "Sipariş Güncellemelerini Tamamla",
+        "EN": "Transfer Shipping Tracking Result Reports"
+    },
+    "1000156": {
+        "TR": "Sipariş Takip İşlemlerine Git",
+        "EN": "Go to Order Tracking"
+    },
+    "1000157": {
+        "TR": "Envanter aktarma işlemi 6 saatte bir kez yapılabilir. Lütfen {0} dakika bekleyip tekrar deneyiniz.",
+        "EN": "Inventory transfer can be done once every 6 hours. Please wait {0} minutes and try again."
+    },
+    "1000158": {
+        "TR": "Envanter aktarma işlemi 6 saatte bir kez yapılabilir. Lütfen bir süre bekleyip tekrar deneyiniz.",
+        "EN": "Inventory transfer can be done once every 6 hours. Please try again later."
+    },
+    "1000159": {
+        "TR": "Anasayfaya Git",
+        "EN": "Go to Homepage"
+    },
+    "1000160": {
+        "TR": "xxxxxxxxxx",
+        "EN": "yyyyyyyyyy"
+    },
+    "1000161": {
+        "TR": "Yükleme işlemi <span style='font-size:20px'>{COUNTRY}</span> pazaryerine yapılacaktır!",
+        "EN": "File will be uploaded to <span style='font-size:20px'>{COUNTRY}</span> marketplace!"
+    }
+}
