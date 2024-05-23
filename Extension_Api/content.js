@@ -4727,8 +4727,8 @@ class shippingInfo {
     shipDate,
     deliveryDate
   ) {
-    this.SellerAmazonOrderId = amazonOrderId ? amazonOrderId : "";
-    this.BuyerAmazonOrderId = buyerOrderId ? buyerOrderId : "";
+    this.BuyerAmazonOrderId = amazonOrderId ? amazonOrderId : "";
+    this.SellerAmazonOrderId = buyerOrderId ? buyerOrderId : "";
     this.CarrierName = carrierName;
     this.TrackingId = trackingId;
     this.NewBuyerOrderStatus = newBuyerOrderStatus;
