@@ -4235,6 +4235,7 @@ function sfCheckDeliveryButtonClicked() {
               si.PromiseMessage
             )
           ) {
+            debugger;
             if (!si.DeliveryDate)
               delete si.DeliveryDate;
 
