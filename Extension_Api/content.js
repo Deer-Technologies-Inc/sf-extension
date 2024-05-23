@@ -4727,8 +4727,8 @@ class shippingInfo {
     shipDate,
     deliveryDate
   ) {
-    this.AmazonOrderId = amazonOrderId;
-    this.BuyerOrderId = buyerOrderId;
+    this.SellerAmazonOrderId = amazonOrderId ? amazonOrderId : "";
+    this.BuyerAmazonOrderId = buyerOrderId ? buyerOrderId : "";
     this.CarrierName = carrierName;
     this.TrackingId = trackingId;
     this.NewBuyerOrderStatus = newBuyerOrderStatus;
@@ -4752,7 +4752,7 @@ async function getShippingInformation(content) {
   var s = JSON.parse(scripts.innerText);
   si.ShortStatus = s.shortStatus;
   si.PromiseMessage = s.promise.promiseMessage;
-  si.AmazonOrderId = s.orderId;
+  si.SellerAmazonOrderId = s.orderId;
   si.TrackingId = s.trackingId;
 
   var carrier = page
