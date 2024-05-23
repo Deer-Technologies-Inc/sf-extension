@@ -4047,10 +4047,15 @@ function sfCheckCargoButtonClicked() {
 
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
+<<<<<<< HEAD
           type: "PUT",
           url:
             user.apiSubdomain +
             "api/buyerOrder/updateNewShippedCustomerBuyerOrderList",
+=======
+          type: "POST",
+          url:`${baseUrl}${endPoints.Order.updateAsShipped}`,
+>>>>>>> 3f91dd1f73454fd7e055ef1c4299278ae822be93
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
