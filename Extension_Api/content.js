@@ -4037,6 +4037,18 @@ function sfCheckCargoButtonClicked() {
               si.PromiseMessage
             )
           ) {
+            if (!si.DeliveryDate)
+              delete si.DeliveryDate;
+
+            if (!si.ExpectedDeliveryDateEnd)
+              delete si.ExpectedDeliveryDateEnd;
+
+            if (!si.ExpectedDeliveryDateStart)
+              delete si.ExpectedDeliveryDateStart;
+
+            if (!delete si.ShipDate)
+              delete si.ShipDate;
+
             updateSiList.push(si);
           }
         }
@@ -4235,7 +4247,6 @@ function sfCheckDeliveryButtonClicked() {
               si.PromiseMessage
             )
           ) {
-            debugger;
             if (!si.DeliveryDate)
               delete si.DeliveryDate;
 
@@ -4257,9 +4268,7 @@ function sfCheckDeliveryButtonClicked() {
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
           type: "POST",
-          url:
-            user.apiSubdomain +
-            "api/buyerOrder/updateShippedCustomerBuyerOrderDetailList",
+          url: `${baseUrl}${endPoints.Order.updateAsShipped}`,
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
