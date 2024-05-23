@@ -4047,7 +4047,7 @@ function sfCheckCargoButtonClicked() {
 
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
-          type: "POST",
+          type: "PUT",
           url:
             user.apiSubdomain +
             "api/buyerOrder/updateNewShippedCustomerBuyerOrderList",
