@@ -17,6 +17,7 @@ const endPoints = {
     updateAsPurchased: "orders/update-as-purchased",
     updateAsShipped: "orders/update-as-shipped",
     notShipped: "orders/not-shipped",
+    notDelivered: "orders/not-delivered",
   },
 };
 
@@ -4124,10 +4125,7 @@ function sfCheckDeliveryButtonClicked() {
 
   $.ajax({
     type: "GET",
-    url:
-      user.apiSubdomain +
-      "api/buyerOrder/getShippedButNotDeliveredBuyerOrders?customerId=" +
-      user.customerId,
+    url:`${baseUrl}${endPoints.Order.notDelivered}?storeId=${selectedStoreId}`,
     headers: { Authorization: "Bearer " + user.token },
     success: async function (response) {
       $("#sfShippingDetails").html(language["1000035"][activeLanguage]);
