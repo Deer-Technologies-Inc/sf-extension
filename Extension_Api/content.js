@@ -4755,6 +4755,7 @@ async function getShippingInformation(content) {
   si.ShortStatus = s.shortStatus;
   si.PromiseMessage = s.promise.promiseMessage;
   si.AmazonOrderId = s.orderId;
+  si.BuyerAmazonOrderId = s.orderId;
   si.TrackingId = s.trackingId;
 
   var carrier = page
