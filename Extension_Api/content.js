@@ -4752,7 +4752,7 @@ async function getShippingInformation(content) {
   var s = JSON.parse(scripts.innerText);
   si.ShortStatus = s.shortStatus;
   si.PromiseMessage = s.promise.promiseMessage;
-  si.SellerAmazonOrderId = s.orderId;
+  si.AmazonOrderId = s.orderId;
   si.TrackingId = s.trackingId;
 
   var carrier = page
