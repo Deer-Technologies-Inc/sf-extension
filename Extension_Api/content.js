@@ -16,6 +16,7 @@ const endPoints = {
     byAmazonOrderId: "orders/by-amazon-order-id",
     updateAsPurchased: "orders/update-as-purchased",
     updateAsShipped: "orders/update-as-shipped",
+    updateAsDelivered: "orders/update-as-delivered",
     notShipped: "orders/not-shipped",
     notDelivered: "orders/not-delivered",
   },
@@ -4054,7 +4055,7 @@ function sfCheckCargoButtonClicked() {
           }
         }
       }
-
+      // update as shipped
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
           type: "PUT",
@@ -4122,6 +4123,7 @@ function sfCheckDeliveryButtonClicked() {
   });
 
   $("#sfShippingCheckProgress").html("");
+  var selectedStoreId = $("#sfMarketPlace").val();
 
   $.ajax({
     type: "GET",
@@ -4262,11 +4264,11 @@ function sfCheckDeliveryButtonClicked() {
         }
       }
 
-      // update as shipped
+      // update as delivered
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
-          type: "POST",
-          url: `${baseUrl}${endPoints.Order.updateAsShipped}`,
+          type: "PUT",
+          url: `${baseUrl}${endPoints.Order.updateAsDelivered}`,
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
@@ -4394,7 +4396,7 @@ function createPerformanceDashboardPageItems() {
         response = response.replaceAll("$cc_metadata", "cc_metadata");
 
         response = JSON.parse(response);
-
+        //account health data burada çekiliyor
         $.ajax({
           type: "POST",
           url: sub + "api/Inventory/AddAccountHealthData",
