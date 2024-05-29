@@ -340,7 +340,7 @@ function createExtensionTools() {
     ) {
       createOrdersPageItems();
     } else if (location.href.includes("/orders-v3/order")) {
-      createOrderDetailPageItems();
+      createOrderDetailPageItems(); //endpoint gelecek
     } else if (location.href.includes("/addresses/add")) {
       createAddNewAddressPageItems();
     } else if (location.href.includes("/a/addresses")) {
@@ -351,7 +351,7 @@ function createExtensionTools() {
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
-      createRequestApprovalPageItems();
+      createRequestApprovalPageItems(); //endpoint eklenecek
       createRequestApprovalRemoveItems();
       createDeleteProductPageItems(!0); // sayfa yapısını bozuyor 1
       createFixProductPageItems(); // sayfa yapısını bozuyor 2
@@ -1913,6 +1913,7 @@ function createSellerCentralHomePageItems() {
 var csrfToken = "";
 var completedFeedCount = 0;
 
+//manual transfer iptal edildi
 async function manualTransferShippingTrackingLoadingResults() {
   completedFeedCount = 0;
 
@@ -3515,10 +3516,10 @@ function createOrdersPageItems() {
 }
 
 function getOrderStatusList(n) {
-  var panelLink = "https://panel.sellerflash.com";
-  if (user.platform == "test") panelLink = "https://paneltest.sellerflash.com";
+  var panelLink = "https://sellerflash.com";
+  if (user.platform == "test") panelLink = "https://x-test.sellerflash.com";
   else if (user.platform == "dev")
-    panelLink = "https://paneldev.sellerflash.com";
+    panelLink = "https://x-test.sellerflash.com";
 
   $.ajax({
     type: "POST",
