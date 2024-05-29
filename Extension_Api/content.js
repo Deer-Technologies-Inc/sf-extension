@@ -3619,10 +3619,10 @@ function getOrderStatusList(n) {
 }
 
 function createMessagesPageItems() {
-  var panelLink = "https://panel.sellerflash.com";
-  if (user.platform == "test") panelLink = "https://paneltest.sellerflash.com";
+  var panelLink = "https://www.sellerfull.com";
+  if (user.platform == "test") panelLink = "https://x-test.sellerfull.com";
   else if (user.platform == "dev")
-    panelLink = "https://paneldev.sellerflash.com";
+    panelLink = "https://x-test.sellerfull.com";
 
   var n = "";
   setInterval(function () {
@@ -3661,10 +3661,7 @@ function createMessagesPageItems() {
 
       $.ajax({
         type: "GET",
-        url:
-          user.apiSubdomain +
-          "api/sellerOrder/getSellerOrderDetailsForExtMessage?sellerAmazonOrderId=" +
-          t,
+        url:`${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${amazonOrderId}`,
         headers: { Authorization: "Bearer " + user.token },
         success: function (response) {
           var i = $(
@@ -3691,27 +3688,27 @@ function createMessagesPageItems() {
           }
 
           var bColor, sColor;
-          if (response.buyerStatus == "NOTPURCHASED") {
+          if (response.buyerOrder.buyerOrderStatus == "NOTPURCHASED") {
             bColor = "#ec7063";
-          } else if (response.buyerStatus == "CANCELED") {
+          } else if (response.buyerOrder.buyerOrderStatus == "CANCELED") {
             bColor = "#424949";
-          } else if (response.buyerStatus == "SHIPPED") {
+          } else if (response.buyerOrder.buyerOrderStatus == "SHIPPED") {
             bColor = "#27ae60";
-          } else if (response.buyerStatus == "PURCHASED") {
+          } else if (response.buyerOrder.buyerOrderStatus == "PURCHASED") {
             bColor = "#1976d2";
-          } else if (response.buyerStatus == "DELIVERED") {
+          } else if (response.buyerOrder.buyerOrderStatus == "DELIVERED") {
             bColor = "#145a32";
           }
 
-          if (response.sellerStatus == "NOTPURCHASED") {
+          if (response.sellerOrder.orderStatus == "NOTPURCHASED") {
             sColor = "#ec7063";
-          } else if (response.sellerStatus == "CANCELED") {
+          } else if (response.sellerOrder.orderStatus == "CANCELED") {
             sColor = "#424949";
-          } else if (response.sellerStatus == "SHIPPED") {
+          } else if (response.sellerOrder.orderStatus == "SHIPPED") {
             sColor = "#27ae60";
-          } else if (response.sellerStatus == "PURCHASED") {
+          } else if (response.sellerOrder.orderStatus == "PURCHASED") {
             sColor = "#1976d2";
-          } else if (response.sellerStatus == "DELIVERED") {
+          } else if (response.sellerOrder.orderStatus == "DELIVERED") {
             sColor = "#145a32";
           }
 
@@ -3729,14 +3726,14 @@ function createMessagesPageItems() {
               "; border-color: " +
               bColor +
               ";'> <span class='sf-badge-initial'>B</span> <span class='sf-badge-text'>" +
-              response.buyerStatus +
+              response.buyerOrder.buyerOrderStatus +
               "</span></div>" +
               "<div class='sf-badge' style='background-color: " +
               sColor +
               "; border-color: " +
               sColor +
               ";'> <span class='sf-badge-initial'>S</span> <span class='sf-badge-text'>" +
-              response.sellerStatus +
+              response.sellerOrder.orderStatus +
               "</span></div>" +
               "</div></div>" +
               "<hr />" +
@@ -3752,14 +3749,14 @@ function createMessagesPageItems() {
               "</a>" +
               ' <button id="sf-copySellerOrderId" style="width:25px; height:25px; font-weight:bold; background-color: transparent; border-width: 0px;"><i class="fa fa-copy"></i> </button>' +
               "</div>" +
-              (response.buyerAmazonOrderID != null
+              (response.buyerOrder.buyerOrderDetails[0].amazonOrderId != null
                 ? "<div><strong>" +
                   language["1000094"][activeLanguage] +
                   ": </strong> <br>" +
                   "<a href='https://www.amazon.com/gp/your-account/order-details/?orderID=" +
-                  response.buyerAmazonOrderID +
+                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
                   "' target='_blank'>" +
-                  response.buyerAmazonOrderID +
+                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
                   "</a> " +
                   ' <button id="sf-copyBuyerOrderId" style="width:25px; height:25px; font-weight:bold;  background-color: transparent; border-width: 0px;"><i class="fa fa-copy"></i> </button>' +
                   "<br>" +
@@ -3768,22 +3765,22 @@ function createMessagesPageItems() {
                   "<div><strong>" +
                   language["1000025"][activeLanguage] +
                   ": </strong> " +
-                  response.myEarning +
+                  response.earningInUSD +
                   "</div><div><strong>" +
                   language["1000026"][activeLanguage] +
                   ": </strong> " +
                   "<a href='https://www.amazon.com/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&orderId=" +
-                  response.buyerAmazonOrderID +
+                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
                   "&packageIndex=0&shipmentId=1" +
                   "' target='_blank'> " +
-                  response.buyerAmazonOrderID +
+                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
                   "</a>" +
                   "</div></div>"
                 : "</div>")
           );
 
           $("#sf-copyBuyerOrderId").click(function () {
-            navigator.clipboard.writeText(response.buyerAmazonOrderID);
+            navigator.clipboard.writeText(response.buyerOrder.buyerOrderDetails[0].amazonOrderId);
             $("#sf-copyBuyerOrderId").html('<i class="fa fa-check"></i>');
             setTimeout(() => {
               $("#sf-copyBuyerOrderId").html('<i class="fa fa-copy"></i>');
@@ -3863,7 +3860,6 @@ function createShippingTrackerItems() {
   $("body").append(div);
 
   getMarketPlacesForBuyer();
-  console.log("test --------------------------------------");
 
   $("#sfButton").click(function () {
     $("#sfContainer").show();
