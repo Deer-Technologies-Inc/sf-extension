@@ -3765,7 +3765,7 @@ function createMessagesPageItems() {
                   "<div><strong>" +
                   language["1000025"][activeLanguage] +
                   ": </strong> " +
-                  response.earningInUSD +
+                  response.sellerOrder.sellerOrderDetails[0].profit +
                   "</div><div><strong>" +
                   language["1000026"][activeLanguage] +
                   ": </strong> " +
