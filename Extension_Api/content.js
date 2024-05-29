@@ -3661,7 +3661,7 @@ function createMessagesPageItems() {
 
       $.ajax({
         type: "GET",
-        url:`${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${amazonOrderId}`,
+        url:`${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${t}`,
         headers: { Authorization: "Bearer " + user.token },
         success: function (response) {
           var i = $(
