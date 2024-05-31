@@ -6519,12 +6519,12 @@ function changeLanguage() {
 }
 function parseDate(dateString) {
   // Define the format of the date string
-  const regex = /Delivered (\d{2}) (\w{3,})/;
+  const regex = /Delivered (\w{3,}) (\d{2})/;
   const match = dateString.match(regex);
 
   if (match) {
-      const day = parseInt(match[1]);
-      const month = match[2];
+      const day = parseInt(match[2]);
+      const month = match[1];
       const year = new Date().getFullYear(); // Use the current year
 
       // Map month names to month numbers
