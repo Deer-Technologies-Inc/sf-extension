@@ -19,6 +19,7 @@ const endPoints = {
     updateAsDelivered: "orders/update-as-delivered",
     notShipped: "orders/not-shipped",
     notDelivered: "orders/not-delivered",
+    byAmazonOrderIds: "orders/by-amazon-order-ids",
   },
 };
 
@@ -41,14 +42,14 @@ newStyle.appendChild(
     "\
 @font-face {\
     font-family: " +
-    nameFont +
-    ";\
+      nameFont +
+      ";\
     src: url('" +
-    chrome.runtime.getURL("fonts/Poppins-ExtraLight.ttf") +
-    "');\
+      chrome.runtime.getURL("fonts/Poppins-ExtraLight.ttf") +
+      "');\
     font-weight: " +
-    light +
-    ";\
+      light +
+      ";\
 }\
 "
   )
@@ -58,14 +59,14 @@ newStyle2.appendChild(
     "\
 @font-face {\
     font-family: " +
-    nameFont +
-    ";\
+      nameFont +
+      ";\
     src: url('" +
-    chrome.runtime.getURL("fonts/Poppins-Bold.ttf") +
-    "');\
+      chrome.runtime.getURL("fonts/Poppins-Bold.ttf") +
+      "');\
     font-weight: " +
-    bold +
-    ";\
+      bold +
+      ";\
 }\
 "
   )
@@ -75,14 +76,14 @@ newStyle3.appendChild(
     "\
 @font-face {\
     font-family: " +
-    nameFont +
-    ";\
+      nameFont +
+      ";\
     src: url('" +
-    chrome.runtime.getURL("fonts/Poppins-Thin.ttf") +
-    "');\
+      chrome.runtime.getURL("fonts/Poppins-Thin.ttf") +
+      "');\
     font-weight: " +
-    thin +
-    ";\
+      thin +
+      ";\
 }\
 "
   )
@@ -92,14 +93,14 @@ newStyle4.appendChild(
     "\
 @font-face {\
     font-family: " +
-    nameFont +
-    ";\
+      nameFont +
+      ";\
     src: url('" +
-    chrome.runtime.getURL("fonts/Poppins-Regular.ttf") +
-    "');\
+      chrome.runtime.getURL("fonts/Poppins-Regular.ttf") +
+      "');\
     font-weight: " +
-    regular +
-    ";\
+      regular +
+      ";\
 }\
 "
   )
@@ -109,14 +110,14 @@ newStyle5.appendChild(
     "\
 @font-face {\
     font-family: " +
-    nameFont +
-    ";\
+      nameFont +
+      ";\
     src: url('" +
-    chrome.runtime.getURL("fonts/Poppins-Medium.ttf") +
-    "');\
+      chrome.runtime.getURL("fonts/Poppins-Medium.ttf") +
+      "');\
     font-weight: " +
-    medium +
-    ";\
+      medium +
+      ";\
 }\
 "
   )
@@ -391,24 +392,24 @@ function createListingUploadPageItems() {
 function createAutoPricePageItems() {
   var input1 = $(
     '<span class="a-button a-button-primary a-button-small yellow-button" id="sf-startbulkautoprice" style="width: 127px;"><span class="a-button-inner"><img style="width:20px;height:auto;float:left;" src="' +
-    chrome.runtime.getURL("img/sf_extension.svg") +
-    '"><input class="a-button-input" type="button" id="sf-startautorepricing"><span  class="a-button-text" aria-hidden="true">' +
-    language["1000098"][activeLanguage] +
-    "</span></span></span>"
+      chrome.runtime.getURL("img/sf_extension.svg") +
+      '"><input class="a-button-input" type="button" id="sf-startautorepricing"><span  class="a-button-text" aria-hidden="true">' +
+      language["1000098"][activeLanguage] +
+      "</span></span></span>"
   );
   var input2 = $(
     '<span class="a-button a-button-primary a-button-small yellow-button" id="sf-clearbulkautoprice" style="width: 127px;"><span class="a-button-inner"><img style="width:20px;height:auto;float:left;" src="' +
-    chrome.runtime.getURL("img/sf_extension.svg") +
-    '"><input class="a-button-input" type="button" id="sf-clearautorepricing"><span  class="a-button-text" aria-hidden="true">' +
-    language["1000100"][activeLanguage] +
-    "</span></span></span>"
+      chrome.runtime.getURL("img/sf_extension.svg") +
+      '"><input class="a-button-input" type="button" id="sf-clearautorepricing"><span  class="a-button-text" aria-hidden="true">' +
+      language["1000100"][activeLanguage] +
+      "</span></span></span>"
   );
   var input3 = $(
     '<span class="a-button a-button-primary a-button-small yellow-button" id="sf-stopbulkautoprice" style="display:none;width: 127px;"><span class="a-button-inner"><img style="width:20px;height:auto;float:left;" src="' +
-    chrome.runtime.getURL("img/sf_extension.svg") +
-    '"><input class="a-button-input" type="button" id="sf-stopautorepricing"><span  class="a-button-text" aria-hidden="true">' +
-    language["1000099"][activeLanguage] +
-    "</span></span></span>"
+      chrome.runtime.getURL("img/sf_extension.svg") +
+      '"><input class="a-button-input" type="button" id="sf-stopautorepricing"><span  class="a-button-text" aria-hidden="true">' +
+      language["1000099"][activeLanguage] +
+      "</span></span></span>"
   );
 
   input1.appendTo(jQuery(".horizontalFieldFirst"));
@@ -556,8 +557,8 @@ function createInactivePageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px;
     background: none; border: none;  display: inline-block">
         <img src=${chrome.runtime.getURL(
-    "img/sf_extension.svg"
-  )} style="width: 90px;">
+          "img/sf_extension.svg"
+        )} style="width: 90px;">
     </button>`;
   $("body").prepend(sfButton);
 
@@ -616,8 +617,8 @@ function createOrderResultPageItems() {
 
         <div id='sfPreloader-message'>
         <img src='${chrome.runtime.getURL(
-      "img/loading.gif"
-    )}' style='height:50px; margin-left:20px;' /><br>
+          "img/loading.gif"
+        )}' style='height:50px; margin-left:20px;' /><br>
         ${language["1000087"][activeLanguage]}
         </div>
 
@@ -653,7 +654,7 @@ function createOrderResultPageItems() {
         }
       }
     },
-    failure: function () { },
+    failure: function () {},
     complete: function () {
       console.log("email", email);
     },
@@ -981,8 +982,8 @@ async function createRequestApprovalPageItems() {
 
             <div id='sfPreloader-message'>
             <img src='${chrome.runtime.getURL(
-          "img/loading.gif"
-        )}' style='height:50px; margin-left:20px;' /><br>
+              "img/loading.gif"
+            )}' style='height:50px; margin-left:20px;' /><br>
               <div id='sfProgressMessage'>
               </div>
             </div>
@@ -1242,8 +1243,8 @@ async function createRequestApprovalRemoveItems() {
 
             <div id='sfPreloader-message'>
             <img src='${chrome.runtime.getURL(
-          "img/loading.gif"
-        )}' style='display:block; height:50px; margin-left: auto; margin-right: auto;' /><br>
+              "img/loading.gif"
+            )}' style='display:block; height:50px; margin-left: auto; margin-right: auto;' /><br>
               <div id='sfProgressMessage'>
               </div>
             </div>
@@ -1374,7 +1375,7 @@ async function createRequestApprovalRemoveItems() {
               storeProductIds: [],
               asiNs: [],
             }),
-            success: function () { },
+            success: function () {},
             failure: function (response) {
               console.log("Error (failure)! ", response);
             },
@@ -1386,7 +1387,7 @@ async function createRequestApprovalRemoveItems() {
               } else {
                 $(".sf-alert-content").html(
                   "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                  language["1000009"][activeLanguage]
+                    language["1000009"][activeLanguage]
                 );
               }
             },
@@ -1409,16 +1410,17 @@ function createSellerCentralOrderFileUploadPageItems() {
                     <span class="ml-15">${user.name}</span>
                 </div>
                 <div>
-                    <button class="yellow-button" id="sf-hideTracker" style="width:30px;  font-weight:bold;">${language["1000070"][activeLanguage]
-    }</button>
+                    <button class="yellow-button" id="sf-hideTracker" style="width:30px;  font-weight:bold;">${
+                      language["1000070"][activeLanguage]
+                    }</button>
                 </div>
             </div>
         </div>
         <div class="sfContent">
             <div style="text-align: center !important; margin-top:0px;">
                 <img src=${chrome.runtime.getURL(
-      "img/logo_uzun.png"
-    )} style="height: 40px; margin:20px;">
+                  "img/logo_uzun.png"
+                )} style="height: 40px; margin:20px;">
             </div>
             <div style="text-align: center; margin-bottom:10px;">
             <span style="font-family: 'Poppins';">Manuel Yönetim İşlemleri</span>
@@ -1426,8 +1428,8 @@ function createSellerCentralOrderFileUploadPageItems() {
             <div class="flex ai-c jc-sb mb-10">
                 <div style="margin-top: 3px;">
                     <img src='${chrome.runtime.getURL(
-      "img/sf2amz.png"
-    )}' style='height: 34px;' alt='' />
+                      "img/sf2amz.png"
+                    )}' style='height: 34px;' alt='' />
                 </div>
                 <div class="flex ai-c jc-end">
                     <button id='sfManualGetShippingTrackingInformationFromSF' class="yellow-button" style="width:310px; font-family: 'Poppins';">
@@ -1449,8 +1451,8 @@ function createSellerCentralOrderFileUploadPageItems() {
             <div class="flex ai-c jc-sb mb-10">
                 <div style="margin-top: 3px;">
                     <img src='${chrome.runtime.getURL(
-      "img/sf2amz.png"
-    )}' style='height: 34px;' alt='' />
+                      "img/sf2amz.png"
+                    )}' style='height: 34px;' alt='' />
                 </div>
                 <div class="flex ai-c jc-end">
                     <button id='sfManualTransferShippingTrackingLoadingResults' class="yellow-button" style="width:310px; font-family: 'Poppins';">
@@ -1483,8 +1485,8 @@ function createSellerCentralOrderFileUploadPageItems() {
         <button id="sfButton" style="z-index: 999999; position: fixed; width:80px; height: 80px; bottom: 10px; right: 10px; display: none;
         background: none; border: none; ">
             <img src=${chrome.runtime.getURL(
-    "img/sf_extension.svg"
-  )} style="width: 80px;">
+              "img/sf_extension.svg"
+            )} style="width: 80px;">
         </button>`;
   $("body").prepend(sfButton);
   $("body").append(divMenu);
@@ -1540,9 +1542,9 @@ function createSellerCentralOrderFileUploadPageItems() {
           );
           $("#sfManualTransferShippingTrackingLoadingResults").text(
             $("#sfManualTransferShippingTrackingLoadingResults").text() +
-            " (" +
-            response.length +
-            " adet)"
+              " (" +
+              response.length +
+              " adet)"
           );
         }
       },
@@ -1558,10 +1560,10 @@ function createSellerCentralOrderFileUploadPageItems() {
   $("#sfManualGetShippingTrackingInformationFromSF").click(async function () {
     $("#sfProcessDetails").html(
       `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-      chrome.runtime.getURL("img/loading.gif") +
-      "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-      language["1000090"][activeLanguage] +
-      "</div>"
+        chrome.runtime.getURL("img/loading.gif") +
+        "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+        language["1000090"][activeLanguage] +
+        "</div>"
     );
     $("#sfProcessDetails").show();
 
@@ -1571,10 +1573,10 @@ function createSellerCentralOrderFileUploadPageItems() {
   $("#sfManualTransferShippingTrackingLoadingResults").click(async function () {
     $("#sfProcessDetails").html(
       `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-      chrome.runtime.getURL("img/loading.gif") +
-      "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-      language["1000090"][activeLanguage] +
-      "</div>"
+        chrome.runtime.getURL("img/loading.gif") +
+        "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+        language["1000090"][activeLanguage] +
+        "</div>"
     );
     $("#sfProcessDetails").show();
 
@@ -1584,10 +1586,10 @@ function createSellerCentralOrderFileUploadPageItems() {
   $("#sfManualGoHomePage").click(async function () {
     $("#sfProcessDetails").html(
       `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-      chrome.runtime.getURL("img/loading.gif") +
-      "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-      language["1000090"][activeLanguage] +
-      "</div>"
+        chrome.runtime.getURL("img/loading.gif") +
+        "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+        language["1000090"][activeLanguage] +
+        "</div>"
     );
     $("#sfProcessDetails").show();
 
@@ -1648,265 +1650,7 @@ function createSellerCentralHomePageItems() {
       setInterval(() => {
         checkIfNotFullAddressExists();
       }, 60000 * 10); // Every 10 min.
-    } else {
-      /* #region  ############ Buradaki fonksiyonlar tek tek kaldırılacak */
-      var divMenu = `
-                <div id="sfContainerMenu" class="sfContainer-bg3" style="width:450px; height:580px;">
-                    <div class="sfContainer-top">
-                        <div class="flex ai-c jc-sb" style="height:42px; padding: 0 0 0 15px;">
-                            <div class="flex ai-c">
-                                <i class="fas fa-user"></i>
-                                <span class="ml-15">${user.name}</span>
-                            </div>
-                            <div>
-                                <button class="yellow-button" id="sf-hideTracker" style="width:30px;  font-weight:bold;">${language["1000070"][activeLanguage]
-        }</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sfContent">
-                        <div style="text-align: center !important; margin-top:0px;">
-                            <img src=${chrome.runtime.getURL(
-          "img/logo_uzun.png"
-        )} style="height: 40px; margin:20px;">
-                        </div>
-                        <div style="text-align: center; margin-bottom:10px;">
-                        <span style="font-family: 'Poppins';">Manuel Yönetim İşlemleri</span>
-                        </div>
-
-                        <div class="flex ai-c jc-sb mb-10">
-                            <div style="margin-top: 3px;">
-                                <img src='${chrome.runtime.getURL(
-          "img/amz2sf.png"
-        )}' style='height: 34px;' alt='' />
-                            </div>
-                            <div class="flex ai-c jc-end">
-                                <button id='sfManualTransferOrders' class="yellow-button" style="width:310px; font-family: 'Poppins';">
-                                        ${language["1000150"][activeLanguage]}
-                                </button>
-                                <div>
-                                    <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
-                                    <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
-                                        <ul style="color: white;">
-                                            <li>Siparişleriniz SellerCentral’dan SellerFlash Panel uygulamasına aktarıalcaktır.</li>
-                                            <li>Siparişlerinizin panelde görülmesi için bu işlemi yeteri sıklıkta gerçekleştirilmeniz gerekmektedir. </li>
-                                            <li>Yeni sipariş bilgileriniz taranarak bilgilerinin aktarılması sağlanacaktır. </li>
-                                        </ul>
-                                    </span>
-                                    </i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex ai-c jc-sb mb-10">
-                            <div style="margin-top: 3px;">
-                                <img src='${chrome.runtime.getURL(
-          "img/amz2sf.png"
-        )}' style='height: 34px;' alt='' />
-                            </div>
-                            <div class="flex ai-c jc-end">
-                                <button id='sfManualTransferInventory' class="yellow-button " style="width:310px; font-family: 'Poppins';">
-                                    ${language["1000151"][activeLanguage]}
-                                </button>
-                                <div>
-                                    <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
-                                    <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
-                                        <ul style="color: white;">
-                                            <li>Envanter bilgileriniz SellerCentral’dan SellerFlash Panel uygulamasına aktarılacaktır.</li>
-                                            <li>Envanter uyumluğu için;
-                                                <ul>
-                                                    <li>İlk mağazanızı bağladığınızda,</li>
-                                                    <li>SellerCentraldaki manuel envanter değişikliklerinde bu işlemin yapılması gerekmektedir. </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </span>
-                                    </i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex ai-c jc-sb mb-10">
-                            <div style="margin-top: 3px;">
-                                <img src='${chrome.runtime.getURL(
-          "img/sf2amz.png"
-        )}' style='height: 34px;' alt='' />
-                            </div>
-                            <div class="flex ai-c jc-end">
-                                <button id='sfManualGetInventoryUpdatesFromSF' class="yellow-button" style="width:310px; font-family: 'Poppins';">
-                                    ${language["1000152"][activeLanguage]}
-                                </button>
-                                <div>
-                                    <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
-                                    <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
-                                        <ul style="color: white;">
-                                            <li>Envanterinizin stok ve fiyat güncellemeleri SellerFlash’tan Amazon’a aktarılacaktır.</li>
-                                            <li>Stok ve değişimlerinin yansıtılabilmesi için her 2 saatte bir bu işlemin yapılması gerekmektedir. </li>
-                                            <li>SellerFlashta, kar oranı, vergi oranı vb. Stok ve fiyat bilgilerinin değitiren ayarlar yapılması durumunda 30 dakika sonra bu işlemin yapılması gerekmektedir. </li>
-                                            <li>Ürün Silme, ürün ekleme işlemlerinden 30 dakika sonra bu işlemin yapılması gerekmektedir. </li>
-                                        </ul>
-                                    </span>
-                                    </i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex ai-c jc-sb mb-10">
-                            <div style="margin-top: 3px;">
-                                <img src='${chrome.runtime.getURL(
-          "img/sf2amz.png"
-        )}' style='height: 34px;' alt='' />
-                            </div>
-                            <div class="flex ai-c jc-end">
-                                <button id='sfManualTransferLoadingResults' class="yellow-button" style="width:310px; font-family: 'Poppins';">
-                                    ${language["1000154"][activeLanguage]}
-                                </button>
-                                <div>
-                                    <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
-                                    <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
-                                        <ul style="color: white;">
-                                            <li>Manuel Envanter güncelleme raporları oluştukça bu buton aktif olacaktır.</li>
-                                            <li>Tamamlanan raporlar sonuçları SellerFlash’a aktarılarak envanter güncelleme işlemleri tamamlanmış olur. </li>
-                                            <li>Buton aktif ise bekleyen rapor sonuçlarının işlenmesi için işlem yapılmalıdır. </li>
-                                        </ul>
-                                    </span>
-                                    </i>
-                                </div>
-                            </div>
-                        </div>
-                        <button id='sfManualGoOrderUploadPage' class="blue-button" style="width:100%; font-family: 'Poppins';">
-                            ${language["1000156"][activeLanguage]}
-                        </button>
-                        <div style="width: 100%;">
-                            <div id="sfProcessDetails" class="sf-process mt-10  jc-center" style="display:none;">
-                            </div>
-                        </div>
-                    </div>
-                </div> `;
-
-      var sfButton = `
-                <button id="sfButton" style="z-index: 999999; position: fixed; width:80px; height: 80px; bottom: 10px; right: 10px; display: none;
-                background: none; border: none; ">
-                    <img src=${chrome.runtime.getURL(
-        "img/sf_extension.svg"
-      )} style="width: 80px;">
-                </button>`;
-      $("body").prepend(sfButton);
-      $("body").append(divMenu);
-
-      $("#sfButton").click(function () {
-        $("#sfContainerMenu").show();
-        $("#sfButton").hide();
-      });
-      $("#sf-hideTracker").click(function () {
-        $("#sfContainerMenu").hide();
-        $("#sfButton").show();
-      });
-
-      $("#sfManualTransferOrders").click(async function () {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/loading.gif") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000090"][activeLanguage] +
-          "</div>"
-        );
-        $("#sfProcessDetails").show();
-        $("#sfManualTransferOrders").prop("disabled", true);
-
-        await manualTransferOrders();
-      });
-
-      $("#sfManualTransferInventory").click(async function () {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/loading.gif") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000090"][activeLanguage] +
-          "</div>"
-        );
-        $("#sfProcessDetails").show();
-        $("#sfManualTransferInventory").prop("disabled", true);
-
-        await manualTransferInventory();
-      });
-
-      $.ajax({
-        type: "GET",
-        url:
-          user.apiSubdomain +
-          "api/feeds/getPendingFeeds?sellerId=" +
-          sellerId +
-          "&feedType=7&countryCode=" +
-          country.countryCode,
-        headers: { Authorization: "Bearer " + user.token },
-        success: async function (response) {
-          if (response.length == 0) {
-            $("#sfManualTransferLoadingResults").prop("disabled", true);
-            $("#sfManualTransferLoadingResults").css("cursor", "not-allowed");
-            $("#sfManualTransferLoadingResults").prop(
-              "title",
-              "Tüm güncellemeler tamamlanmıştır."
-            );
-          } else {
-            $("#sfManualTransferLoadingResults").prop("disabled", false);
-            $("#sfManualTransferLoadingResults").css("cursor", "pointer");
-            $("#sfManualTransferLoadingResults").text(
-              $("#sfManualTransferLoadingResults").text() +
-              " (" +
-              response.length +
-              " adet)"
-            );
-          }
-        },
-        failure: function (response) {
-          console.log("listing/getPendingFeeds.failure!", response);
-        },
-        complete: async function (response) {
-          console.log("listing/getPendingFeeds.complete!", response);
-        },
-      });
-
-      $("#sfManualTransferLoadingResults").click(async function () {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/loading.gif") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000090"][activeLanguage] +
-          "</div>"
-        );
-        $("#sfProcessDetails").show();
-        $("#sfManualTransferLoadingResults").prop("disabled", true);
-
-        await manualTransferLoadingResults();
-      });
-
-      $("#sfManualGetInventoryUpdatesFromSF").click(async function () {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/loading.gif") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000090"][activeLanguage] +
-          "</div>"
-        );
-        $("#sfProcessDetails").show();
-
-        await manualGetInventoryUpdatesFromSF();
-      });
-
-      $("#sfManualGoOrderUploadPage").click(async function () {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/loading.gif") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000090"][activeLanguage] +
-          "</div>"
-        );
-        $("#sfProcessDetails").show();
-
-        location.replace(
-          location.origin + "/order-reports-and-feeds/feeds/confirmShipment"
-        );
-      });
     }
-    /* #endregion */
   }, 1e3);
 }
 
@@ -2009,10 +1753,10 @@ async function manualTransferShippingTrackingLoadingResults() {
 
             $("#sfProcessDetails").html(
               `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-              chrome.runtime.getURL("img/check.png") +
-              "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-              language["1000091"][activeLanguage] +
-              "</div>"
+                chrome.runtime.getURL("img/check.png") +
+                "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+                language["1000091"][activeLanguage] +
+                "</div>"
             );
           },
           failure: function (response) {
@@ -2110,10 +1854,10 @@ async function manualGetShippingTrackingInformationFromSF() {
               success: async function () {
                 $("#sfProcessDetails").html(
                   `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-                  chrome.runtime.getURL("img/check.png") +
-                  "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-                  language["1000091"][activeLanguage] +
-                  "</div>"
+                    chrome.runtime.getURL("img/check.png") +
+                    "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+                    language["1000091"][activeLanguage] +
+                    "</div>"
                 );
               },
               failure: function (response) {
@@ -2141,596 +1885,6 @@ async function manualGetShippingTrackingInformationFromSF() {
     },
   });
 }
-
-async function manualTransferLoadingResults() {
-  completedFeedCount = 0;
-
-  var marketplace = $("#partner-switcher").data("marketplace_selection").trim();
-  var country = countryJson.find((i) => i.mwsCode == marketplace);
-  var sellerId = $("div#partner-switcher").data("merchant_selection").trim();
-  sellerId = sellerId.replace("amzn1.merchant.o.", "");
-
-  $.ajax({
-    type: "GET",
-    url:
-      user.apiSubdomain +
-      "api/feeds/getPendingFeeds?sellerId=" +
-      sellerId +
-      "&feedType=7&countryCode=" +
-      country.countryCode,
-    headers: { Authorization: "Bearer " + user.token },
-    success: async function (response) {
-      var batchIdList = response;
-
-      if (response.length == 0) {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/check.png") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000091"][activeLanguage] +
-          "</div>"
-        );
-      } else {
-        $.ajax({
-          type: "GET",
-          url: location.origin + "/listing/api/status/feeds",
-          success: async function (response) {
-            const feedsJson = response;
-            if (!feedsJson) {
-              console.log("cant get feedsJson");
-              return;
-            }
-            const { statuses } = feedsJson;
-            var incompleteReports = 0;
-
-            for (const value of batchIdList) {
-              const batchId = value.documentId;
-              const feedId = value.feedId;
-              const relatedObject = statuses.find(
-                (r) => r.feedIdentifier.batchId === batchId
-              );
-
-              if (!relatedObject) {
-                continue;
-              }
-              const status =
-                relatedObject.processingState.name === "DONE" ||
-                relatedObject.processingState.name === "ACTION_REQUIRED";
-              if (!status) {
-                incompleteReports = incompleteReports + 1;
-                continue;
-              }
-
-              const link = relatedObject.actions[0].link;
-              if (!link) {
-                incompleteReports = incompleteReports + 1;
-
-                continue;
-              }
-
-              await new Promise((resolve, reject) => {
-                $.ajax({
-                  type: "GET",
-                  url: location.origin + link,
-                  xhrFields: { responseType: "blob" },
-                  success: async function (response) {
-                    var formData3 = new FormData();
-                    formData3.append("image", response);
-                    formData3.append("sellerId", sellerId);
-                    formData3.append("feedId", feedId);
-                    formData3.append("feedType", 7);
-                    formData3.append("countryCode", country.countryCode);
-
-                    $.ajax({
-                      type: "POST",
-                      url: user.apiSubdomain + "api/feeds/uploadasync",
-                      headers: { Authorization: "Bearer " + user.token },
-                      data: formData3,
-                      processData: false,
-                      contentType: false,
-                      success: async function () {
-                        completedFeedCount = completedFeedCount + 1;
-                        resolve();
-                      },
-                      failure: function () {
-                        reject();
-                      },
-                      complete: async function (response) {
-                        console.log("feeds/uploadasync.complete!", response);
-                      },
-                    });
-                  },
-                  failure: function () {
-                    reject();
-                  },
-                  complete: async function (response) {
-                    console.log("batchResultDownloadLink.complete!", response);
-                  },
-                });
-              });
-            }
-
-            if (incompleteReports > 0) {
-              $("#sfProcessDetails").html(
-                `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-                chrome.runtime.getURL("img/info.png") +
-                "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-                language["1000160"][activeLanguage] +
-                "</div>"
-              );
-            } else {
-              $("#sfProcessDetails").html(
-                `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-                chrome.runtime.getURL("img/check.png") +
-                "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-                language["1000091"][activeLanguage] +
-                "</div>"
-              );
-            }
-          },
-          failure: function (response) {
-            console.log("listing/status.failure!", response);
-          },
-          complete: async function (response) {
-            console.log("listing/status.complete!", response);
-          },
-        });
-      }
-    },
-    failure: function (response) {
-      console.log("listing/getPendingFeeds.failure!", response);
-    },
-    complete: async function (response) {
-      console.log("listing/getPendingFeeds.complete!", response);
-    },
-  });
-}
-
-async function manualGetInventoryUpdatesFromSF() {
-  var marketplace = $("#partner-switcher").data("marketplace_selection").trim();
-  var country = countryJson.find((i) => i.mwsCode == marketplace);
-  var sellerId = $("div#partner-switcher").data("merchant_selection").trim();
-  sellerId = sellerId.replace("amzn1.merchant.o.", "");
-
-  $.ajax({
-    type: "GET",
-    url:
-      user.apiSubdomain +
-      "api/feeds/downloadinventoryfileasync?sellerId=" +
-      sellerId +
-      "&countryCode=" +
-      country.countryCode +
-      "&feedType=7",
-    xhrFields: { responseType: "blob" },
-    headers: { Authorization: "Bearer " + user.token },
-    success: async function (response, s, request) {
-      var headerDisposition = request.getResponseHeader("content-disposition");
-      if (!headerDisposition) {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/check.png") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000091"][activeLanguage] +
-          "</div>"
-        );
-        return;
-      }
-      var fileName = headerDisposition.split("filename=").pop().split(";")[0];
-      var feedId = fileName.split("-")[1];
-      var fileSize = request.getResponseHeader("content-length") * 1;
-
-      var file = response;
-
-      var formData1 = new FormData();
-      formData1.append("feed", file);
-      formData1.append("submitType", "upload");
-
-      if (csrfToken == "") {
-        const promise = new Promise((resolve, reject) => {
-          $.ajax({
-            type: "GET",
-            url: location.origin + "/listing/retrieveCSRF?tab=upload",
-            success: async function (response) {
-              csrfToken = encodeURIComponent(JSON.parse(response).token);
-              resolve();
-            },
-            failure: function (response) {
-              console.log("retrieveCSRF.failure!", response);
-              reject();
-            },
-            complete: async function (response) {
-              console.log("retrieveCSRF.complete!", response);
-            },
-          });
-        });
-
-        await promise;
-      }
-
-      $.ajax({
-        type: "POST",
-        url: location.origin + "/listing/introspect-feed?vlwToken=" + csrfToken,
-        data: formData1,
-        processData: false,
-        contentType: false,
-        success: async function (response) {
-          var formData2 = new FormData();
-          formData2.append("tortugaDocId", JSON.parse(response).tortugaId);
-          formData2.append("feedVariant", "inventoryloader");
-          formData2.append("submitType", "upload");
-          formData2.append("alertIds", null);
-          formData2.append("fileName", fileName);
-          formData2.append("fileSize", fileSize);
-
-          $.ajax({
-            type: "POST",
-            url: location.origin + "/listing/upload/feed?vlwToken=" + csrfToken,
-            data: formData2,
-            processData: false,
-            contentType: false,
-            success: async function (response) {
-              var batchId = response.split("reference_id=").pop().split("&")[0];
-
-              var updateData = {};
-              updateData.FeedId = feedId;
-              updateData.FeedType = 7;
-              updateData.SellerId = sellerId;
-              updateData.CountryCode = country.countryCode;
-              updateData.DocumentId = batchId;
-
-              $.ajax({
-                type: "POST",
-                url:
-                  user.apiSubdomain + "api/feeds/updateprocessingstatusasync",
-                headers: { Authorization: "Bearer " + user.token },
-                data: JSON.stringify(updateData),
-                contentType: "application/json; charset=utf-8",
-                success: async function () {
-                  $("#sfProcessDetails").html(
-                    `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-                    chrome.runtime.getURL("img/check.png") +
-                    "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-                    language["1000091"][activeLanguage] +
-                    "</div>"
-                  );
-                },
-                failure: function (response) {
-                  console.log("updateprocessingstatusasync.failure!", response);
-                },
-                complete: async function (response) {
-                  console.log(
-                    "updateprocessingstatusasync.complete!",
-                    response
-                  );
-                },
-              });
-            },
-            failure: function (response) {
-              console.log("upload/feed.failure!", response);
-            },
-            complete: async function (response) {
-              console.log("upload/feed.complete!", response);
-            },
-          });
-        },
-        failure: function (response) {
-          console.log("introspect-feed.failure!", response);
-        },
-        complete: async function (response) {
-          console.log("introspect-feed.complete!", response);
-        },
-      });
-    },
-    failure: function (response) {
-      console.log("downloadinventoryfileasync.failure!", response);
-    },
-    complete: async function (response) {
-      console.log("downloadinventoryfileasync.complete!", response);
-    },
-  });
-}
-
-async function manualTransferOrders() {
-  var sellerId = $("div#partner-switcher").data("merchant_selection").trim();
-  sellerId = sellerId.replace("amzn1.merchant.o.", "");
-
-  $.ajax({
-    url:
-      location.origin +
-      "/orders-api/search?limit=1000&offset=0&sort=ship_by_asc&date-range=last-30&fulfillmentType=mfn&orderStatus=unshipped&forceOrdersTableRefreshTrigger=false",
-    type: "GET",
-    success: function (response) {
-      var orders = [];
-
-      $.each(response.orders, function (key, value) {
-        var o = {};
-        o.SellingPartnerId = sellerId;
-        o.CustomerMarketPlaceId = 0;
-        o.AmazonOrderId = value.amazonOrderId;
-        o.PurchaseDate = value.orderDate;
-
-        o.EarliestShipDate = value.earliestShipDate;
-        o.LatestShipDate = value.earliestShipDate;
-        o.EarliestDeliveryDate = value.latestShipDate;
-        o.LatestDeliveryDate = value.latestDeliveryDate;
-
-        o.SalesChannel = value.salesChannel;
-        o.OrderStatus = value.orderFulfillmentStatus;
-        o.ShipmentServiceLevelCategory = value.shippingService; //shippingServiceStringId
-
-        o.OrderItems = [];
-
-        $.ajax({
-          async: false,
-          url: location.origin + "/orders-api/order/" + o.AmazonOrderId,
-          type: "GET",
-          success: function (response) {
-            o.BuyerEmail = response.order.buyerProxyEmail;
-
-            if (
-              response.order.orderCost &&
-              response.order.orderCost.GrandTotal
-            ) {
-              o.OrderTotalAmount = response.order.orderCost.GrandTotal.Amount;
-            }
-
-            if (response.order.orderItems) {
-              $.each(response.order.orderItems, function (k, v) {
-                var oi = {};
-                oi.ASIN = v.ASIN;
-                oi.SellerSKU = v.SellerSKU;
-                oi.QuantityOrdered = v.QuantityOrdered;
-
-                if (v.ItemCost) {
-                  if (v.ItemCost.Subtotal) {
-                    oi.ItemPrice = v.ItemCost.Subtotal.Amount;
-                  }
-                  if (v.ItemCost.Tax) {
-                    oi.ItemTax = v.ItemCost.Tax.Amount;
-                  }
-                  if (v.ItemCost.Shipping) {
-                    oi.ShippingPrice = v.ItemCost.Shipping.Amount;
-                  }
-                  if (v.ItemCost.ShippingTax) {
-                    oi.ShippingTax = v.ItemCost.ShippingTax.Amount;
-                  }
-                }
-                o.OrderItems.push(oi);
-              });
-            }
-          },
-          failure: function (response) {
-            console.log(
-              "Order detail information can not be taken (orders-api/order)",
-              response
-            );
-          },
-          complete: function () { },
-        });
-
-        orders.push(o);
-      });
-
-      $.ajax({
-        type: "POST",
-        url: user.apiSubdomain + "api/sellerOrder/AddOrderManualFromExtention", //?customerId=" + user.customerId,
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(orders),
-        headers: { Authorization: "Bearer " + user.token },
-        success: async function (response) {
-          console.log("AddOrderManualFromExtention.success!", response);
-        },
-        failure: function (response) {
-          console.log("AddOrderManualFromExtention.failure!", response);
-        },
-        complete: async function (response) {
-          if (response.status == 200) {
-            await checkIfNotFullAddressExists();
-          }
-        },
-      });
-    },
-    failure: function (response) {
-      console.log(
-        "Order information can not be taken (order-reports-and-feeds)",
-        response
-      );
-    },
-    complete: function () {
-      $("#sfProcessDetails").html(
-        `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-        chrome.runtime.getURL("img/check.png") +
-        "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-        language["1000091"][activeLanguage] +
-        "</div>"
-      );
-
-      $("#sfManualTransferOrders").prop("disabled", false);
-    },
-  });
-}
-
-async function manualTransferInventory() {
-  var marketplace = $("#partner-switcher").data("marketplace_selection").trim();
-  var country = countryJson.find((i) => i.mwsCode == marketplace);
-  var sellerId = $("div#partner-switcher").data("merchant_selection").trim();
-  sellerId = sellerId.replace("amzn1.merchant.o.", "");
-
-  $.ajax({
-    type: "GET",
-    url:
-      user.apiSubdomain +
-      "api/feeds/controlinventoryreportasync?sellingpartnerid=" +
-      sellerId +
-      "&countrycode=" +
-      country.countryCode,
-    headers: { Authorization: "Bearer " + user.token },
-    success: async function () {
-      {
-        $.ajax({
-          type: "GET",
-          url: location.origin + "/listing/reports/",
-          success: async function (response) {
-            var el = $("<div></div>");
-            el.html(response);
-
-            var formAction = $("#request-form", el).attr("action");
-
-            var formData1 = new FormData();
-            formData1.append("reportVariant", 47700);
-            formData1.append("soldlisting", 7);
-            formData1.append("reverse", "All");
-            formData1.append("clr", "excel");
-            formData1.append("clr_lookback_end", "");
-            formData1.append("reverse_status", "All");
-            formData1.append("report-request-button", "Submit");
-
-            var xhr = new XMLHttpRequest();
-
-            $.ajax({
-              type: "POST",
-              url: formAction,
-              data: formData1,
-              processData: false,
-              contentType: false,
-              xhr: function () {
-                return xhr;
-              },
-              success: function () {
-                var locationHeader = xhr.responseURL;
-                var batchId = locationHeader.split("=")[1];
-
-                var fileCheckInterval = setInterval(() => {
-                  $.ajax({
-                    type: "GET",
-                    url: locationHeader,
-                    success: async function (response) {
-                      var el = $("<div></div>");
-                      el.html(response);
-
-                      if ($("#" + batchId + "-report_download a", el).length) {
-                        clearInterval(fileCheckInterval);
-
-                        var reportFileLink = $(
-                          "#" + batchId + "-report_download a",
-                          el
-                        ).attr("href");
-
-                        $.ajax({
-                          type: "GET",
-                          url: location.origin + reportFileLink,
-                          xhrFields: { responseType: "blob" },
-                          processData: false,
-                          contentType: false,
-                          success: async function (response) {
-                            var formData2 = new FormData();
-                            formData2.append("SellingPartnerId", sellerId);
-                            formData2.append(
-                              "CountryCode",
-                              country.countryCode
-                            );
-                            formData2.append("ReportId", batchId);
-                            formData2.append("ReportDocument", response);
-
-                            $.ajax({
-                              type: "POST",
-                              url:
-                                user.apiSubdomain +
-                                "api/inventoryItem/ManualInventoryFromAmazon",
-                              data: formData2,
-                              processData: false,
-                              contentType: false,
-                              headers: {
-                                Authorization: "Bearer " + user.token,
-                              },
-                              success: async function () {
-                                $("#sfProcessDetails").html(
-                                  `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-                                  chrome.runtime.getURL("img/check.png") +
-                                  "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-                                  language["1000091"][activeLanguage] +
-                                  "</div>"
-                                );
-
-                                $("#sfManualTransferInventory").prop(
-                                  "disabled",
-                                  false
-                                );
-                              },
-                              failure: function (response) {
-                                console.log(
-                                  "ManualInventoryFromAmazon.failure!",
-                                  response
-                                );
-                              },
-                              complete: async function (response) {
-                                if (
-                                  response.status == 400 ||
-                                  response.status == 500
-                                ) {
-                                  $("#sfProcessDetails").html(
-                                    `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-                                    chrome.runtime.getURL("img/info.png") +
-                                    "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-                                    language["1000162"][activeLanguage] +
-                                    "</div>"
-                                  );
-                                }
-                              },
-                            });
-                          },
-                          failure: function (response) {
-                            console.log("reportFileLink.failure!", response);
-                          },
-                          complete: async function (response) {
-                            console.log("reportFileLink.complete!", response);
-                          },
-                        });
-                      }
-                    },
-                    failure: function (response) {
-                      console.log("listing/reports.failure!", response);
-                    },
-                    complete: async function (response) {
-                      console.log("listing/reports.complete!", response);
-                    },
-                  });
-                }, 10e3);
-              },
-              failure: function (response) {
-                console.log("formAction.failure!", response);
-              },
-              complete: async function (response) {
-                console.log("formAction.complete!", response);
-              },
-            });
-          },
-          failure: function (response) {
-            console.log("listing/status.failure!", response);
-          },
-          complete: async function (response) {
-            console.log("listing/status.complete!", response);
-          },
-        });
-      }
-    },
-    failure: function (response) {
-      console.log("ManualInventoryFromAmazon.failure!", response);
-    },
-    complete: async function (response) {
-      if (response.status == 400 || response.status == 500) {
-        $("#sfProcessDetails").html(
-          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
-          chrome.runtime.getURL("img/info.png") +
-          "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
-          language["1000162"][activeLanguage] +
-          "</div>"
-        );
-      }
-    },
-  });
-}
-
 function createDeleteProductPageItems(n) {
   function t() {
     $(".sfDeleteProduct").click(function () {
@@ -2740,48 +1894,48 @@ function createDeleteProductPageItems(n) {
 
       n
         ? $("#tableBody .item-row").each(function (n, i) {
-          if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-            var r = $(i).find("div.asin"),
-              u = $(r)
-                .text()
-                .replace(/ASIN\s*: /, "")
-                .trim();
-            asinList.push(u);
-          }
-        })
+            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+              var r = $(i).find("div.asin"),
+                u = $(r)
+                  .text()
+                  .replace(/ASIN\s*: /, "")
+                  .trim();
+              asinList.push(u);
+            }
+          })
         : $("div[data-column='asin']")
-          .find("span")
-          .each(function (n, i) {
-            var r = $(i).text().trim();
-            asinList.push(r);
-          });
+            .find("span")
+            .each(function (n, i) {
+              var r = $(i).text().trim();
+              asinList.push(r);
+            });
 
       n
         ? $("#tableBody .item-row").each(function (n, i) {
-          if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-            var r = $(i).find("div.sku"),
-              u = $(r)
-                .text()
-                .replace(/SKU\s*: /, "")
-                .trim();
-            skuList.push(u);
-          }
-        })
+            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+              var r = $(i).find("div.sku"),
+                u = $(r)
+                  .text()
+                  .replace(/SKU\s*: /, "")
+                  .trim();
+              skuList.push(u);
+            }
+          })
         : $("div[data-column='sku']")
-          .find("a")
-          .each(function (n, i) {
-            var r = $(i).text().trim();
-            skuList.push(r);
-          });
+            .find("a")
+            .each(function (n, i) {
+              var r = $(i).text().trim();
+              skuList.push(r);
+            });
 
       n
         ? $("#tableBody .item-row").each(function (n, i) {
-          if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-            var r = $(i).find("div.reason-code"),
-              u = $(r).contents().text().trim();
-            reasonList.push(u);
-          }
-        })
+            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+              var r = $(i).find("div.reason-code"),
+                u = $(r).contents().text().trim();
+              reasonList.push(u);
+            }
+          })
         : "";
 
       var pList = [];
@@ -2808,7 +1962,7 @@ function createDeleteProductPageItems(n) {
         this.id == "sfDeleteProducts"
           ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
           : user.apiSubdomain +
-          "api/inventoryItem/removeAndBlockInventoryItems";
+            "api/inventoryItem/removeAndBlockInventoryItems";
 
       $.ajax({
         url: url,
@@ -2820,7 +1974,7 @@ function createDeleteProductPageItems(n) {
           marketPlaceCode: mp,
           productList: pList,
         }),
-        success: function () { },
+        success: function () {},
         failure: function (response) {
           console.log("Error (failure)! ", response);
         },
@@ -2830,7 +1984,7 @@ function createDeleteProductPageItems(n) {
           } else {
             $(".sf-alert-content").html(
               "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-              language["1000009"][activeLanguage]
+                language["1000009"][activeLanguage]
             );
           }
         },
@@ -2871,8 +2025,8 @@ function createDeleteProductPageItems(n) {
       .toLowerCase()
       .indexOf("delete product and listing") > -1 &&
       ((r = $("#interstitialPageWarningAlert .a-alert-content")),
-        r.append(i),
-        t());
+      r.append(i),
+      t());
 }
 
 function createOrderDetailPageItems() {
@@ -3154,21 +2308,21 @@ function createAllAddressesPageItems() {
               ((o = $(".edit-address-desktop-link")
                 .find("a[href*='addressID=" + e + "']")
                 .parents("div.address-column")),
-                (u = []),
-                u.push("addressID=" + e),
-                u.push("isStoreAddress=false"),
-                u.push("csrfToken=" + i),
-                $.ajax({
-                  type: "POST",
-                  url: "/a/addresses/delete",
-                  contentType: "application/x-www-form-urlencoded;charset=utf-8",
-                  data: u.join("&"),
-                  dataType: "html",
-                  success: function () {
-                    console.log(e + " is deleted");
-                  },
-                }),
-                o.hide());
+              (u = []),
+              u.push("addressID=" + e),
+              u.push("isStoreAddress=false"),
+              u.push("csrfToken=" + i),
+              $.ajax({
+                type: "POST",
+                url: "/a/addresses/delete",
+                contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                data: u.join("&"),
+                dataType: "html",
+                success: function () {
+                  console.log(e + " is deleted");
+                },
+              }),
+              o.hide());
             await delay(1000);
             n.length == t && location.reload();
           }, u * 250);
@@ -3518,12 +2672,11 @@ function createOrdersPageItems() {
 function getOrderStatusList(n) {
   var panelLink = "https://sellerflash.com";
   if (user.platform == "test") panelLink = "https://x-test.sellerflash.com";
-  else if (user.platform == "dev")
-    panelLink = "https://x-test.sellerflash.com";
+  else if (user.platform == "dev") panelLink = "https://x-test.sellerflash.com";
 
   $.ajax({
     type: "POST",
-    url: user.apiSubdomain + "api/sellerOrder/getSellerOrderStatusList",
+    url: `${baseUrl}${endPoints.Order.byAmazonOrderIds}`,
     contentType: "application/json; charset=utf-8",
     dataType: "text",
     data: JSON.stringify(n),
@@ -3537,16 +2690,17 @@ function getOrderStatusList(n) {
       response = JSON.parse(response);
       $.each(response, function (n, t) {
         var r = $("#orders-table tbody")
-          .find(
-            "a[href*='orderId=" +
-            t.sellerAmazonOrderId +
-            "'], a[href*='/orders-v3/order/" +
-            t.sellerAmazonOrderId +
-            "']"
-          )
-          .parents("div.cell-body"),
+            .find(
+              "a[href*='orderId=" +
+                t.sellerAmazonOrderId +
+                "'], a[href*='/orders-v3/order/" +
+                t.sellerAmazonOrderId +
+                "']"
+            )
+            .parents("div.cell-body"),
           i = "";
-        t.buyerStatus == "Delivered" && (i = ": " + t.deliveryDate);
+        t.buyerStatus == "Delivered" &&
+          (i = ": " + formatTimestamp(t.deliveryDate));
 
         var statusColor = "#fff";
         var bgColor = "#d4d4d4";
@@ -3593,37 +2747,36 @@ function getOrderStatusList(n) {
 
         r.prepend(
           "<div class='sfOrderStatus' style='border-radius: 5px; height: 24px; padding: 1px; background-color:" +
-          bgColor +
-          ";'> " +
-          "<a href='" +
-          panelLink +
-          "/sellerOrder/" +
-          t.sellerAmazonOrderId +
-          "' title=\"" +
-          language["1000014"][activeLanguage] +
-          "\" target='_blank'><span class='sf-badge-l sf-badge-warning'><img src='" +
-          chrome.runtime.getURL("img/sf_extension.svg") +
-          "' style='width: 34px; height: 34px; margin-top:-6px; margin-left:-6px' alt='' /></span><span style='color: " +
-          statusColor +
-          "; font-weight:bold '>" +
-          t.buyerStatus.toUpperCase() +
-          i +
-          "</span></a></div>"
+            bgColor +
+            ";'> " +
+            "<a href='" +
+            panelLink +
+            "/sellerOrder/" +
+            t.sellerAmazonOrderId +
+            "' title=\"" +
+            language["1000014"][activeLanguage] +
+            "\" target='_blank'><span class='sf-badge-l sf-badge-warning'><img src='" +
+            chrome.runtime.getURL("img/sf_extension.svg") +
+            "' style='width: 34px; height: 34px; margin-top:-6px; margin-left:-6px' alt='' /></span><span style='color: " +
+            statusColor +
+            "; font-weight:bold '>" +
+            t.buyerStatus.toUpperCase() +
+            i +
+            "</span></a></div>"
         );
       });
     },
     failure: function () {
       $("#sfOrderDetails").html(language["1000021"][activeLanguage]);
     },
-    complete: function () { },
+    complete: function () {},
   });
 }
 
 function createMessagesPageItems() {
   var panelLink = "https://www.sellerfull.com";
   if (user.platform == "test") panelLink = "https://x-test.sellerfull.com";
-  else if (user.platform == "dev")
-    panelLink = "https://x-test.sellerfull.com";
+  else if (user.platform == "dev") panelLink = "https://x-test.sellerfull.com";
 
   var n = "";
   setInterval(function () {
@@ -3662,7 +2815,7 @@ function createMessagesPageItems() {
 
       $.ajax({
         type: "GET",
-        url:`${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${t}`,
+        url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${t}`,
         headers: { Authorization: "Bearer " + user.token },
         success: function (response) {
           var i = $(
@@ -3781,7 +2934,9 @@ function createMessagesPageItems() {
           );
 
           $("#sf-copyBuyerOrderId").click(function () {
-            navigator.clipboard.writeText(response.buyerOrder.buyerOrderDetails[0].amazonOrderId);
+            navigator.clipboard.writeText(
+              response.buyerOrder.buyerOrderDetails[0].amazonOrderId
+            );
             $("#sf-copyBuyerOrderId").html('<i class="fa fa-check"></i>');
             setTimeout(() => {
               $("#sf-copyBuyerOrderId").html('<i class="fa fa-copy"></i>');
@@ -3810,7 +2965,6 @@ function createMessagesPageItems() {
   }, 2e3);
 }
 
-
 var stopSearch = false;
 function createShippingTrackerItems() {
   var div = `
@@ -3822,16 +2976,17 @@ function createShippingTrackerItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="yellow-button" id="sf-hideTracker" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]
-    }</button>
+                        <button class="yellow-button" id="sf-hideTracker" style="width:30px; font-weight:bold;">${
+                          language["1000070"][activeLanguage]
+                        }</button>
                     </div>
                 </div>
             </div>
             <div class="sfContent">
                 <div style="text-align: center !important; margin-top:0px;">
                     <img src=${chrome.runtime.getURL(
-      "img/logo_uzun.png"
-    )} style="height: 40px; margin:20px;">
+                      "img/logo_uzun.png"
+                    )} style="height: 40px; margin:20px;">
                 </div>
                 <div id="stores-for-buyer">
                 </div>
@@ -3854,8 +3009,8 @@ function createShippingTrackerItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:80px; height: 80px; bottom: 10px; right: 10px; display: none;
     background: none; border: none; ">
         <img src=${chrome.runtime.getURL(
-    "img/sf_extension.svg"
-  )} style="width: 80px;">
+          "img/sf_extension.svg"
+        )} style="width: 80px;">
     </button>`;
   $("body").prepend(sfButton);
   $("body").append(div);
@@ -3949,13 +3104,13 @@ function sfCheckCargoButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000125"][activeLanguage] +
-                "<br> <a style='color: white;' href='" +
-                location.origin +
-                "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
-                amazonOrderId +
-                "'> " +
-                language["1000126"][activeLanguage] +
-                "</a>"
+                  "<br> <a style='color: white;' href='" +
+                  location.origin +
+                  "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
+                  amazonOrderId +
+                  "'> " +
+                  language["1000126"][activeLanguage] +
+                  "</a>"
               );
               $("#sfShippingCheckProgress").css({
                 background: "red",
@@ -3974,9 +3129,9 @@ function sfCheckCargoButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                Math.min(index + 1, totalCount) +
-                " / " +
-                totalCount
+                  Math.min(index + 1, totalCount) +
+                  " / " +
+                  totalCount
               );
               $("#sfShippingCheckProgress").css({
                 background: "white",
@@ -3990,9 +3145,9 @@ function sfCheckCargoButtonClicked() {
 
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                Math.min(index + 1, totalCount) +
-                " / " +
-                totalCount
+                  Math.min(index + 1, totalCount) +
+                  " / " +
+                  totalCount
               );
             }
           },
@@ -4038,17 +3193,14 @@ function sfCheckCargoButtonClicked() {
               si.PromiseMessage
             )
           ) {
-            if (!si.DeliveryDate)
-              delete si.DeliveryDate;
+            if (!si.DeliveryDate) delete si.DeliveryDate;
 
-            if (!si.ExpectedDeliveryDateEnd)
-              delete si.ExpectedDeliveryDateEnd;
+            if (!si.ExpectedDeliveryDateEnd) delete si.ExpectedDeliveryDateEnd;
 
             if (!si.ExpectedDeliveryDateStart)
               delete si.ExpectedDeliveryDateStart;
 
-            if (!delete si.ShipDate)
-              delete si.ShipDate;
+            if (!delete si.ShipDate) delete si.ShipDate;
 
             updateSiList.push(si);
           }
@@ -4078,9 +3230,9 @@ function sfCheckCargoButtonClicked() {
 
       $("#sfShippingCheckProgress").html(
         $("#sfShippingCheckProgress").html() +
-        "<br>" +
-        language["1000147"][activeLanguage] +
-        updateSiList.length
+          "<br>" +
+          language["1000147"][activeLanguage] +
+          updateSiList.length
       );
 
       $("#sfCheckCargoButton").prop("disabled", false);
@@ -4126,7 +3278,7 @@ function sfCheckDeliveryButtonClicked() {
 
   $.ajax({
     type: "GET",
-    url:`${baseUrl}${endPoints.Order.notDelivered}?storeId=${selectedStoreId}`,
+    url: `${baseUrl}${endPoints.Order.notDelivered}?storeId=${selectedStoreId}`,
     headers: { Authorization: "Bearer " + user.token },
     success: async function (response) {
       $("#sfShippingDetails").html(language["1000035"][activeLanguage]);
@@ -4162,13 +3314,13 @@ function sfCheckDeliveryButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000125"][activeLanguage] +
-                "<br> <a style='color: white;' href='" +
-                location.origin +
-                "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
-                amazonOrderId +
-                "'> " +
-                language["1000126"][activeLanguage] +
-                "</a>"
+                  "<br> <a style='color: white;' href='" +
+                  location.origin +
+                  "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
+                  amazonOrderId +
+                  "'> " +
+                  language["1000126"][activeLanguage] +
+                  "</a>"
               );
               $("#sfShippingCheckProgress").css({
                 background: "red",
@@ -4187,9 +3339,9 @@ function sfCheckDeliveryButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                Math.min(index + 1, totalCount) +
-                " / " +
-                totalCount
+                  Math.min(index + 1, totalCount) +
+                  " / " +
+                  totalCount
               );
             } else {
               var si = await getShippingInformation(response2);
@@ -4197,9 +3349,9 @@ function sfCheckDeliveryButtonClicked() {
 
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                Math.min(index + 1, totalCount) +
-                " / " +
-                totalCount
+                  Math.min(index + 1, totalCount) +
+                  " / " +
+                  totalCount
               );
             }
           },
@@ -4246,17 +3398,14 @@ function sfCheckDeliveryButtonClicked() {
               si.PromiseMessage
             )
           ) {
-            if (!si.DeliveryDate)
-              delete si.DeliveryDate;
+            if (!si.DeliveryDate) delete si.DeliveryDate;
 
-            if (!si.ExpectedDeliveryDateEnd)
-              delete si.ExpectedDeliveryDateEnd;
+            if (!si.ExpectedDeliveryDateEnd) delete si.ExpectedDeliveryDateEnd;
 
             if (!si.ExpectedDeliveryDateStart)
               delete si.ExpectedDeliveryDateStart;
 
-            if (!delete si.ShipDate)
-              delete si.ShipDate;
+            if (!delete si.ShipDate) delete si.ShipDate;
 
             updateSiList.push(si);
           }
@@ -4287,9 +3436,9 @@ function sfCheckDeliveryButtonClicked() {
 
       $("#sfShippingCheckProgress").html(
         $("#sfShippingCheckProgress").html() +
-        "<br>" +
-        language["1000148"][activeLanguage] +
-        updateSiList.length
+          "<br>" +
+          language["1000148"][activeLanguage] +
+          updateSiList.length
       );
 
       $("#sfCheckCargoButton").prop("disabled", false);
@@ -4345,8 +3494,8 @@ function createPerformanceDashboardPageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px; display: none;
     background: none; border: none; ">
         <img src=${chrome.runtime.getURL(
-    "img/sf_extension.svg"
-  )} style="width: 90px;">
+          "img/sf_extension.svg"
+        )} style="width: 90px;">
     </button>`;
 
   $("body").prepend(sfButton);
@@ -4494,8 +3643,8 @@ function createFixProductPageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px; display: none;
     background: none; border: none; ">
         <img src=${chrome.runtime.getURL(
-    "img/sf_extension.svg"
-  )} style="width: 90px;">
+          "img/sf_extension.svg"
+        )} style="width: 90px;">
     </button>`;
 
   $("body").prepend(sfButton);
@@ -4568,9 +3717,9 @@ function createFixProductPageItems() {
             success: function () {
               $("#sfTransferResult").html(
                 language["1000181"][activeLanguage] +
-                offset +
-                " / " +
-                totalCount
+                  offset +
+                  " / " +
+                  totalCount
               );
 
               $("#sfTransferAlerts").prop("disabled", false);
@@ -4829,7 +3978,7 @@ function checkBuyingPages() {
       localStorage.setItem("configurationIdSelected", 0);
       location.replace(
         location.origin +
-        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
       );
     }
 
@@ -4848,7 +3997,7 @@ function checkBuyingPages() {
       setTimeout(() => {
         location.replace(
           location.origin +
-          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+            "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
         );
       }, 1000);
     }
@@ -4958,7 +4107,7 @@ function createOrder_WrongAddressPageItems() {
     setTimeout(() => {
       location.replace(
         location.origin +
-        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
       );
     }, 2e3);
   }
@@ -4978,13 +4127,13 @@ function createOrder_WrongAddressPageItems() {
       setTimeout(() => {
         location.replace(
           location.origin +
-          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+            "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
         );
       }, 2e3);
     }
   });
 
-  $("#sfContinueButton").click(function () { });
+  $("#sfContinueButton").click(function () {});
 
   chromeGetOrderDetails();
 }
@@ -5065,8 +4214,8 @@ function createOrder_AddressPageItems() {
             (orderDetails.purchaserInfo.addressLine2 != null
               ? orderDetails.purchaserInfo.addressLine2
               : "") +
-            " " +
-            orderDetails.purchaserInfo.addressLine3
+              " " +
+              orderDetails.purchaserInfo.addressLine3
           );
         }
 
@@ -5081,7 +4230,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.phone
             );
-          } catch (t) { }
+          } catch (t) {}
 
           try {
             $(
@@ -5093,7 +4242,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.postalCode
             );
-          } catch (t) { }
+          } catch (t) {}
 
           setTimeout(() => {
             $(
@@ -5141,7 +4290,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.postalCode
             );
-          } catch (t) { }
+          } catch (t) {}
           $(
             "#address-ui-widgets-enterAddressPhoneNumber, #enterAddressPhoneNumber, [id^=address-ui-widgets-enterAddressPhoneNumber]"
           ).val(orderDetails.purchaserInfo.phone);
@@ -5152,7 +4301,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.phone
             );
-          } catch (t) { }
+          } catch (t) {}
         }
 
         $(
@@ -5227,11 +4376,11 @@ function createOrder_AddressPageItems() {
             $("input[name='address-ui-widgets-saveOriginalOrSuggestedAddress']")
               .length &&
               (triggerClick("input[value='original-address-']", 1),
-                triggerClick(
-                  "input[name='address-ui-widgets-saveOriginalOrSuggestedAddress']",
-                  1
-                ),
-                clearInterval(t));
+              triggerClick(
+                "input[name='address-ui-widgets-saveOriginalOrSuggestedAddress']",
+                1
+              ),
+              clearInterval(t));
           }, 1e3);
         }
 
@@ -5259,9 +4408,9 @@ function createOrder_AddressPageItems() {
 
   $("#sfOrderDetails").html(
     language["1000044"][activeLanguage] +
-    "<img src='" +
-    chrome.runtime.getURL("img/loading.gif") +
-    "' style='width: 60%; height: 60%;' />"
+      "<img src='" +
+      chrome.runtime.getURL("img/loading.gif") +
+      "' style='width: 60%; height: 60%;' />"
   );
 
   $("#sfContinueButton").click(function () {
@@ -5283,7 +4432,7 @@ function createOrder_GiftPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -5367,12 +4516,12 @@ function createOrder_ShipOptionPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   } else if (localStorage.getItem("giftMessageSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -5408,12 +4557,12 @@ function createOrder_PaymentPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   } else if (localStorage.getItem("giftMessageSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -5463,22 +4612,22 @@ function createOrder_PaymentPageItems() {
         tt = setInterval(function () {
           if (orderDetails.isAutoPilotOn && !orderDetails.pauseAtCardStep) {
             var t = $("span:contains('ending in " + 2238 + "')") // TODO: Last4Digits
-              .parents(".payment-row, .pmts-instrument-box")
-              .first()
-              .find(
-                "input[name='paymentMethod'], input[name='ppw-instrumentRowSelection']"
-              )
-              .first(),
+                .parents(".payment-row, .pmts-instrument-box")
+                .first()
+                .find(
+                  "input[name='paymentMethod'], input[name='ppw-instrumentRowSelection']"
+                )
+                .first(),
               i;
 
             if (t.length) {
               triggerClick(t, 1);
               i = $(
                 "input#addCreditCardNumber[placeholder='ending in " +
-                3911 + // TODO: Last4Digits
-                "'], div.apx-add-credit-card-number input[placeholder='ending in " +
-                3911 +
-                "']"
+                  3911 + // TODO: Last4Digits
+                  "'], div.apx-add-credit-card-number input[placeholder='ending in " +
+                  3911 +
+                  "']"
               );
               if (i.length) {
                 triggerClick(
@@ -5528,12 +4677,12 @@ function createOrder_PlaceOrderPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   } else if (localStorage.getItem("giftMessageSelected") != 1) {
     location.replace(
       location.origin +
-      "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -5673,8 +4822,8 @@ function createOrder_PlaceOrderPageItems() {
 
           $("#sfPageMessage").html(
             "<div class='sf-alert' style='margin-top:0px;  margin-bottom: 5px;'>" +
-            language["1000041"][activeLanguage] +
-            "</div>"
+              language["1000041"][activeLanguage] +
+              "</div>"
           );
           $(".shipping-group").css("border", "2px solid red");
         }
@@ -5743,9 +4892,9 @@ function createOrder_PlaceOrderPageItems() {
         if (addressFromApi != addressFromScreen) {
           $("#sfPageMessage").html(
             $("#sfPageMessage").html() +
-            "<div class='sf-alert' style='margin-top:0px; margin-bottom: 5px;'>" +
-            language["1000042"][activeLanguage] +
-            "</div>"
+              "<div class='sf-alert' style='margin-top:0px; margin-bottom: 5px;'>" +
+              language["1000042"][activeLanguage] +
+              "</div>"
           );
           $("#desktop-shipping-address-div, #shipaddress").css(
             "border",
@@ -5756,9 +4905,9 @@ function createOrder_PlaceOrderPageItems() {
         if (nameFromApi != nameFromScreen) {
           $("#sfPageMessage").html(
             $("#sfPageMessage").html() +
-            "<div class='sf-alert' style='margin-top:0px;  margin-bottom: 5px;'>" +
-            language["1000043"][activeLanguage] +
-            "</div>"
+              "<div class='sf-alert' style='margin-top:0px;  margin-bottom: 5px;'>" +
+              language["1000043"][activeLanguage] +
+              "</div>"
           );
           $("#desktop-shipping-address-div, #shipaddress").css(
             "border",
@@ -5805,9 +4954,9 @@ function createOrderPageStep2Items() {
   // API CALL : GetOrderDetails
   $("#sfOrderDetails").html(
     language["1000044"][activeLanguage] +
-    "<img src='" +
-    chrome.runtime.getURL("img/loading.gif") +
-    "' style='width: 60%; height: 60%;' />"
+      "<img src='" +
+      chrome.runtime.getURL("img/loading.gif") +
+      "' style='width: 60%; height: 60%;' />"
   );
 
   chromeGetOrderDetails();
@@ -5854,7 +5003,7 @@ function createOrderPageStep2Items() {
       $('input[name="quantityBox"]').length &&
       orderDetails.orderProducts[0].quantity > 10 &&
       $('input[name="quantityBox"]').val() !==
-      orderDetails.orderProducts[0].quantity
+        orderDetails.orderProducts[0].quantity
     ) {
       $('input[name="quantityBox"]').val(
         orderDetails.orderProducts[0].quantity
@@ -5919,9 +5068,9 @@ async function createOrderPageStep1Items() {
   // API CALL : GetOrderDetails
   $("#sfOrderDetails").html(
     language["1000044"][activeLanguage] +
-    "<img src='" +
-    chrome.runtime.getURL("img/loading.gif") +
-    "' style='width: 60%; height: 60%;' />"
+      "<img src='" +
+      chrome.runtime.getURL("img/loading.gif") +
+      "' style='width: 60%; height: 60%;' />"
   );
 
   amazonOrderId = location.href.split("AmazonOrderId=").pop().split("send")[0];
@@ -5983,11 +5132,11 @@ async function createOrderPageStep1Items() {
                 failure: function () {
                   reject();
                 },
-                complete: function () { },
+                complete: function () {},
               });
             },
-            failure: function () { },
-            complete: function () { },
+            failure: function () {},
+            complete: function () {},
           });
         });
       }
@@ -6246,8 +5395,8 @@ function setOrderSummary(response) {
       if (hasCouponDiscount) {
         $("#sfOrderDetailsCouponDiscount").html(
           "<div class='sf-info' style='margin-top:0px;  margin-bottom: 5px; font-weight: 600;'>" +
-          language["1000144"][activeLanguage] +
-          "</div>"
+            language["1000144"][activeLanguage] +
+            "</div>"
         );
         $("#sfOrderDetailsCouponDiscount").show();
       } else {
@@ -6258,8 +5407,8 @@ function setOrderSummary(response) {
       if (primeDiscount) {
         $("#sfOrderDetailsPrimeDiscount").html(
           "<div class='sf-info' style='margin-top:0px;  margin-bottom: 5px; font-weight: 600;'>" +
-          language["1000142"][activeLanguage] +
-          "</div>"
+            language["1000142"][activeLanguage] +
+            "</div>"
         );
         $("#sfOrderDetailsPrimeDiscount").show();
       } else {
@@ -6269,8 +5418,8 @@ function setOrderSummary(response) {
       if (dealDiscount) {
         $("#sfOrderDetailsDealDiscount").html(
           "<div class='sf-info' style='margin-top:0px;  margin-bottom: 5px; font-weight: 600;'>" +
-          language["1000146"][activeLanguage] +
-          "</div>"
+            language["1000146"][activeLanguage] +
+            "</div>"
         );
         $("#sfOrderDetailsDealDiscount").show();
       } else {
@@ -6291,57 +5440,69 @@ function setOrderSummary(response) {
 
       var content = `
             <div class="order-number mb-10">${response.amazonOrderId}</div>
-            <div class="order-owner-name mb-10">${response.purchaserInfo.name
-        }</div>
+            <div class="order-owner-name mb-10">${
+              response.purchaserInfo.name
+            }</div>
             <div class="order-address mb-10">
                 <strong>${language["1000106"][activeLanguage]} :</strong><br>
-                ${response.purchaserInfo.addressLine1
-          ? response.purchaserInfo.addressLine1 + "<br>"
-          : ""
-        }
-                ${response.purchaserInfo.addressLine2
-          ? response.purchaserInfo.addressLine2 + "<br>"
-          : ""
-        }
-                ${response.purchaserInfo.addressLine3
-          ? response.purchaserInfo.addressLine3 + "<br>"
-          : ""
-        }
-                ${response.purchaserInfo.city
-          ? response.purchaserInfo.city + ","
-          : ""
-        }
-                ${response.purchaserInfo.county
-          ? response.purchaserInfo.county + ","
-          : ""
-        }
-                ${response.purchaserInfo.district
-          ? response.purchaserInfo.district + ","
-          : ""
-        }
-                ${response.purchaserInfo.stateOrRegion
-          ? response.purchaserInfo.stateOrRegion + ","
-          : ""
-        }
-                ${response.purchaserInfo.postalCode
-          ? response.purchaserInfo.postalCode
-          : ""
-        }
+                ${
+                  response.purchaserInfo.addressLine1
+                    ? response.purchaserInfo.addressLine1 + "<br>"
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.addressLine2
+                    ? response.purchaserInfo.addressLine2 + "<br>"
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.addressLine3
+                    ? response.purchaserInfo.addressLine3 + "<br>"
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.city
+                    ? response.purchaserInfo.city + ","
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.county
+                    ? response.purchaserInfo.county + ","
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.district
+                    ? response.purchaserInfo.district + ","
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.stateOrRegion
+                    ? response.purchaserInfo.stateOrRegion + ","
+                    : ""
+                }
+                ${
+                  response.purchaserInfo.postalCode
+                    ? response.purchaserInfo.postalCode
+                    : ""
+                }
             </div><hr />
             <div class="mb-10">
                 <div>
-                    <div class="subject" style="float: left; margin-right: 10px;">${language["1000051"][activeLanguage]
-        }:</div>
+                    <div class="subject" style="float: left; margin-right: 10px;">${
+                      language["1000051"][activeLanguage]
+                    }:</div>
                     <div class="ml-10">${formatDate(response.initialDate)}</div>
                 </div><p style="display: inline-block;"> </p>
                 <div>
-                    <div class="subject" style="float: left; margin-right: 10px;">${language["1000052"][activeLanguage]
-        }:</div>
+                    <div class="subject" style="float: left; margin-right: 10px;">${
+                      language["1000052"][activeLanguage]
+                    }:</div>
                     <div class="ml-10">${response.purchaserInfo.phone}</div>
                 </div><p style="display: inline-block;"> </p>
                 <div>
-                    <div class="subject" style="float: left; margin-right: 10px;">${language["1000086"][activeLanguage]
-        }:</div>
+                    <div class="subject" style="float: left; margin-right: 10px;">${
+                      language["1000086"][activeLanguage]
+                    }:</div>
                     <div class="ml-10">${shippingInfo}</div>
                 </div>
             </div><hr />
@@ -6416,14 +5577,18 @@ function getFilters(customerMarketplaceId) {
                         ${value.filterId}-${value.filterName}
                     </div>
                     <div>
-                        <select name="sfFilter-${value.id}-${value.filterName
-          }" id="sfFilter-${value.filterId}">
-                        <option value="0" ${value.filterStatus == 0 ? "selected" : ""
-          }>${language["1000057"][activeLanguage]}</option>
-                        <option value="1" ${value.filterStatus == 1 ? "selected" : ""
-          }>${language["1000058"][activeLanguage]}</option>
-                        <option value="2" ${value.filterStatus == 2 ? "selected" : ""
-          }>${language["1000059"][activeLanguage]}</option>
+                        <select name="sfFilter-${value.id}-${
+          value.filterName
+        }" id="sfFilter-${value.filterId}">
+                        <option value="0" ${
+                          value.filterStatus == 0 ? "selected" : ""
+                        }>${language["1000057"][activeLanguage]}</option>
+                        <option value="1" ${
+                          value.filterStatus == 1 ? "selected" : ""
+                        }>${language["1000058"][activeLanguage]}</option>
+                        <option value="2" ${
+                          value.filterStatus == 2 ? "selected" : ""
+                        }>${language["1000059"][activeLanguage]}</option>
                         </select>
                     </div>
                 </div> `;
@@ -6516,8 +5681,8 @@ function createSearchPageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px;
     background: none; border: none;  display: inline-block">
         <img src=${chrome.runtime.getURL(
-    "img/sf_extension.svg"
-  )} style="width: 90px;">
+          "img/sf_extension.svg"
+        )} style="width: 90px;">
     </button>`;
   $("body").prepend(sfButton);
 
@@ -7047,9 +6212,9 @@ function getASINsFromPage(pageUrl) {
 
         $("#sfSavingInfo").text(
           totalPageCount +
-          language["1000072"][activeLanguage] +
-          totalAsinCount +
-          language["1000073"][activeLanguage]
+            language["1000072"][activeLanguage] +
+            totalAsinCount +
+            language["1000073"][activeLanguage]
         );
 
         var curPageNo = parseInt(
@@ -7133,9 +6298,9 @@ function saveAsinList(prefix, asinList, storeId) {
         // PartiallyAdded
         $("#sfSavingInfo").html(
           language["1000122"][activeLanguage] +
-          "<br>" +
-          language["1000124"][activeLanguage] +
-          response.differenceCount
+            "<br>" +
+            language["1000124"][activeLanguage] +
+            response.differenceCount
         );
         $("#sfSavingInfo").css({
           background: "orange",
@@ -7258,11 +6423,13 @@ function createSellerFlashMenu(loggedIn) {
                 </div>
                 <p id="demo"></p>
                 <div class="flex ai-c jc-center">
-                    <button class="yellow-button"><a href='${panelLink}'>${language["1000076"][activeLanguage]
-      }</a></button>
+                    <button class="yellow-button"><a href='${panelLink}'>${
+      language["1000076"][activeLanguage]
+    }</a></button>
                 </div>
-                <div class="list-title">${language["1000078"][activeLanguage]
-      };</div>
+                <div class="list-title">${
+                  language["1000078"][activeLanguage]
+                };</div>
                 <ul class="list">
                     <li>${language["1000079"][activeLanguage]}</li>
                     <li>${language["1000080"][activeLanguage]}</li>
@@ -7275,8 +6442,9 @@ function createSellerFlashMenu(loggedIn) {
                     <div class="flex ai-c jc-sb" style="height:42px;padding: 0 15px;">
                         <div class="flex ai-c">
                             <i class="fas fa-cog"></i>
-                            <a href="${panelLink}/storeSettings" class="ml-10" target="_blank" style="color:black">${language["1000045"][activeLanguage]
-      }</a>
+                            <a href="${panelLink}/storeSettings" class="ml-10" target="_blank" style="color:black">${
+      language["1000045"][activeLanguage]
+    }</a>
                         </div>
                     </div>
                     <div class="flex ai-c jc-sb" style="height:42px;padding: 0 15px;">
@@ -7286,10 +6454,11 @@ function createSellerFlashMenu(loggedIn) {
                     </div>
                     <div>
                         <img id="sf-languangeButton" src="${chrome.runtime.getURL(
-        "img/" + `${activeLanguage}` + ".png"
-      )}" style="width: 24px;cursor: pointer;" />
-                        <button id="sf-logout" title="${language["1000054"][activeLanguage]
-      }" class="logout-button" style="margin-left: 5px;display: inline-block;">
+                          "img/" + `${activeLanguage}` + ".png"
+                        )}" style="width: 24px;cursor: pointer;" />
+                        <button id="sf-logout" title="${
+                          language["1000054"][activeLanguage]
+                        }" class="logout-button" style="margin-left: 5px;display: inline-block;">
                             <i class="fas fa-power-off"></i>
                         </button>
 
@@ -7308,15 +6477,17 @@ function createSellerFlashMenu(loggedIn) {
                     <img src=${chrome.runtime.getURL("img/chrome.svg")}>
                 </div>
 
-                <div class="list-title" style="margin-top:50px">  ${language["1000084"][activeLanguage]
-      } <a href='${panelLink}'>${language["1000085"][activeLanguage]
-      }</a>. </div>
+                <div class="list-title" style="margin-top:50px">  ${
+                  language["1000084"][activeLanguage]
+                } <a href='${panelLink}'>${
+      language["1000085"][activeLanguage]
+    }</a>. </div>
 
                 <div class="bottom-area" style="height:42px;padding: 0 10px;">
                     <div class="flex ai-c jc-end" style="height: 100%;">
                         <img id="sf-languangeButton" src="${chrome.runtime.getURL(
-        "img/" + `${activeLanguage}` + ".png"
-      )}" style="width: 24px;cursor: pointer;" />
+                          "img/" + `${activeLanguage}` + ".png"
+                        )}" style="width: 24px;cursor: pointer;" />
                     </div>
                 </div>
                 <div>
@@ -7504,17 +6675,17 @@ chrome.extension.onMessage.addListener(function (msg) {
 
         $("#sfMessage").html(
           language["1000009"][activeLanguage] +
-          ": " +
-          msg.countryCode +
-          " (" +
-          msg.orderId +
-          ") <br>" +
-          language["1000115"][activeLanguage] +
-          "<a href='" +
-          domain +
-          "'>" +
-          language["1000085"][activeLanguage] +
-          "</a>"
+            ": " +
+            msg.countryCode +
+            " (" +
+            msg.orderId +
+            ") <br>" +
+            language["1000115"][activeLanguage] +
+            "<a href='" +
+            domain +
+            "'>" +
+            language["1000085"][activeLanguage] +
+            "</a>"
         );
 
         $("#sfCheckAddresses").prop("disabled", false);
@@ -7575,10 +6746,10 @@ chrome.extension.onMessage.addListener(function (msg) {
 
         if (t == undefined) {
           var l = r
-            .find("div[id^='shipToInsertionNode-shippingAddress']")
-            .first()
-            .attr("id")
-            .replace("shipToInsertionNode-shippingAddress-", ""),
+              .find("div[id^='shipToInsertionNode-shippingAddress']")
+              .first()
+              .attr("id")
+              .replace("shipToInsertionNode-shippingAddress-", ""),
             a = o
               .find("#shipToData-shippingAddress-" + l)
               .first()
@@ -7765,9 +6936,9 @@ function editDistance(n, t) {
       u == 0
         ? (r[i] = i)
         : i > 0 &&
-        ((e = r[i - 1]),
+          ((e = r[i - 1]),
           n.charAt(u - 1) != t.charAt(i - 1) &&
-          (e = Math.min(Math.min(e, f), r[i]) + 1),
+            (e = Math.min(Math.min(e, f), r[i]) + 1),
           (r[i - 1] = f),
           (f = e));
     u > 0 && (r[t.length] = f);
@@ -7799,7 +6970,7 @@ function getMarketplaceByPage() {
     .trim();
   return (
     (n == null || n == "") &&
-    (n = $("#partner-switcher").data("marketplace_selection").trim()),
+      (n = $("#partner-switcher").data("marketplace_selection").trim()),
     getMarketplaceItemByDomain(n)
   );
 }
@@ -7813,39 +6984,39 @@ function getMarketplaceItemByDomain(n) {
     n == "www.amazon.com" || n == "ATVPDKIKX0DER"
       ? ((t.AmazonMarketplaceId = "ATVPDKIKX0DER"), (t.MarketplaceId = 1))
       : n == "www.amazon.ca" || n == "A2EUQ1WTGCTBG2"
-        ? ((t.AmazonMarketplaceId = "A2EUQ1WTGCTBG2"), (t.MarketplaceId = 2))
-        : n == "www.amazon.com.mx" || n == "A1AM78C64UM0Y8"
-          ? ((t.AmazonMarketplaceId = "A1AM78C64UM0Y8"), (t.MarketplaceId = 3))
-          : n == "www.amazon.co.uk" || n == "A1F83G8C2ARO7P"
-            ? ((t.AmazonMarketplaceId = "A1F83G8C2ARO7P"), (t.MarketplaceId = 4))
-            : n == "www.amazon.de" || n == "A1PA6795UKMFR9"
-              ? ((t.AmazonMarketplaceId = "A1PA6795UKMFR9"), (t.MarketplaceId = 5))
-              : n == "www.amazon.fr" || n == "A13V1IB3VIYZZH"
-                ? ((t.AmazonMarketplaceId = "A13V1IB3VIYZZH"), (t.MarketplaceId = 6))
-                : n == "www.amazon.it" || n == "APJ6JRA9NG5V4"
-                  ? ((t.AmazonMarketplaceId = "APJ6JRA9NG5V4"), (t.MarketplaceId = 7))
-                  : n == "www.amazon.es" || n == "A1RKKUPIHCS9HS"
-                    ? ((t.AmazonMarketplaceId = "A1RKKUPIHCS9HS"), (t.MarketplaceId = 8))
-                    : n == "www.amazon.ae" || n == "A2VIGQ35RCS4UG"
-                      ? ((t.AmazonMarketplaceId = "A2VIGQ35RCS4UG"), (t.MarketplaceId = 9))
-                      : n == "www.amazon.com.au" || n == "A39IBJ37TRP1C6"
-                        ? ((t.AmazonMarketplaceId = "A39IBJ37TRP1C6"), (t.MarketplaceId = 10))
-                        : n == "www.amazon.co.jp" || n == "www.amazon.jp" || n == "A1VC38T7YXB528"
-                          ? ((t.AmazonMarketplaceId = "A1VC38T7YXB528"), (t.MarketplaceId = 11))
-                          : n == "www.amazon.sg" || n == "A19VAU5U5O7RUS"
-                            ? ((t.AmazonMarketplaceId = "A19VAU5U5O7RUS"), (t.MarketplaceId = 12))
-                            : n == "www.amazon.sa" || n == "A17E79C6D8DWNP"
-                              ? ((t.AmazonMarketplaceId = "A17E79C6D8DWNP"), (t.MarketplaceId = 13))
-                              : n == "www.amazon.eg" || n == "ARBP9OOSHTCHU"
-                                ? ((t.AmazonMarketplaceId = "ARBP9OOSHTCHU"), (t.MarketplaceId = 14))
-                                : n == "www.amazon.pl" || n == "A1C3SOZRARQ6R3"
-                                  ? ((t.AmazonMarketplaceId = "A1C3SOZRARQ6R3"), (t.MarketplaceId = 15))
-                                  : n == "www.amazon.be" || n == "AMEN7PMS3EDWL"
-                                    ? ((t.AmazonMarketplaceId = "AMEN7PMS3EDWL"), (t.MarketplaceId = 16))
-                                    : n == "www.amazon.se" || n == "A2NODRKZP88ZB9"
-                                      ? ((t.AmazonMarketplaceId = "A2NODRKZP88ZB9"), (t.MarketplaceId = 17))
-                                      : (n == "www.amazon.nl" || n == "A1805IZSGTT6HS") &&
-                                      ((t.AmazonMarketplaceId = "A1805IZSGTT6HS"), (t.MarketplaceId = 18)),
+      ? ((t.AmazonMarketplaceId = "A2EUQ1WTGCTBG2"), (t.MarketplaceId = 2))
+      : n == "www.amazon.com.mx" || n == "A1AM78C64UM0Y8"
+      ? ((t.AmazonMarketplaceId = "A1AM78C64UM0Y8"), (t.MarketplaceId = 3))
+      : n == "www.amazon.co.uk" || n == "A1F83G8C2ARO7P"
+      ? ((t.AmazonMarketplaceId = "A1F83G8C2ARO7P"), (t.MarketplaceId = 4))
+      : n == "www.amazon.de" || n == "A1PA6795UKMFR9"
+      ? ((t.AmazonMarketplaceId = "A1PA6795UKMFR9"), (t.MarketplaceId = 5))
+      : n == "www.amazon.fr" || n == "A13V1IB3VIYZZH"
+      ? ((t.AmazonMarketplaceId = "A13V1IB3VIYZZH"), (t.MarketplaceId = 6))
+      : n == "www.amazon.it" || n == "APJ6JRA9NG5V4"
+      ? ((t.AmazonMarketplaceId = "APJ6JRA9NG5V4"), (t.MarketplaceId = 7))
+      : n == "www.amazon.es" || n == "A1RKKUPIHCS9HS"
+      ? ((t.AmazonMarketplaceId = "A1RKKUPIHCS9HS"), (t.MarketplaceId = 8))
+      : n == "www.amazon.ae" || n == "A2VIGQ35RCS4UG"
+      ? ((t.AmazonMarketplaceId = "A2VIGQ35RCS4UG"), (t.MarketplaceId = 9))
+      : n == "www.amazon.com.au" || n == "A39IBJ37TRP1C6"
+      ? ((t.AmazonMarketplaceId = "A39IBJ37TRP1C6"), (t.MarketplaceId = 10))
+      : n == "www.amazon.co.jp" || n == "www.amazon.jp" || n == "A1VC38T7YXB528"
+      ? ((t.AmazonMarketplaceId = "A1VC38T7YXB528"), (t.MarketplaceId = 11))
+      : n == "www.amazon.sg" || n == "A19VAU5U5O7RUS"
+      ? ((t.AmazonMarketplaceId = "A19VAU5U5O7RUS"), (t.MarketplaceId = 12))
+      : n == "www.amazon.sa" || n == "A17E79C6D8DWNP"
+      ? ((t.AmazonMarketplaceId = "A17E79C6D8DWNP"), (t.MarketplaceId = 13))
+      : n == "www.amazon.eg" || n == "ARBP9OOSHTCHU"
+      ? ((t.AmazonMarketplaceId = "ARBP9OOSHTCHU"), (t.MarketplaceId = 14))
+      : n == "www.amazon.pl" || n == "A1C3SOZRARQ6R3"
+      ? ((t.AmazonMarketplaceId = "A1C3SOZRARQ6R3"), (t.MarketplaceId = 15))
+      : n == "www.amazon.be" || n == "AMEN7PMS3EDWL"
+      ? ((t.AmazonMarketplaceId = "AMEN7PMS3EDWL"), (t.MarketplaceId = 16))
+      : n == "www.amazon.se" || n == "A2NODRKZP88ZB9"
+      ? ((t.AmazonMarketplaceId = "A2NODRKZP88ZB9"), (t.MarketplaceId = 17))
+      : (n == "www.amazon.nl" || n == "A1805IZSGTT6HS") &&
+        ((t.AmazonMarketplaceId = "A1805IZSGTT6HS"), (t.MarketplaceId = 18)),
     t
   );
 }
@@ -8015,7 +7186,7 @@ async function changeAddress(countryCode, postalCode) {
         type: "POST",
         url: url,
         data: formData.toString(), // serializes the form's elements.
-        success: function () { },
+        success: function () {},
       });
     }
   }
@@ -8023,6 +7194,19 @@ async function changeAddress(countryCode, postalCode) {
 
 async function delay(timeout) {
   return new Promise((resolve) => setTimeout(resolve, timeout));
+}
+
+function formatTimestamp(timestamp) {
+  const date = new Date(timestamp);
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // getMonth() 0-indexed
+  const year = date.getFullYear();
+
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
 var countriesAll = [
