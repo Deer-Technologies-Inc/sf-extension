@@ -2673,6 +2673,9 @@ function getOrderStatusList(n) {
   const data = {
     sellerAmazonOrderIds: n,
   };
+
+  const panelLink = "https://x-test.sellerfull.com/";
+
   $.ajax({
     type: "POST",
     url: `${baseUrl}${endPoints.Order.byAmazonOrderIds}`,
