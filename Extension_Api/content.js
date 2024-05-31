@@ -2670,16 +2670,15 @@ function createOrdersPageItems() {
 }
 
 function getOrderStatusList(n) {
-  var panelLink = "https://sellerflash.com";
-  if (user.platform == "test") panelLink = "https://x-test.sellerflash.com";
-  else if (user.platform == "dev") panelLink = "https://x-test.sellerflash.com";
-
+  const data = {
+    sellerAmazonOrderIds: n,
+  };
   $.ajax({
     type: "POST",
     url: `${baseUrl}${endPoints.Order.byAmazonOrderIds}`,
     contentType: "application/json; charset=utf-8",
     dataType: "text",
-    data: JSON.stringify(n),
+    data: JSON.stringify(data),
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
       if (response == undefined || response == "") {
