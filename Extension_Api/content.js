@@ -6517,23 +6517,31 @@ function changeLanguage() {
   activeLanguage = localStorage.setItem("activeLanguage", activeLanguage);
   location.reload();
 }
-function parseDate(text) {
-  // Metindeki ay ve gün değerlerini ayıklıyoruz
-  const [ , day, month] = text.match(/Delivered (\d{1,2}) (\w+)/);
+function parseDate(dateString) {
+  // Define the format of the date string
+  const regex = /Delivered (\d{2}) (\w{3,})/;
+  const match = dateString.match(regex);
 
-  // Ay adlarını sayısal değerlere çeviren bir nesne
-  const months = {
-      January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
-      July: 6, August: 7, September: 8, October: 9, November: 10, December: 11
-  };
+  if (match) {
+      const day = parseInt(match[1]);
+      const month = match[2];
+      const year = new Date().getFullYear(); // Use the current year
 
-  // Geçerli yıl
-  const year = new Date().getFullYear();
+      // Map month names to month numbers
+      const monthNames = ["January", "February", "March", "April", "May", "June", 
+                          "July", "August", "September", "October", "November", "December"];
+      const monthIndex = monthNames.findIndex(m => m.toLowerCase() === month.toLowerCase());
 
-  // Ay ve gün bilgilerini kullanarak yeni bir tarih nesnesi oluşturma
-  const date = new Date(year, months[month], day);
-
-  return date;
+      if (monthIndex !== -1) {
+          // Create a Date object
+          const date = new Date(year, monthIndex, day);
+          return date;
+      } else {
+          throw new Error("Invalid month name");
+      }
+  } else {
+      throw new Error("Invalid date format");
+  }
 }
 
 chrome.extension.onMessage.addListener(function (msg) {
