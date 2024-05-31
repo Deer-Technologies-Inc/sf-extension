@@ -3904,6 +3904,7 @@ async function getShippingInformation(content) {
   si.AmazonOrderId = s.orderId;
   si.BuyerAmazonOrderId = s.orderId;
   si.TrackingId = s.trackingId;
+  si.DeliveryDate = parseDate(s.promise.promiseMessage);
 
   var carrier = page
     .find("div#tracking-events-container div.tracking-event-carrier-header h2")
@@ -6512,6 +6513,32 @@ function changeLanguage() {
 
   activeLanguage = localStorage.setItem("activeLanguage", activeLanguage);
   location.reload();
+}
+function parseDate(dateString) {
+  // Define the format of the date string
+  const regex = /Delivered (\d{2}) (\w{3,})/;
+  const match = dateString.match(regex);
+
+  if (match) {
+      const day = parseInt(match[1]);
+      const month = match[2];
+      const year = new Date().getFullYear(); // Use the current year
+
+      // Map month names to month numbers
+      const monthNames = ["January", "February", "March", "April", "May", "June", 
+                          "July", "August", "September", "October", "November", "December"];
+      const monthIndex = monthNames.findIndex(m => m.toLowerCase() === month.toLowerCase());
+
+      if (monthIndex !== -1) {
+          // Create a Date object
+          const date = new Date(year, monthIndex, day);
+          return date;
+      } else {
+          throw new Error("Invalid month name");
+      }
+  } else {
+      throw new Error("Invalid date format");
+  }
 }
 
 chrome.extension.onMessage.addListener(function (msg) {
