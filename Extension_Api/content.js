@@ -2715,7 +2715,7 @@ function getOrderStatusList(n) {
           bgColor = "#27AE60";
           statusColor = "#a9dfbf";
         }
-        if (t.buyerStatus == "NOTPURCHASED") {
+        if (t.buyerStatus == "NotPurchased") {
           bgColor = "#ec7063";
           statusColor = "#ffcdd2";
         }
