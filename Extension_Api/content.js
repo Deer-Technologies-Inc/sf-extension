@@ -6510,7 +6510,8 @@ function parseDate(dateString) {
 
     if (monthIndex !== -1) {
       // Create a Date object
-      const date = new Date(year, monthIndex, day + 1);
+      const date = new Date(year, monthIndex, day);
+      console.log(date,dateString);
       return date;
     } else {
       throw new Error("Invalid month name");
