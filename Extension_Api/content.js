@@ -823,7 +823,7 @@ function getFilterSettingAsync() {
       divFilters += `<option selected value="0">${language["1000172"][activeLanguage]}</option>`;
 
       $.each(result, function (index, value) {
-        divFilters += `<option value="${value.extensionFilterSettingId}">${value.filterName}</option>`;
+        divFilters += `<option value="${value.filterSettingId}">${value.filterName}</option>`;
       });
 
       divFilters += "</select>";
