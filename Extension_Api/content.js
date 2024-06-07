@@ -5936,7 +5936,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      user.apiSubdomain + `${baseUrl}${endPoints.Extension.filterSettings}`,
+      `${baseUrl}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
@@ -6004,7 +6004,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      user.apiSubdomain + `${baseUrl}${endPoints.Extension.filterSettings}`,
+      `${baseUrl}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
