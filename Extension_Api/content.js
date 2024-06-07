@@ -6033,6 +6033,7 @@ function createSearchPageItems() {
     }
 
     let postModel = {
+      filterSettingId: selectedFilterSettingId,
       buySponsoredProducts: $("#sfSponsored").is(":checked"),
       buyCouponDiscountProducts: $("#sfCouponDiscount").is(":checked"),
       minPrice: parseFloat($("#sfPriceMin").val()),
