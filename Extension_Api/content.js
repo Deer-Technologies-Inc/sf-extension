@@ -5903,7 +5903,7 @@ function createSearchPageItems() {
   });
 
   $("#sfDeleteFilterButton").click(async function () {
-    const selectedFilterSettingId = parseInt($("#sfFilterOptions")[0].value);
+    const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
 
     const filterName = confirm(language["1000167"][activeLanguage]);
     if (!filterName) return;
