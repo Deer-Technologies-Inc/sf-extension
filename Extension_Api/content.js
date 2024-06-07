@@ -830,7 +830,7 @@ function getFilterSettingAsync() {
 
       $("#sfFilterSelect").html(divFilters);
 
-      const selectedFilterSettingId = parseInt($("#sfFilterOptions")[0].value);
+      const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
       if (selectedFilterSettingId === 0) {
         $("#sfDeleteFilterButton")[0].hidden = true;
         $("#sfSaveFilters")[0].textContent =
@@ -841,9 +841,7 @@ function getFilterSettingAsync() {
       }
 
       $("select#sfFilterOptions").change(function () {
-        const selectedFilterSettingId = parseInt(
-          $("#sfFilterOptions")[0].value
-        );
+        const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
 
         if (selectedFilterSettingId === 0) {
           $("#sfSaveFilters")[0].textContent =
@@ -5966,7 +5964,7 @@ function createSearchPageItems() {
   });
 
   $("#sfSaveFilters").click(async function () {
-    const selectedFilterSettingId = parseInt($("#sfFilterOptions")[0].value);
+    const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
 
     let tempFilterName = "update";
 
@@ -5997,7 +5995,7 @@ function createSearchPageItems() {
     fetchHeaders.append("Authorization", `Bearer ${user.token}`);
 
     const fetchOptions = {
-      method: "POST",
+      method: "PUT",
       body: JSON.stringify(postModel),
       headers: fetchHeaders,
     };
