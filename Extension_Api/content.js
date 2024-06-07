@@ -5738,11 +5738,11 @@ function createSearchPageItems() {
             </div>
 
             <div class="flex ai-c jc-sb mb-10">
-                <button class="light-blue-button small-button" aria-hidden="true" id='sfSaveFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
+                <button class="light-blue-button small-button"  id='sfSaveFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
                 font-size: 12px;">
                 ${language["1000175"][activeLanguage]}</button>
             </div>
-            <div class="flex ai-c jc-sb mb-10">
+            <div class="flex ai-c jc-sb mb-10" hidden>
                 <button class="light-blue-button small-button" id='sfUpdateFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
                 font-size: 12px;">
                 ${language["1000170"][activeLanguage]}</button>
