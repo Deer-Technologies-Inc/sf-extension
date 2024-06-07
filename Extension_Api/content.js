@@ -833,6 +833,7 @@ function getFilterSettingAsync() {
       const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
       if (parseInt(selectedFilterSettingId) === 0) {
         $("#sfDeleteFilterButton")[0].hidden = true;
+        $("#sfUpdateFilters")[0].hidden = true;
         $("#sfSaveFilters")[0].textContent =
           language["1000175"][activeLanguage];
       } else {
@@ -848,6 +849,7 @@ function getFilterSettingAsync() {
           $("#sfSaveFilters")[0].textContent =
             language["1000175"][activeLanguage];
           $("#sfDeleteFilterButton")[0].hidden = true;
+          $("#sfUpdateFilters")[0].hidden = true;
         } else {
           $("#sfSaveFilters")[0].hidden = true;
           $("#sfUpdateFilters")[0].hidden = false;
