@@ -5975,7 +5975,6 @@ function createSearchPageItems() {
       maxStar: parseFloat($("#sfStarsMax").val()),
       minReviewCount: 0,
       maxReviewCount: 0,
-      filterSettingId: selectedFilterSettingId,
       filterName: tempFilterName,
       isActive: true,
     };
@@ -6042,7 +6041,6 @@ function createSearchPageItems() {
       maxStar: parseFloat($("#sfStarsMax").val()),
       minReviewCount: 0,
       maxReviewCount: 0,
-      filterSettingId: selectedFilterSettingId,
       filterName: tempFilterName,
       isActive: true,
     };
