@@ -6035,6 +6035,73 @@ function createSearchPageItems() {
     }, 3000);
   });
 
+  //PUT filter settings
+  $("#sfUpdateFilters").click(async function () {
+    const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
+
+    let tempFilterName = "update";
+
+    if (parseInt(selectedFilterSettingId) === 0) {
+      const filterName = prompt(language["1000173"][activeLanguage]);
+      if (!filterName) return;
+
+      tempFilterName = filterName;
+    }
+
+    let postModel = {
+      buySponsoredProducts: $("#sfSponsored").is(":checked"),
+      buyCouponDiscountProducts: $("#sfCouponDiscount").is(":checked"),
+      minPrice: parseFloat($("#sfPriceMin").val()),
+      maxPrice: parseFloat($("#sfPriceMax").val()),
+      minStar: parseFloat($("#sfStarsMin").val()),
+      maxStar: parseFloat($("#sfStarsMax").val()),
+      minReviewCount: 0,
+      maxReviewCount: 0,
+      extensionFilterSettingId: selectedFilterSettingId,
+      filterName: tempFilterName,
+      isActive: true,
+    };
+
+    let fetchHeaders = new Headers();
+    fetchHeaders.append("Content-Type", "application/json");
+    fetchHeaders.append("Accept", "application/json, text/plain, */*");
+    fetchHeaders.append("Authorization", `Bearer ${user.token}`);
+
+    const fetchOptions = {
+      method: "PUT",
+      body: JSON.stringify(postModel),
+      headers: fetchHeaders,
+    };
+
+    const result = await fetch(
+      `${baseUrl}${endPoints.Extension.filterSettings}`,
+      fetchOptions
+    );
+
+    let resultText = "";
+    let colorCode = "";
+
+    if (result.status === 200) {
+      resultText = language["1000171"][activeLanguage];
+      colorCode = "#98efad";
+      getFilterSettingAsync();
+    } else {
+      resultText = language["1000162"][activeLanguage];
+      colorCode = "#e54949";
+    }
+
+    var snackbar = $("#snackbar")[0];
+    snackbar.className = "show";
+    snackbar.textContent = resultText;
+    snackbar.style.backgroundColor = colorCode;
+    snackbar.style.color = "black";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () {
+      snackbar.className = snackbar.className.replace("show", "");
+    }, 3000);
+  });
+
   $("#sfStartSearch").click(function () {
     $("#sfStartSearch").prop("disabled", true);
     $("#sfStartSearch").text(language["1000007"][activeLanguage]);
