@@ -831,7 +831,7 @@ function getFilterSettingAsync() {
       $("#sfFilterSelect").html(divFilters);
 
       const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
-      if (selectedFilterSettingId === 0) {
+      if (parseInt(selectedFilterSettingId) === 0) {
         $("#sfDeleteFilterButton")[0].hidden = true;
         $("#sfSaveFilters")[0].textContent =
           language["1000175"][activeLanguage];
@@ -843,7 +843,7 @@ function getFilterSettingAsync() {
       $("select#sfFilterOptions").change(function () {
         const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
 
-        if (selectedFilterSettingId === 0) {
+        if (parseInt(selectedFilterSettingId) === 0) {
           $("#sfSaveFilters")[0].textContent =
             language["1000175"][activeLanguage];
           $("#sfDeleteFilterButton")[0].hidden = true;
@@ -5968,7 +5968,7 @@ function createSearchPageItems() {
 
     let tempFilterName = "update";
 
-    if (selectedFilterSettingId === 0) {
+    if (parseInt(selectedFilterSettingId) === 0) {
       const filterName = prompt(language["1000173"][activeLanguage]);
       if (!filterName) return;
 
