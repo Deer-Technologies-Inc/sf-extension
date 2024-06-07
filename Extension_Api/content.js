@@ -5910,19 +5910,19 @@ function createSearchPageItems() {
     const filterName = confirm(language["1000167"][activeLanguage]);
     if (!filterName) return;
 
-    let postModel = {
-     /*  buySponsoredProducts: $("#sfSponsored").is(":checked"),
+   /*  let postModel = {
+      buySponsoredProducts: $("#sfSponsored").is(":checked"),
       buyCouponDiscountProducts: $("#sfCouponDiscount").is(":checked"),
       minPrice: parseFloat($("#sfPriceMin").val()),
       maxPrice: parseFloat($("#sfPriceMax").val()),
       minStar: parseFloat($("#sfStarsMin").val()),
       maxStar: parseFloat($("#sfStarsMax").val()),
       minReviewCount: 0,
-      maxReviewCount: 0, */
+      maxReviewCount: 0,
       extensionFilterSettingId: selectedFilterSettingId,
-     /*  filterName: "delete",
-      isActive: false, */
-    };
+      filterName: "delete",
+      isActive: false,
+    }; */
 
     let fetchHeaders = new Headers();
     fetchHeaders.append("Content-Type", "application/json");
@@ -5931,12 +5931,11 @@ function createSearchPageItems() {
 
     const fetchOptions = {
       method: "DELETE",
-      body: JSON.stringify(postModel),
       headers: fetchHeaders,
     };
 
     const result = await fetch(
-      `${baseUrl}${endPoints.Extension.filterSettings}`,
+      `${baseUrl}${endPoints.Extension.filterSettings}?filterSettingId=${selectedFilterSettingId}`,
       fetchOptions
     );
 
