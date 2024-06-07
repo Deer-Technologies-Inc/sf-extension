@@ -836,8 +836,9 @@ function getFilterSettingAsync() {
         $("#sfSaveFilters")[0].textContent =
           language["1000175"][activeLanguage];
       } else {
-        $("#sfSaveFilters")[0].textContent =
-          language["1000170"][activeLanguage];
+        $("#sfSaveFilters")[0].hidden = true;
+        $("#sfUpdateFilters")[0].hidden = false;
+
       }
 
       $("select#sfFilterOptions").change(function () {
@@ -848,8 +849,8 @@ function getFilterSettingAsync() {
             language["1000175"][activeLanguage];
           $("#sfDeleteFilterButton")[0].hidden = true;
         } else {
-          $("#sfSaveFilters")[0].textContent =
-            language["1000170"][activeLanguage];
+          $("#sfSaveFilters")[0].hidden = true;
+          $("#sfUpdateFilters")[0].hidden = false;
           $("#sfDeleteFilterButton")[0].hidden = false;
         }
 
@@ -5737,9 +5738,14 @@ function createSearchPageItems() {
             </div>
 
             <div class="flex ai-c jc-sb mb-10">
-                <button class="light-blue-button small-button" id='sfSaveFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
+                <button class="light-blue-button small-button" aria-hidden="true" id='sfSaveFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
                 font-size: 12px;">
                 ${language["1000175"][activeLanguage]}</button>
+            </div>
+            <div class="flex ai-c jc-sb mb-10">
+                <button class="light-blue-button small-button" id='sfUpdateFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
+                font-size: 12px;">
+                ${language["1000170"][activeLanguage]}</button>
             </div>
 
             <div class="flex ai-c jc-sb mb-10">
@@ -5962,7 +5968,7 @@ function createSearchPageItems() {
       snackbar.className = snackbar.className.replace("show", "");
     }, 3000);
   });
-
+  //POST filter settings
   $("#sfSaveFilters").click(async function () {
     const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
 
@@ -5995,7 +6001,7 @@ function createSearchPageItems() {
     fetchHeaders.append("Authorization", `Bearer ${user.token}`);
 
     const fetchOptions = {
-      method: "PUT",
+      method: "POST",
       body: JSON.stringify(postModel),
       headers: fetchHeaders,
     };
