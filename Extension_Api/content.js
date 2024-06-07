@@ -838,7 +838,6 @@ function getFilterSettingAsync() {
       } else {
         $("#sfSaveFilters")[0].hidden = true;
         $("#sfUpdateFilters")[0].hidden = false;
-
       }
 
       $("select#sfFilterOptions").change(function () {
@@ -855,7 +854,7 @@ function getFilterSettingAsync() {
         }
 
         let selectedFilter = result.find(
-          (p) => p.extensionFilterSettingId === selectedFilterSettingId
+          (p) => p.filterSettingId === selectedFilterSettingId
         );
         if (selectedFilter) {
           $("#sfSponsored").prop(
@@ -5914,20 +5913,6 @@ function createSearchPageItems() {
     const filterName = confirm(language["1000167"][activeLanguage]);
     if (!filterName) return;
 
-   /*  let postModel = {
-      buySponsoredProducts: $("#sfSponsored").is(":checked"),
-      buyCouponDiscountProducts: $("#sfCouponDiscount").is(":checked"),
-      minPrice: parseFloat($("#sfPriceMin").val()),
-      maxPrice: parseFloat($("#sfPriceMax").val()),
-      minStar: parseFloat($("#sfStarsMin").val()),
-      maxStar: parseFloat($("#sfStarsMax").val()),
-      minReviewCount: 0,
-      maxReviewCount: 0,
-      extensionFilterSettingId: selectedFilterSettingId,
-      filterName: "delete",
-      isActive: false,
-    }; */
-
     let fetchHeaders = new Headers();
     fetchHeaders.append("Content-Type", "application/json");
     fetchHeaders.append("Accept", "application/json, text/plain, */*");
@@ -5990,7 +5975,7 @@ function createSearchPageItems() {
       maxStar: parseFloat($("#sfStarsMax").val()),
       minReviewCount: 0,
       maxReviewCount: 0,
-      extensionFilterSettingId: selectedFilterSettingId,
+      filterSettingId: selectedFilterSettingId,
       filterName: tempFilterName,
       isActive: true,
     };
@@ -6057,7 +6042,7 @@ function createSearchPageItems() {
       maxStar: parseFloat($("#sfStarsMax").val()),
       minReviewCount: 0,
       maxReviewCount: 0,
-      extensionFilterSettingId: selectedFilterSettingId,
+      filterSettingId: selectedFilterSettingId,
       filterName: tempFilterName,
       isActive: true,
     };
