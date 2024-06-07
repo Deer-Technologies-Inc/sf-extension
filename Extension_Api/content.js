@@ -21,6 +21,9 @@ const endPoints = {
     notDelivered: "orders/not-delivered",
     byAmazonOrderIds: "orders/by-amazon-order-ids",
   },
+  Extension: {
+    filterSettings: "extension-settings/filter",
+  }
 };
 
 /* #region  Colors & Fonts */
@@ -802,9 +805,9 @@ function getFilterSettingAsync() {
     method: "GET",
     headers: fetchHeaders,
   };
-
+  //getting extension filters
   fetch(
-    user.apiSubdomain + "api/extensionfiltersetting/filtersetting",
+    `${baseUrl}${endPoints.Extension.filterSettings}`,
     fetchOptions
   )
     .then((response) => response.text())
@@ -5908,17 +5911,17 @@ function createSearchPageItems() {
     if (!filterName) return;
 
     let postModel = {
-      buySponsoredProducts: $("#sfSponsored").is(":checked"),
+     /*  buySponsoredProducts: $("#sfSponsored").is(":checked"),
       buyCouponDiscountProducts: $("#sfCouponDiscount").is(":checked"),
       minPrice: parseFloat($("#sfPriceMin").val()),
       maxPrice: parseFloat($("#sfPriceMax").val()),
       minStar: parseFloat($("#sfStarsMin").val()),
       maxStar: parseFloat($("#sfStarsMax").val()),
       minReviewCount: 0,
-      maxReviewCount: 0,
+      maxReviewCount: 0, */
       extensionFilterSettingId: selectedFilterSettingId,
-      filterName: "delete",
-      isActive: false,
+     /*  filterName: "delete",
+      isActive: false, */
     };
 
     let fetchHeaders = new Headers();
@@ -5927,13 +5930,13 @@ function createSearchPageItems() {
     fetchHeaders.append("Authorization", `Bearer ${user.token}`);
 
     const fetchOptions = {
-      method: "POST",
+      method: "DELETE",
       body: JSON.stringify(postModel),
       headers: fetchHeaders,
     };
 
     const result = await fetch(
-      user.apiSubdomain + "api/extensionfiltersetting/createorupdate",
+      user.apiSubdomain + `${baseUrl}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
@@ -6001,7 +6004,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      user.apiSubdomain + "api/extensionfiltersetting/createorupdate",
+      user.apiSubdomain + `${baseUrl}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
