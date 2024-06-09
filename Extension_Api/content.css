@@ -70,7 +70,7 @@
   right: 100px;
   top: 2px;
   background-color: rgb(254, 254, 254);
-  border-radius: 4px;
+  border-radius: 8px;
   box-shadow: 0 5px 9px 0 rgb(0 0 0 / 8%), 0 1px 2px 0 rgb(0 0 0 / 6%);
   border: solid 1px #f7f7f7;
   padding: 18px;
@@ -107,26 +107,24 @@
   font-size: 11px;
 }
 
-.yellow-button {
+.green-button {
   width: 171px;
   height: 34px;
   border-radius: 4px;
-  box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
-  background-color: #09d454;
+  background-color: #148e44;
   font-family: "Poppins";
   font-size: 12px;
   font-weight: 600;
-  font-stretch: normal;
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #222;
+  color: white;
   border: none;
   cursor: pointer;
 }
 
-.yellow-button:hover {
+.green-button:hover {
   opacity: 0.7;
 }
 
@@ -180,7 +178,7 @@
   color: #fff;
 }
 
-.yellow-button a {
+.green-button a {
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
@@ -267,7 +265,6 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #292727;
   margin-top: 15px;
 }
 
@@ -329,8 +326,8 @@
   width: 400px;
   right: 2px;
   bottom: 2px;
-  background-color: #09d454;
-  border: 0px solid rgb(213, 213, 213);
+  background-color: #ffdf2a;
+  border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   height: 95%;
 }
@@ -349,7 +346,7 @@
   top: 42px;
   right: 5px;
   left: 5px;
-  background-color: #1db153;
+  background-color: #ffec80;
   border-radius: 5px;
 }
 
@@ -443,7 +440,7 @@
   height: 474px;
   right: 2px;
   bottom: 2px;
-  background-color: #09d454;
+  background-color: #ffdf2a;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
 }
@@ -462,7 +459,7 @@
   top: 42px;
   right: 5px;
   left: 5px;
-  background-color: #1db153;
+  background-color: #ffec80;
   border-radius: 5px;
 }
 
@@ -620,7 +617,7 @@
   display: block;
   font-size: x-large;
   font-weight: 600;
-  background-color: #09d454;
+  background-color: #ffdf2a;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   margin-left: 40%;
@@ -634,7 +631,7 @@
   width: 400px;
   right: 2px;
   bottom: 2px;
-  background-color: #09d454;
+  background-color: #ffdf2a;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   height: 400px;
@@ -700,7 +697,7 @@
   width: 300px;
   right: 2px;
   bottom: 2px;
-  background-color: #09d454;
+  background-color: #ffdf2a;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   height: 350px;
