@@ -6496,7 +6496,7 @@ function createSellerFlashMenu(loggedIn) {
                     <li>${language["1000083"][activeLanguage]}</li>
                 </ul>
                 
-                <div class="flex ai-c">
+                <div class="flex ai-c" style="margin-top:25px; margin-bottom:25px">
                     <button class="green-button"><a href='${panelLink}'>${
       language["1000076"][activeLanguage]
     }</a></button>
@@ -6505,7 +6505,7 @@ function createSellerFlashMenu(loggedIn) {
                     <div class="flex ai-c jc-sb" style="height:42px;padding: 0 15px;">
                         <div class="flex ai-c">
                             <i class="fas fa-cog"></i>
-                            <a href="${panelLink}/storeSettings" class="ml-10" target="_blank" style="color:black">${
+                            <a href="${panelLink}/storeSettings" class="ml-10" target="_blank" style="color:white">${
       language["1000045"][activeLanguage]
     }</a>
                         </div>
