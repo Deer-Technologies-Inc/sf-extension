@@ -23,6 +23,7 @@ const endPoints = {
   },
   Extension: {
     filterSettings: "extension-settings/filter",
+    productSearchHistories: "extension-settings/product-search-histories",
   },
 };
 
@@ -6425,16 +6426,16 @@ function saveProductSearchInfo(fromPage, toPage) {
 
   $.ajax({
     type: "POST",
-    url: user.apiSubdomain + "api/ProductSearchInfo/AddProductSearchInfo",
+    url: `${baseUrl}${endPoints.Extension.productSearchHistories}`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify({
-      customerMarketPlaceId: customerMarketPlaceId,
-      searchURL: location.href,
-      searchWord: searchWord,
+      // customerMarketPlaceId: customerMarketPlaceId,
+      searchUrl: location.href,
+      searchText: searchWord,
       fromPage: fromPage,
       toPage: toPage,
-      createDate: datetime,
+      // createDate: datetime,
     }),
     headers: { Authorization: "Bearer " + user.token },
     success: function () {
