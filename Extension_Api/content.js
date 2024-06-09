@@ -6522,7 +6522,7 @@ function createSellerFlashMenu(loggedIn) {
                         <button id="sf-logout" title="${
                           language["1000054"][activeLanguage]
                         }" class="logout-button" style="margin-left: 5px;display: inline-block;">
-                            <i class="fas fa-power-off"></i>
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </button>
 
                     </div>
@@ -6540,11 +6540,12 @@ function createSellerFlashMenu(loggedIn) {
                     <img src=${chrome.runtime.getURL("img/chrome.svg")}>
                 </div>
 
-                <div class="list-title" style="margin-top:50px">  ${
-                  language["1000084"][activeLanguage]
-                } <a href='${panelLink}'>${
-      language["1000085"][activeLanguage]
-    }</a>. </div>
+                <div class="list-title" style="margin-top:50px">
+                 <button class="green-button"><a href='${panelLink}'>${
+      language["1000084"][activeLanguage]
+    }</a></button>
+                  
+                </div>
 
                 <div class="bottom-area" style="height:42px;padding: 0 10px;">
                     <div class="flex ai-c jc-end" style="height: 100%;">

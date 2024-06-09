@@ -67,13 +67,14 @@
   position: fixed;
   width: 362px;
   height: 430px;
-  right: 100px;
+  right: 2px;
   top: 2px;
   background-color: rgb(254, 254, 254);
   border-radius: 8px;
   box-shadow: 0 5px 9px 0 rgb(0 0 0 / 8%), 0 1px 2px 0 rgb(0 0 0 / 6%);
   border: solid 1px #f7f7f7;
   padding: 18px;
+  overflow: hidden;
 }
 
 .sfMenu-bg,
@@ -186,7 +187,7 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: white;
+  color: white !important;
   text-decoration: none;
 }
 
@@ -245,7 +246,6 @@
   justify-content: center;
   align-items: center;
   color: #fff;
-  background: #e02020;
   border: none;
   border-radius: 100%;
 }
