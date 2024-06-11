@@ -5721,18 +5721,11 @@ function createSearchPageItems() {
             <div class="flex ai-c jc-sb mb-10">
                 <div>
                     ${language["1000128"][activeLanguage]}<br>
-                    <span class="soft">${maxPageLimitDesc}</span>
                 </div>
                 <div class="flex ai-c jc-end">
                     <input type="text" id="sfPageCountMin" value="1" />
                     <input type="text" id="sfPageCountMax" value=" ${maxPageLimit}"/>
                 </div>
-            </div>
-            <div class="flex">
-                <label for="sfSponsored"><input type="checkbox" style="width:15px; margin-top:-10px" id="sfSponsored" name="sfSponsored" value="${language["1000104"][activeLanguage]}"> ${language["1000104"][activeLanguage]} </label><br>
-            </div>
-            <div id="sfCouponDiscountDiv" class="flex">
-                <label for="sfCouponDiscount"><input type="checkbox" style="width:15px; margin-top:-10px" id="sfCouponDiscount" name="sfCouponDiscount" value="${language["1000143"][activeLanguage]}"> ${language["1000143"][activeLanguage]} </label><br>
             </div>
             <div class="flex ai-c jc-sb mb-10">
                 <div>
@@ -5746,26 +5739,27 @@ function createSearchPageItems() {
             <div class="flex ai-c jc-sb mb-10">
                 <div>
                     ${language["1000130"][activeLanguage]}<br>
-                    <span class="soft">${language["1000138"][activeLanguage]}</span>
                 </div>
                 <div class="flex ai-c jc-end">
                     <input type="text" id="sfStarsMin" placeholder="${language["1000134"][activeLanguage]}" maxLength="3" class="sfDecimal" value="3.5" />
                     <input type="text" id="sfStarsMax" placeholder="${language["1000135"][activeLanguage]}" maxLength="3" class="sfDecimal"/>
                 </div>
             </div>
-
-            <div class="flex ai-c jc-sb mb-10">
-                <button class="red-button small-button" id='sfClearFilters' style="width:100%;border-raidus:9px;margin:2px;">
-                ${language["1000139"][activeLanguage]}</button>
+            <div class="flex">
+                <label for="sfSponsored"><input type="checkbox" style="width:15px; margin-top:-10px" id="sfSponsored" name="sfSponsored" value="${language["1000104"][activeLanguage]}"> ${language["1000104"][activeLanguage]} </label><br>
+            </div>
+            <div id="sfCouponDiscountDiv" class="flex">
+                <label for="sfCouponDiscount"><input type="checkbox" style="width:15px; margin-top:-10px" id="sfCouponDiscount" name="sfCouponDiscount" value="${language["1000143"][activeLanguage]}"> ${language["1000143"][activeLanguage]} </label><br>
             </div>
 
-            <div class="flex ai-c jc-sb mb-10">
-                <button class="light-blue-button small-button"  id='sfSaveFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
+            <div class="flex ai-c jc-sb mb-10" style="gap: 4px;">
+                <button class="red-button small-button flex1" id='sfClearFilters' style="width:100%;border-raidus:9px;">
+                ${language["1000139"][activeLanguage]}</button>
+                <button class="light-blue-button small-button flex1"  id='sfSaveFilters' style="width:100%;border-raidus:9px;height: 34px;
                 font-size: 12px;">
                 ${language["1000175"][activeLanguage]}</button>
-            </div>
-            <div class="flex ai-c jc-sb mb-10" hidden>
-                <button class="light-blue-button small-button" id='sfUpdateFilters' style="width:100%;border-raidus:9px;margin:2px;height: 34px;
+
+                <button class="light-blue-button small-button flex1" id='sfUpdateFilters' style="width:100%;border-raidus:9px;height: 34px;
                 font-size: 12px;">
                 ${language["1000170"][activeLanguage]}</button>
             </div>
