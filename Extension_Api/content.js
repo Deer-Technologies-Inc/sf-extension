@@ -5758,7 +5758,6 @@ function createSearchPageItems() {
                 <button class="light-blue-button small-button flex1"  id='sfSaveFilters' style="width:100%;border-raidus:9px;height: 34px;
                 font-size: 12px;">
                 ${language["1000175"][activeLanguage]}</button>
-
                 <button class="light-blue-button small-button flex1" id='sfUpdateFilters' style="width:100%;border-raidus:9px;height: 34px;
                 font-size: 12px;">
                 ${language["1000170"][activeLanguage]}</button>
@@ -5785,12 +5784,6 @@ function createSearchPageItems() {
                   </button>
                 </div>
             </div>
-
-            <div class="description">
-                    <p>
-                    ${language["1000064"][activeLanguage]}
-                    </p>
-            </div>
             <div class="nested-content" style="margin-top: 10px;">
                 <div class="flex ai-c jc-sb mb-10">
                     <div>
@@ -5807,6 +5800,11 @@ function createSearchPageItems() {
                     <div id='sfMarketPlaces'>  </div>
                 </div>
                 <div id='sfFilters'>  </div>
+            </div>
+            <div class="description">
+                    <p>
+                    ${language["1000064"][activeLanguage]}
+                    </p>
             </div>
             <div class="nested-content" style="margin-top: 10px;">
                 <div class="flex">

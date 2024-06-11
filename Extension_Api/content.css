@@ -331,8 +331,9 @@
   width: 400px;
   right: 2px;
   bottom: 2px;
-  background-color: #ffdf2a;
-  border: 2px solid rgb(213, 213, 213);
+  background-color: #042f17;
+  color: white;
+  border: 0px solid rgb(213, 213, 213);
   border-radius: 5px;
   height: 95%;
 }
