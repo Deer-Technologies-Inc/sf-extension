@@ -5708,6 +5708,7 @@ function createSearchPageItems() {
             <div class="flex ai-c jc-sb" style="height:42px;padding: 0 0 0 15px;">
                 <div class="flex ai-c">
                     <i class="fas fa-user"></i>
+                    
                     <span class="ml-15">${user.name}</span>
                 </div>
                 <div>
