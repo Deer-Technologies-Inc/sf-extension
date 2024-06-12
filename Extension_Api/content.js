@@ -2991,25 +2991,27 @@ function createShippingTrackerItems() {
                 </div>
             </div>
             <div class="sfContent">
-                <div style="text-align: center !important; margin-top:0px;">
+                <div style="margin-top:0px;">
                     <img src=${chrome.runtime.getURL(
                       "img/logo_uzun.png"
                     )} style="height: 40px; margin:20px;">
                 </div>
                 <div id="stores-for-buyer">
                 </div>
-                <div class="">
+                <div class="flex" style="align-items:center; justify-content:space-between; gap:8px;">
                     <button id='sfCheckCargoButton' class="green-button" style="width:100%;">
                         ${language["1000027"][activeLanguage]}
                     </button>
                 </div>
+                <div class="">
+                  <div id="sfShippingDetails" class="flex jc-center"></div>
+                  <div id="sfShippingCheckProgress" class="flex jc-center"></div>
+                </div>
                 <div class="mt-10" style="margin-bottom:20px;">
-                    <button id='sfCheckDeliveryButton' class="blue-button" style="width:100%;">
+                    <button id='sfCheckDeliveryButton' class="custom-blue-button" style="width:100%;">
                         ${language["1000029"][activeLanguage]}
                     </button>
                 </div>
-                <div id="sfShippingDetails" class="flex jc-center"></div>
-                <div id="sfShippingCheckProgress" class="flex jc-center"></div>
             </div>
         </div> `;
 
@@ -5708,7 +5710,7 @@ function createSearchPageItems() {
             <div class="flex ai-c jc-sb" style="height:42px;padding: 0 0 0 15px;">
                 <div class="flex ai-c">
                     <i class="fas fa-user"></i>
-                    
+
                     <span class="ml-15">${user.name}</span>
                 </div>
                 <div>
@@ -5777,8 +5779,10 @@ function createSearchPageItems() {
                   title="${language["1000177"][activeLanguage]}"
                   style="
                   background-color: white;
-                  border-color: #d51f31;
+                  border: 1px solid #d51f31;
                   border-radius: 4px;
+                  padding-left: 4px;
+                  padding-right: 4px;
                   color: #d51f31;
                   ">
                     ${language["1000176"][activeLanguage]}

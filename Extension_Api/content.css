@@ -218,6 +218,29 @@
   opacity: 0.8;
 }
 
+.custom-blue-button {
+  width: 171px;
+  height: 34px;
+  border-radius: 4px;
+  box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
+  background-color: #d0e1fd;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.custom-blue-button:hover {
+  opacity: 0.8;
+}
+
 .danger-button {
   width: 171px;
   height: 34px;
