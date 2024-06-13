@@ -5277,11 +5277,20 @@ function getOrderDetails() {
       // amazonOrderId = location.href.pop();
       // amazonOrderId = location.href.split("&")[0];
       // amazonOrderId = location.href.replace("%2D", "-");
-      // URLSearchParams nesnesi oluşturun
-      var urlParams = new URLSearchParams(location.href.split("?")[1]);
+      var queryString = location.href.split("?")[1];
 
-      // AmazonOrderId parametresinin değerini alın
-      var amazonOrderId = urlParams.get("AmazonOrderId");
+      // Parametreleri '&' ile ayırın
+      var params = queryString.split("&");
+
+      // AmazonOrderId'yi almak için parametreler arasında dolaşın
+      var amazonOrderId = "";
+      for (var i = 0; i < params.length; i++) {
+        var param = params[i].split("=");
+        if (param[0] === "AmazonOrderId") {
+          amazonOrderId = param[1];
+          break;
+        }
+      }
     }
 
     // Gönderim tipi warehouse mu değil mi kontrol edilecek
