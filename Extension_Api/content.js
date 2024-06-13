@@ -5273,10 +5273,15 @@ function getOrderDetails() {
       amazonOrderId == null ||
       amazonOrderId == ""
     ) {
-      amazonOrderId = location.href.split("AmazonOrderId=");
-      amazonOrderId = location.href.pop();
-      amazonOrderId = location.href.split("&")[0];
-      amazonOrderId = location.href.replace("%2D", "-");
+      // amazonOrderId = location.href.split("AmazonOrderId=");
+      // amazonOrderId = location.href.pop();
+      // amazonOrderId = location.href.split("&")[0];
+      // amazonOrderId = location.href.replace("%2D", "-");
+      // URLSearchParams nesnesi oluşturun
+      var urlParams = new URLSearchParams(location.href.split("?")[1]);
+
+      // AmazonOrderId parametresinin değerini alın
+      var amazonOrderId = urlParams.get("AmazonOrderId");
     }
 
     // Gönderim tipi warehouse mu değil mi kontrol edilecek
