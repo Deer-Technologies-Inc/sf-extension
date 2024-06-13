@@ -5279,6 +5279,9 @@ function getOrderDetails() {
         .split("&")[0]
         .replace("%2D", "-");
     }
+    if (amazonOrderId.includes("&")) {
+      amazonOrderId = amazonOrderId.split("&")[0];
+    }
 
     // Gönderim tipi warehouse mu değil mi kontrol edilecek
     // if (sendType == undefined || sendType == null || sendType == "") {
