@@ -5273,24 +5273,10 @@ function getOrderDetails() {
       amazonOrderId == null ||
       amazonOrderId == ""
     ) {
-      // amazonOrderId = location.href.split("AmazonOrderId=");
-      // amazonOrderId = location.href.pop();
-      // amazonOrderId = location.href.split("&")[0];
-      // amazonOrderId = location.href.replace("%2D", "-");
-      var queryString = location.href.split("?")[1];
-
-      // Parametreleri '&' ile ayırın
-      var params = queryString.split("&");
-
-      // AmazonOrderId'yi almak için parametreler arasında dolaşın
-      var amazonOrderId = "";
-      for (var i = 0; i < params.length; i++) {
-        var param = params[i].split("=");
-        if (param[0] === "AmazonOrderId") {
-          amazonOrderId = param[1];
-          break;
-        }
-      }
+      amazonOrderId = location.href.split("AmazonOrderId=");
+      amazonOrderId = amazonOrderId.pop();
+      amazonOrderId = amazonOrderId.split("&")[0];
+      amazonOrderId = amazonOrderId.replace("%2D", "-");
     }
 
     // Gönderim tipi warehouse mu değil mi kontrol edilecek
