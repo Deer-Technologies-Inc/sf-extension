@@ -5273,11 +5273,18 @@ function getOrderDetails() {
       amazonOrderId == null ||
       amazonOrderId == ""
     ) {
-      amazonOrderId = location.href.split("AmazonOrderId=");
-      amazonOrderId = amazonOrderId.pop();
-      amazonOrderId = amazonOrderId.split("&")[0];
-      amazonOrderId = amazonOrderId.replace("%2D", "-");
+      amazonOrderId = location.href
+        .split("AmazonOrderId=")
+        .pop()
+        .split("&")[0]
+        .replace("%2D", "-");
     }
+
+    amazonOrderId = amazonOrderId
+      .split("AmazonOrderId=")
+      .pop()
+      .split("&")[0]
+      .replace("%2D", "-");
 
     // Gönderim tipi warehouse mu değil mi kontrol edilecek
     // if (sendType == undefined || sendType == null || sendType == "") {
