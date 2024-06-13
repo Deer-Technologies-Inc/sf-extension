@@ -5280,9 +5280,9 @@ function getOrderDetails() {
         .replace("%2D", "-");
     }
 
-    if (sendType == undefined || sendType == null || sendType == "") {
-      sendType = location.href.split("sendType=").pop().split("&")[0];
-    }
+    // if (sendType == undefined || sendType == null || sendType == "") {
+    //   sendType = location.href.split("sendType=").pop().split("&")[0];
+    // }
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
     // url:
     //   user.apiSubdomain +
