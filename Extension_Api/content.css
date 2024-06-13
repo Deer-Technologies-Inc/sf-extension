@@ -470,7 +470,7 @@
   height: 474px;
   right: 2px;
   bottom: 2px;
-  background-color: #ffdf2a;
+  background-color: #042f17;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
 }
@@ -498,9 +498,9 @@
   background-color: #fff;
   border-radius: 5px;
   position: absolute;
-  left: 5px;
+  left: 0;
   right: 0;
-  bottom: 5px;
+  bottom: 0;
   /* height: 413px; */
   height: -webkit-fill-available;
   overflow: auto;
@@ -647,7 +647,7 @@
   display: block;
   font-size: x-large;
   font-weight: 600;
-  background-color: #ffdf2a;
+  background-color: #042f17;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   margin-left: 40%;
@@ -661,7 +661,7 @@
   width: 400px;
   right: 2px;
   bottom: 2px;
-  background-color: #ffdf2a;
+  background-color: #042f17;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   height: 400px;
@@ -727,7 +727,7 @@
   width: 300px;
   right: 2px;
   bottom: 2px;
-  background-color: #ffdf2a;
+  background-color: #042f17;
   border: 2px solid rgb(213, 213, 213);
   border-radius: 5px;
   height: 350px;
