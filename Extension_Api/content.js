@@ -2827,7 +2827,7 @@ function createMessagesPageItems() {
 
       $.ajax({
         type: "GET",
-        url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${t}`,
+        url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${t}`,
         headers: { Authorization: "Bearer " + user.token },
         success: function (response) {
           var i = $(
@@ -5304,7 +5304,7 @@ function getOrderDetails() {
     $.ajax({
       type: "GET",
       async: false,
-      url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${amazonOrderId}`,
+      url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${amazonOrderId}`,
       headers: { Authorization: "Bearer " + user.token },
       success: function (response) {
         orderDetails = response;
