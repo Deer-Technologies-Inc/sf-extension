@@ -5196,7 +5196,7 @@ function createOrderSummaryDiv(hideContinueButton) {
                     <span id="sfOrderDetails" />
                     <button id='sfCancelOrder' class="danger-button" style="width:100%;">  ${language["1000092"][activeLanguage]}</button>
                     </div>
-                <div id="sfAutoPilotDiv" class="flex" style="flex-direction: column;">
+                <div id="sfAutoPilotDiv" class="flex" style="flex-direction: column; gap:4px;">
                     <div>
                         <label for="sfAutoContinue"><input type="checkbox" style="width:25px;" id="sfAutoContinue" name="sfAutoContinue" value="${language["1000047"][activeLanguage]}"> ${language["1000047"][activeLanguage]} </label>
                     </div>

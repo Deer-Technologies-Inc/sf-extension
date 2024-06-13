@@ -116,7 +116,7 @@
   width: 171px;
   height: 34px;
   border-radius: 4px;
-  background-color: #148e44;
+  background-color: transparent;
   font-family: "Poppins";
   font-size: 12px;
   font-weight: 600;
@@ -472,13 +472,14 @@
   bottom: 2px;
   background-color: #042f17;
   border: 2px solid rgb(213, 213, 213);
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 .sfContainer-bg2 .sfContainer-top {
   width: 100%;
   height: 42px;
   position: absolute;
+  color: white;
   top: 0;
   left: 0;
 }
@@ -490,6 +491,7 @@
   right: 5px;
   left: 5px;
   background-color: #ffec80;
+  color: white;
   border-radius: 5px;
 }
 
