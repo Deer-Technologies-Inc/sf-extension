@@ -5273,14 +5273,10 @@ function getOrderDetails() {
       amazonOrderId == null ||
       amazonOrderId == ""
     ) {
-      amazonOrderId = location.href
-        .split("AmazonOrderId=")
-        .pop()
-        .split("&")[0]
-        .replace("%2D", "-");
-    }
-    if (amazonOrderId.includes("&")) {
-      amazonOrderId = amazonOrderId.split("&")[0];
+      amazonOrderId = location.href.split("AmazonOrderId=");
+      amazonOrderId = location.href.pop();
+      amazonOrderId = location.href.split("&")[0];
+      amazonOrderId = location.href.replace("%2D", "-");
     }
 
     // Gönderim tipi warehouse mu değil mi kontrol edilecek
@@ -5297,10 +5293,7 @@ function getOrderDetails() {
     $.ajax({
       type: "GET",
       async: false,
-      url: `${baseUrl}${endPoints.Order.byAmazonOrderId}`,
-      data: {
-        amazonOrderId: amazonOrderId,
-      },
+      url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?amazonOrderId=${amazonOrderId}`,
       headers: { Authorization: "Bearer " + user.token },
       success: function (response) {
         orderDetails = response;
