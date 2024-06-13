@@ -649,10 +649,11 @@
   display: block;
   font-size: x-large;
   font-weight: 600;
-  background-color: #042f17;
-  border: 2px solid rgb(213, 213, 213);
+  background-color: white;
   border-radius: 5px;
+  color: black;
   margin-left: 40%;
+  padding: 1rem;
 }
 
 /* inactive pages */
@@ -674,18 +675,19 @@
   width: 100%;
   height: 42px;
   position: absolute;
+  color: white;
   top: 0;
   left: 0;
 }
 
 .sfContainer-bg3 .sfContent {
   background-color: #fff;
-  border-radius: 5px;
+  border-radius: 0;
   position: absolute;
   top: 40px;
-  bottom: 6px;
-  left: 6px;
-  right: 6px;
+  bottom: 0;
+  left: 0;
+  right: 0;
   overflow: auto;
   padding: 10px;
 }

@@ -688,18 +688,22 @@ function createOrderResultPageItems() {
                     <div style="float:right; margin-right: 0px;">
                         <button class="green-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
-                    <div style="margin-top:40px">
-                        <p>${language["1000091"][activeLanguage]}</p>
-                        <hr style="color: black; border-color: black; margin-top: 10px;">
-                        <p style="font-size:18px; margin-top:20px">${language["1000094"][activeLanguage]} : ${tmpBuyerOrderId}
-                            <button class="green-button" id="sf-copyBuyerOrderId" style="width:30px; font-weight:bold;"><i class="fa fa-copy"></i> </button>
+                    <div style="margin-top:40px; flex-direction:column;gap:4px;" class="flex ai-c">
+                        <div style="width:100px;height:100px;border-radius:100px;background-color:#83F2AD; font-size:3rem;">
+                         <i class="fa-solid fa-check"></i>
+                        </div>
+                        <p style="font-size:1rem;">${language["1000091"][activeLanguage]}</p>
+                        <p style="font-size:0.875rem; color:#3C3C3C;">${language["1000094"][activeLanguage]} : ${tmpBuyerOrderId}
+                            <button class="green-button" style="background-color:transparent; border: 0 solid transparent; font-size:1rem;" id="sf-copyBuyerOrderId"><i class="fa fa-copy"></i></button>
                         </p>
-                        <p><i class="fa fa-arrow-down"></i></p>
-                        <p style="font-size:18px; margin-top:20px">${language["1000114"][activeLanguage]} : ${tmpSellerOrderId}
-                            <button class="green-button" id="sf-copySellerOrderId" style="width:30px; font-weight:bold;"><i class="fa fa-copy"></i> </button>
+                        <p style="font-size:0.875rem; color:#3C3C3C;">${language["1000114"][activeLanguage]} : ${tmpSellerOrderId}
+                            <button class="green-button" style="background-color:transparent; border: 0 solid transparent; font-size:1rem;" id="sf-copySellerOrderId"><i class="fa fa-copy"></i></button>
                         </p>
-                        <hr style="color: black; border-color: black; margin-top: 10px;">
-                        <p style="font-size:16px; ">${language["1000095"][activeLanguage]}</p>
+                        <div style="width:100%; border-top: 1px solid #DFE7EF;"></div>
+                        <div style="width:100%; background-color:#CAF1D8; border-radius:6px; display:flex; align-items:center; justify-content:center; color:#188A42; padding:4px;">
+                          <i class="fa-solid fa-check"></i>
+                          <p style="font-size:0.875rem; color:#3C3C3C; ">${language["1000095"][activeLanguage]}</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3568,10 +3572,10 @@ function createPerformanceDashboardPageItems() {
 
             $("#sfTransferResult").html(language["1000109"][activeLanguage]);
             $("#sfTransferResult").css({
-              background: "green",
+              background: "#D0E1FD",
               margin: "10px 0",
               padding: "10px",
-              color: "white",
+              color: "black",
             });
           },
           failure: function () {
@@ -3580,10 +3584,10 @@ function createPerformanceDashboardPageItems() {
 
             $("#sfTransferResult").html(language["1000111"][activeLanguage]);
             $("#sfTransferResult").css({
-              background: "green",
+              background: "#D0E1FD",
               margin: "10px 0",
               padding: "10px",
-              color: "white",
+              color: "black",
             });
           },
           complete: function (data) {
@@ -3593,10 +3597,10 @@ function createPerformanceDashboardPageItems() {
 
               $("#sfTransferResult").html(language["1000109"][activeLanguage]);
               $("#sfTransferResult").css({
-                background: "green",
+                background: "#D0E1FD",
                 margin: "10px 0",
                 padding: "10px",
-                color: "white",
+                color: "black",
               });
             } else {
               $("#sfTransferAlerts").prop("disabled", false);
@@ -3604,10 +3608,10 @@ function createPerformanceDashboardPageItems() {
 
               $("#sfTransferResult").html(language["1000111"][activeLanguage]);
               $("#sfTransferResult").css({
-                background: "red",
+                background: "#FAEDC4",
                 margin: "10px 0",
                 padding: "10px",
-                color: "white",
+                color: "black",
               });
             }
           },
@@ -3741,10 +3745,10 @@ function createFixProductPageItems() {
 
               $("#sfTransferResult").html(language["1000111"][activeLanguage]);
               $("#sfTransferResult").css({
-                background: "green",
+                background: "#D0E1FD",
                 margin: "10px 0",
                 padding: "10px",
-                color: "white",
+                color: "black",
               });
               isErrorOccured = true;
             },
@@ -3759,10 +3763,10 @@ function createFixProductPageItems() {
                   language["1000118"][activeLanguage]
                 );
                 $("#sfTransferResult").css({
-                  background: "green",
+                  background: "#D0E1FD",
                   margin: "10px 0",
                   padding: "10px",
-                  color: "white",
+                  color: "black",
                 });
               } else {
                 $("#sfTransferAlerts").prop("disabled", false);
@@ -3774,10 +3778,10 @@ function createFixProductPageItems() {
                   language["1000119"][activeLanguage]
                 );
                 $("#sfTransferResult").css({
-                  background: "red",
+                  background: "#FAEDC4",
                   margin: "10px 0",
                   padding: "10px",
-                  color: "white",
+                  color: "black",
                 });
               }
             },
