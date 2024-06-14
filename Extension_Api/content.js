@@ -582,7 +582,7 @@ function createInactivePageItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="green-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                        <button class="transparent-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
                 </div>
             </div>
@@ -686,7 +686,7 @@ function createOrderResultPageItems() {
             <div id='sfPreloaderFinished'>
                 <div id='sfPreloaderFinished-message'>
                     <div style="float:right; margin-right: 0px;">
-                        <button class="green-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                        <button class="transparent-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
                     <div style="margin-top:40px; flex-direction:column;gap:4px;" class="flex ai-c">
                         <div style="width:100px;height:100px;border-radius:100px;background-color:#83F2AD; font-size:3rem;">
