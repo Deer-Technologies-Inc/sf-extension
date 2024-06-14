@@ -112,11 +112,32 @@
   font-size: 11px;
 }
 
+.transparent-button {
+  width: 171px;
+  height: 34px;
+  border-radius: 4px;
+  background-color: #148e44;
+  font-family: "Poppins";
+  font-size: 12px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.transparent-button:hover {
+  opacity: 0.7;
+}
+
 .green-button {
   width: 171px;
   height: 34px;
   border-radius: 4px;
-  background-color: transparent;
+  background-color: #148e44;
   font-family: "Poppins";
   font-size: 12px;
   font-weight: 600;
