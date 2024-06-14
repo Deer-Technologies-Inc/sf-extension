@@ -320,11 +320,17 @@ function createExtensionTools() {
         location.href.includes("/your-orders/orders")
       ) {
         createShippingTrackerItems();
-      } else if (location.href.includes("/addresses/add")) {
+      }
+      //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatıldı 
+      /*
+      else if (location.href.includes("/addresses/add")) {
         createAddNewAddressPageItems();
-      } else if (location.href.includes("/a/addresses")) {
+      }
+       else if (location.href.includes("/a/addresses")) {
         createAllAddressesPageItems();
-      } else if (
+      } 
+      */ 
+      else if (
         location.href.includes("/print.html") ||
         location.href.includes("/message-us")
       ) {
@@ -332,14 +338,17 @@ function createExtensionTools() {
       } else {
         createInactivePageItems();
       }
-    } else if (location.hostname == "www.amazon.co.jp") {
+    }
+    //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatıldı
+    /*  else if (location.hostname == "www.amazon.co.jp") {
       if (location.href.includes("/addresses/add")) {
         createAddNewAddressPageItems();
       } else if (location.href.includes("gp/buy/addressselect")) {
         createAddNewAddressPageItems();
       }
     }
-  } else if (
+  } */ 
+  else if (
     location.origin.includes("sellercentral") &&
     location.origin.includes("amazon")
   ) {
@@ -353,36 +362,49 @@ function createExtensionTools() {
     ) {
       createOrdersPageItems();
     } else if (location.href.includes("/orders-v3/order")) {
-      createOrderDetailPageItems(); //endpoint gelecek
-    } else if (location.href.includes("/addresses/add")) {
+      createOrderDetailPageItems();
+    } 
+    //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatıldı
+   /*  else if (location.href.includes("/addresses/add")) {
       createAddNewAddressPageItems();
     } else if (location.href.includes("/a/addresses")) {
       createAllAddressesPageItems();
-    } else if (location.href.indexOf("inventory/confirmAction") > -1) {
+    } */ 
+    //Nerede aktif olduğu bilinmiyor bu yüzden kapatıldı
+    /* else if (location.href.indexOf("inventory/confirmAction") > -1) {
       createDeleteProductPageItems(!1);
-    } else if (
+    } */ 
+    else if (
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
       createRequestApprovalPageItems(); //endpoint eklenecek
       createRequestApprovalRemoveItems();
-      createDeleteProductPageItems(!0); // sayfa yapısını bozuyor 1
+      /* createDeleteProductPageItems(!0); */ // sayfa yapısını bozuyor 1 //Nerede aktif olduğu bilinmiyor bu yüzden kapatıldı
       createFixProductPageItems(); // sayfa yapısını bozuyor 2
-    } else if (location.href.indexOf("/automatepricing/rules/listings/") > -1) {
+    }
+    //Manuel autopricer işlemleri için kullanılıyor fakat nasıl çalıştığı bilinmediği için kapatıldı.
+    /*  else if (location.href.indexOf("/automatepricing/rules/listings/") > -1) {
       createAutoPricePageItems();
-    } else if (location.href.includes("/performance/dashboard")) {
+    } */ 
+    else if (location.href.includes("/performance/dashboard")) {
       createPerformanceDashboardPageItems();
     } else if (location.href.includes("/fixyourproducts")) {
       // Yukarıda da var !!!
       createFixProductPageItems();
-    } else if (location.href.includes("/listing/upload")) {
+    } 
+    //Manuel yönetim
+   /*  else if (location.href.includes("/listing/upload")) {
       createListingUploadPageItems();
-    } else if (
+    }  */
+    //Manuel yönetim
+    /* else if (
       location.href.includes("/order-reports-and-feeds/feeds/confirmShipment")
     ) {
       createSellerCentralOrderFileUploadPageItems();
-    }
+    } */
   }
+ }
 }
 
 function createListingUploadPageItems() {
@@ -1157,7 +1179,7 @@ async function createRequestApprovalPageItems() {
           for (let index = 0; index < approvedAsins.length; index++) {
             formData1.append("asinList[]", approvedAsins[index]);
           }
-
+          //Approve request yapılan ürünler backende bildiriliyor ama ne için kullanıldığı bilinmediği için kapatıldı.
           // $.ajax({
           //   type: "POST",
           //   url:
@@ -1411,7 +1433,8 @@ async function createRequestApprovalRemoveItems() {
   }, 500);
 }
 
-function createSellerCentralOrderFileUploadPageItems() {
+//Manuel yönetim ile alakalı olduğu için kapatıldı
+/* function createSellerCentralOrderFileUploadPageItems() {
   var divMenu = `
     <div id="sfContainerMenu" class="sfContainer-bg3" style="width:450px; height:500px;">
         <div class="sfContainer-top">
@@ -1606,7 +1629,7 @@ function createSellerCentralOrderFileUploadPageItems() {
 
     location.replace(location.origin + "/home");
   });
-}
+} */
 
 function createSellerCentralHomePageItems() {
   setTimeout(async () => {
@@ -1669,7 +1692,7 @@ var csrfToken = "";
 var completedFeedCount = 0;
 
 //manual transfer iptal edildi
-async function manualTransferShippingTrackingLoadingResults() {
+/* async function manualTransferShippingTrackingLoadingResults() {
   completedFeedCount = 0;
 
   var marketplace = $("#partner-switcher").data("marketplace_selection").trim();
@@ -1786,7 +1809,7 @@ async function manualTransferShippingTrackingLoadingResults() {
       console.log("listing/getPendingFeeds.complete!", response);
     },
   });
-}
+} */
 
 function injectScript(file_path, tag) {
   var node = document.getElementsByTagName(tag)[0];
@@ -1803,8 +1826,8 @@ window.addEventListener("message", function (event) {
     csrfToken = event.data.csrfToken;
   }
 });
-
-async function manualGetShippingTrackingInformationFromSF() {
+//Manual yönetim iptal edildi
+/* async function manualGetShippingTrackingInformationFromSF() {
   var marketplace = $("#partner-switcher").data("marketplace_selection").trim();
   var country = countryJson.find((i) => i.mwsCode == marketplace);
   var sellerId = $("div#partner-switcher").data("merchant_selection").trim();
@@ -1895,8 +1918,9 @@ async function manualGetShippingTrackingInformationFromSF() {
       console.log("downloadinventoryfileasync.complete!", response);
     },
   });
-}
-function createDeleteProductPageItems(n) {
+} */
+//Envanterden ürün silmek için kullanılıyor fakat ne için kullanıldığı bilinmiyor bu yüzden kapatıldı
+/* function createDeleteProductPageItems(n) {
   function t() {
     $(".sfDeleteProduct").click(function () {
       var asinList = [];
@@ -2039,7 +2063,7 @@ function createDeleteProductPageItems(n) {
       r.append(i),
       t());
 }
-
+ */
 function createOrderDetailPageItems() {
   var orderIdFromUrl = location.href.replace(
     location.origin + "/orders-v3/order/",
@@ -2154,8 +2178,8 @@ function createOrderDetailPageItems() {
     }
   }, 2e3);
 }
-
-function createAllAddressesPageItems() {
+//Adres işlemleri şimdilik yapılmayacağı için kapatıldı
+/* function createAllAddressesPageItems() {
   var btn = `
         <button id='sfRemoveAddresses' class="red-button" style="position:absolute;right:0;top:40px;">
         ${language["1000006"][activeLanguage]}</button>
@@ -2344,9 +2368,10 @@ function createAllAddressesPageItems() {
       },
     });
   });
-}
+} */
 
-function createAddNewAddressPageItems() {
+//Address işlemleri şimdilik yapılmayacağı için kapatıldı
+/* function createAddNewAddressPageItems() {
   var style = "";
   if (location.href.includes("/addresses/add")) {
     style = "position:absolute;right:0;top:0;";
@@ -2471,7 +2496,7 @@ function createAddNewAddressPageItems() {
       console.log("No tag found");
     }
   }, 2e3);
-}
+} */
 
 class SFUserInformation {
   constructor(token, checkDate, name, email) {
@@ -3721,7 +3746,8 @@ function createFixProductPageItems() {
             totalCount = response.totalItems;
           }
           offset += pageSize;
-          $.ajax({
+          //burası incelenecek
+          /* $.ajax({
             type: "POST",
             url: sub + "api/Inventory/AddPricingIssuesData",
             contentType: "application/json; charset=utf-8",
@@ -3786,7 +3812,7 @@ function createFixProductPageItems() {
                 });
               }
             },
-          });
+          }); */
         },
         failure: function () {
           isErrorOccured = true;
@@ -5601,7 +5627,8 @@ function setOrderSummary(response) {
   }, 1e3);
 }
 
-function getFilters(customerMarketplaceId) {
+//Kullanılmıyor bu yüzden kapatıldı.
+/* function getFilters(customerMarketplaceId) {
   $.ajax({
     type: "GET",
     url:
@@ -5650,7 +5677,7 @@ function getFilters(customerMarketplaceId) {
       $("#sfFilters").html(language["1000060"][activeLanguage]);
     },
   });
-}
+} */
 
 function getMarketPlaces() {
   $.ajax({
