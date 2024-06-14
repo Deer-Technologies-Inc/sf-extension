@@ -5240,14 +5240,34 @@ function createOrderSummaryDiv(hideContinueButton) {
   });
 }
 
-function updateAutoPilotValue(newValue) {
+async function updateAutoPilotValue(newValue) {
 
   let putModel = {
     autoPilotOn: newValue,
     pauseAtCardStep: orderDetails.pauseAtCardStep,
     selectOriginalAddress: orderDetails.selectOriginalAddress,
   };
-  $.ajax({
+  let fetchHeaders = new Headers();
+  fetchHeaders.append("Content-Type", "application/json");
+  fetchHeaders.append("Accept", "application/json, text/plain, */*");
+  fetchHeaders.append("Authorization", `Bearer ${user.token}`);
+
+  const fetchOptions = {
+    method: "PUT",
+    body: JSON.stringify(putModel),
+    headers: fetchHeaders,
+  };
+
+  const result = await fetch(
+    `${baseUrl}${endPoints.Extension.updatExtensioneSettings}`,
+    fetchOptions
+  );
+  if (result.status == 200) {
+    orderDetails.isAutoPilotOn = newValue;
+    chromeSaveOrderDetails(orderDetails);
+  }
+  
+/*   $.ajax({
     type: "PUT",
     url:`${baseUrl}${endPoints.Extension.updatExtensioneSettings}`,
     contentType: "application/json; charset=utf-8",
@@ -5262,8 +5282,8 @@ function updateAutoPilotValue(newValue) {
         chromeSaveOrderDetails(orderDetails);
       }
     },
-  });
-}
+  });*/
+} 
 
 var amazonOrderId = "",
   sendType = "";
