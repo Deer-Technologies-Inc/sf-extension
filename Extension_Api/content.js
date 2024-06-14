@@ -5465,7 +5465,7 @@ function setOrderSummary(response) {
             <div class="order-owner-name mb-10">${
               response.purchaserInfo.name
             }</div>
-            <div style="display:flex; flex-direction:column; gap:6px;">
+            <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:6px;">
               <div class="order-address" style="display:flex; justify-content:space-between;">
                 <div style="flex:1;">
                   <strong>${language["1000106"][activeLanguage]} :</strong>
@@ -5531,7 +5531,7 @@ function setOrderSummary(response) {
                 } :</strong>
                 <div style="flex:3">${shippingInfo}</div>
               </div>
-              </div>
+            </div>
             <hr />
             <strong>${language["1000053"][activeLanguage]} :</strong><br>
             `;
@@ -5542,12 +5542,12 @@ function setOrderSummary(response) {
             : item.productName) +
           " (" +
           item.quantity +
-          ") <div style='display:inline-block; margin-top: 5px;'><span class='price' title='Ürün fiyatı'> <strong> $" +
+          ") <div style='display:block; margin-top: 5px;'><span class='price' title='Ürün fiyatı'> <strong> $" +
           (item.quantity * item.estimatedPurchasePrice).toFixed(2) +
           " </strong></span> ";
         if (item.hasCoupon) {
           content +=
-            " &nbsp;<span class='price' style='background-color:#00adff; margin-left:3px; border: 1px solid green; color: green; background-color: #ffffff;' title='Kupon indirimi'> <i class='fa fa-tag'></i> <strong>" +
+            " &nbsp;<span class='price' style='margin-left:3px; color: #148e44;' title='Kupon indirimi'> <i class='fa fa-tag'></i> <strong>" +
             item.couponDiscountType +
             item.couponDiscountValue +
             " </strong></span> ";
@@ -5558,18 +5558,18 @@ function setOrderSummary(response) {
       var profit = 0;
       var profitUsd = 0;
       var profitText =
-        '<span id="sfOrderProfit" class="price" style="display:inline-block; background-color:#00adff; margin-left:3px; border: 1px solid green; color: green; background-color: #ffffff;"> <strong> % ' +
+        '<span id="sfOrderProfit" class="price" style="display:inline-block; padding:4px; border: 1px solid #148e44; color: #148e44; background-color: #ffffff;"> <strong> % ' +
         profit +
         " </strong></span>";
       var profitUsdText =
-        '<span id="sfOrderProfitUsd" class="price" style="display:inline-block; background-color:#00adff; margin-left:5px; border: 1px solid green; color: green; background-color: #ffffff;"> <strong> ' +
+        '<span id="sfOrderProfitUsd" class="price" style="display:inline-block; padding:4px; border: 1px solid #148e44; color: #148e44; background-color: #ffffff;"> <strong> ' +
         profitUsd +
         " $ </strong></span>";
       content += `<hr />
                 <div id="sfOrderProfitDiv" style="display: none" class="mb-10">
-                    <div>
-                        <div class="subject" style="float: left; margin-right: 10px; margin-top: -1px;">${language["1000025"][activeLanguage]}:</div>
-                        <div class="ml-10" style:"">${profitText} ${profitUsdText}</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div style="flex:1;">${language["1000025"][activeLanguage]}:</div>
+                        <div style="flex:3; display:flex; align-items: center; gap:5px;">${profitText} ${profitUsdText}</div>
                     </div><hr />
                 </div>`;
 

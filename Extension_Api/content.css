@@ -545,7 +545,7 @@
   font-style: normal;
   line-height: normal;
   letter-spacing: normal;
-  color: #0041c4;
+  color: #148e44;
 }
 
 .sfContainer-bg2 .content .price {
@@ -557,8 +557,8 @@
   letter-spacing: normal;
   border-radius: 5px;
   padding: 3px 5px;
-  background-color: #689f38;
-  color: #ffffff;
+  color: #148e44;
+  background-color: transparent;
 }
 
 .sfContainer-bg2 .content .subject {
