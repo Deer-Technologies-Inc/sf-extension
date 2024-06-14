@@ -24,6 +24,7 @@ const endPoints = {
   Extension: {
     filterSettings: "extension-settings/filter",
     productSearchHistories: "extension-settings/product-search-histories",
+    updatExtensioneSettings: "extension-settings"
   },
 };
 
@@ -5239,31 +5240,29 @@ function createOrderSummaryDiv(hideContinueButton) {
   });
 }
 
-// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-
 function updateAutoPilotValue(newValue) {
-  orderDetails.isAutoPilotOn = newValue;
 
-  // $.ajax({
-  //   type: "POST",
-  //   url:
-  //     user.apiSubdomain +
-  //     "api/extension/updateAutoPilot?customerId=" +
-  //     user.customerId +
-  //     "&autoPilotStatus=" +
-  //     newValue,
-  //   contentType: "application/json; charset=utf-8",
-  //   dataType: "json",
-  //   headers: { Authorization: "Bearer " + user.token },
-  //   success: function () {},
-  //   failure: function () {},
-  //   complete: function (data) {
-  //     if (data.status == 200) {
-  //       orderDetails.isAutoPilotOn = newValue;
-  //       chromeSaveOrderDetails(orderDetails);
-  //     }
-  //   },
-  // });
+  let putModel = {
+    autoPilotOn: newValue,
+    pauseAtCardStep: orderDetails.pauseAtCardStep,
+    selectOriginalAddress: orderDetails.selectOriginalAddress,
+  };
+  $.ajax({
+    type: "PUT",
+    url:`${baseUrl}${endPoints.Extension.updatExtensioneSettings}`,
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: { Authorization: "Bearer " + user.token },
+    body: JSON.stringify(putModel),
+    success: function () {},
+    failure: function () {},
+    complete: function (data) {
+      if (data.status == 200) {
+        orderDetails.isAutoPilotOn = newValue;
+        chromeSaveOrderDetails(orderDetails);
+      }
+    },
+  });
 }
 
 var amazonOrderId = "",
