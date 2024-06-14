@@ -752,7 +752,7 @@ function createOrderResultPageItems() {
             <div id='sfPreloaderFinished'>
                 <div id='sfPreloaderFinished-message'>
                     <div style="float:right; margin-right: 0px;">
-                        <button class="green-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                        <button class="transparent-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
                     <div style="margin-top:40px">
                         <p style="font-size:18px; margin-top:90px">${language["1000127"][activeLanguage]}</p>
@@ -1420,7 +1420,7 @@ function createSellerCentralOrderFileUploadPageItems() {
                     <span class="ml-15">${user.name}</span>
                 </div>
                 <div>
-                    <button class="green-button" id="sf-hideTracker" style="width:30px;  font-weight:bold;">${
+                    <button class="transparent-button" id="sf-hideTracker" style="width:30px;  font-weight:bold;">${
                       language["1000070"][activeLanguage]
                     }</button>
                 </div>
@@ -2988,7 +2988,7 @@ function createShippingTrackerItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="green-button" id="sf-hideTracker" style="width:30px; font-weight:bold;">${
+                        <button class="transparent-button" id="sf-hideTracker" style="width:30px; font-weight:bold;">${
                           language["1000070"][activeLanguage]
                         }</button>
                     </div>
@@ -3487,7 +3487,7 @@ function createPerformanceDashboardPageItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="green-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                        <button class="transparent-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
                 </div>
             </div>
@@ -3634,7 +3634,7 @@ function createFixProductPageItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="green-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                        <button class="transparent-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
                 </div>
             </div>
@@ -5725,7 +5725,7 @@ function createSearchPageItems() {
                     <span class="ml-15">${user.name}</span>
                 </div>
                 <div>
-                    <button class="green-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                    <button class="transparent-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                 </div>
             </div>
         </div>

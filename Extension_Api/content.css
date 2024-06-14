@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 /* Tooltip container */
 
 .sftooltip {
@@ -21,7 +22,7 @@
   position: absolute;
   z-index: 1;
   text-align: left;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   line-height: 20px;
@@ -83,7 +84,7 @@
 
 .sfMenu-bg,
 .sfContainer-bg {
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
 }
 
 .soft {
@@ -117,7 +118,7 @@
   height: 34px;
   border-radius: 4px;
   background-color: #148e44;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-style: normal;
@@ -138,7 +139,7 @@
   height: 34px;
   border-radius: 4px;
   background-color: #148e44;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-style: normal;
@@ -160,7 +161,7 @@
   border-radius: 4px;
   box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
   background-color: transparent;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
@@ -185,7 +186,7 @@
   border-radius: 4px;
   box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
   background-color: transparent;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
@@ -222,7 +223,7 @@
   border-radius: 4px;
   box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
   background-color: #1d3eca;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
@@ -245,7 +246,7 @@
   border-radius: 4px;
   box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
   background-color: #d0e1fd;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
@@ -268,7 +269,7 @@
   border-radius: 4px;
   box-shadow: 0 9px 28px 0 rgba(130, 74, 72, 0.09);
   background-color: #fff;
-  font-family: "Poppins";
+  font-family: "Inter", sans-serif;
   font-size: 12px;
   font-weight: 600;
   font-stretch: normal;
