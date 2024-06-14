@@ -5465,69 +5465,74 @@ function setOrderSummary(response) {
             <div class="order-owner-name mb-10">${
               response.purchaserInfo.name
             }</div>
-            <div class="order-address mb-10">
-                <strong>${language["1000106"][activeLanguage]} :</strong><br>
-                ${
-                  response.purchaserInfo.addressLine1
-                    ? response.purchaserInfo.addressLine1 + "<br>"
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.addressLine2
-                    ? response.purchaserInfo.addressLine2 + "<br>"
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.addressLine3
-                    ? response.purchaserInfo.addressLine3 + "<br>"
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.city
-                    ? response.purchaserInfo.city + ","
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.county
-                    ? response.purchaserInfo.county + ","
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.district
-                    ? response.purchaserInfo.district + ","
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.stateOrRegion
-                    ? response.purchaserInfo.stateOrRegion + ","
-                    : ""
-                }
-                ${
-                  response.purchaserInfo.postalCode
-                    ? response.purchaserInfo.postalCode
-                    : ""
-                }
-            </div><hr />
-            <div class="mb-10">
-                <div>
-                    <div class="subject" style="float: left; margin-right: 10px;">${
-                      language["1000051"][activeLanguage]
-                    }:</div>
-                    <div class="ml-10">${formatDate(response.initialDate)}</div>
-                </div><p style="display: inline-block;"> </p>
-                <div>
-                    <div class="subject" style="float: left; margin-right: 10px;">${
-                      language["1000052"][activeLanguage]
-                    }:</div>
-                    <div class="ml-10">${response.purchaserInfo.phone}</div>
-                </div><p style="display: inline-block;"> </p>
-                <div>
-                    <div class="subject" style="float: left; margin-right: 10px;">${
-                      language["1000086"][activeLanguage]
-                    }:</div>
-                    <div class="ml-10">${shippingInfo}</div>
+            <div style="display:flex; flex-direction:column; gap:6px;">
+              <div class="order-address" style="display:flex; justify-content:space-between;">
+                <div style="flex:1;">
+                  <strong>${language["1000106"][activeLanguage]} :</strong>
+                </div>    
+                <div style="flex:3;">
+                  ${
+                    response.purchaserInfo.addressLine1
+                      ? response.purchaserInfo.addressLine1 + " "
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.addressLine2
+                      ? response.purchaserInfo.addressLine2 + " "
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.addressLine3
+                      ? response.purchaserInfo.addressLine3 + " "
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.city
+                      ? response.purchaserInfo.city + ","
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.county
+                      ? response.purchaserInfo.county + ","
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.district
+                      ? response.purchaserInfo.district + ","
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.stateOrRegion
+                      ? response.purchaserInfo.stateOrRegion + ","
+                      : ""
+                  }
+                  ${
+                    response.purchaserInfo.postalCode
+                      ? response.purchaserInfo.postalCode
+                      : ""
+                  }
                 </div>
-            </div><hr />
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <strong style="flex:1">${
+                  language["1000051"][activeLanguage]
+                } :</strong>
+                <div style="flex:3">${formatDate(response.initialDate)}</div>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <strong style="flex:1">${
+                  language["1000052"][activeLanguage]
+                } :</strong>
+                <div style="flex:3">${response.purchaserInfo.phone}</div>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <strong style="flex:1">${
+                  language["1000086"][activeLanguage]
+                } :</strong>
+                <div style="flex:3">${shippingInfo}</div>
+              </div>
+              </div>
+            <hr />
             <strong>${language["1000053"][activeLanguage]} :</strong><br>
             `;
       $.each(response.orderProducts, function (index, item) {
