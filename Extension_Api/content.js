@@ -1919,7 +1919,7 @@ window.addEventListener("message", function (event) {
   });
 } */
 //Envanterden ürün silmek için kullanılıyor fakat ne için kullanıldığı bilinmiyor bu yüzden kapatıldı
-/* function createDeleteProductPageItems(n) {
+function createDeleteProductPageItems(n) {
   function t() {
     $(".sfDeleteProduct").click(function () {
       var asinList = [];
@@ -2062,7 +2062,6 @@ window.addEventListener("message", function (event) {
       r.append(i),
       t());
 }
- */
 function createOrderDetailPageItems() {
   var orderIdFromUrl = location.href.replace(
     location.origin + "/orders-v3/order/",
