@@ -321,15 +321,14 @@ function createExtensionTools() {
       ) {
         createShippingTrackerItems();
       }
-      //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatıldı 
-      /*
+      //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
       else if (location.href.includes("/addresses/add")) {
         createAddNewAddressPageItems();
       }
        else if (location.href.includes("/a/addresses")) {
         createAllAddressesPageItems();
       } 
-      */ 
+     
       else if (
         location.href.includes("/print.html") ||
         location.href.includes("/message-us")
@@ -339,15 +338,15 @@ function createExtensionTools() {
         createInactivePageItems();
       }
     }
-    //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatıldı
-    /*  else if (location.hostname == "www.amazon.co.jp") {
+    //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
+      else if (location.hostname == "www.amazon.co.jp") {
       if (location.href.includes("/addresses/add")) {
         createAddNewAddressPageItems();
       } else if (location.href.includes("gp/buy/addressselect")) {
         createAddNewAddressPageItems();
       }
     }
-  } */ 
+  } 
   else if (
     location.origin.includes("sellercentral") &&
     location.origin.includes("amazon")
@@ -364,23 +363,23 @@ function createExtensionTools() {
     } else if (location.href.includes("/orders-v3/order")) {
       createOrderDetailPageItems();
     } 
-    //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatıldı
-   /*  else if (location.href.includes("/addresses/add")) {
+    //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
+     else if (location.href.includes("/addresses/add")) {
       createAddNewAddressPageItems();
     } else if (location.href.includes("/a/addresses")) {
       createAllAddressesPageItems();
-    } */ 
-    //Nerede aktif olduğu bilinmiyor bu yüzden kapatıldı
-    /* else if (location.href.indexOf("inventory/confirmAction") > -1) {
+    }
+    //Nerede aktif olduğu bilinmiyor bu yüzden kapatılacak
+    else if (location.href.indexOf("inventory/confirmAction") > -1) {
       createDeleteProductPageItems(!1);
-    } */ 
+    }
     else if (
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
       createRequestApprovalPageItems(); //endpoint eklenecek
       createRequestApprovalRemoveItems();
-      /* createDeleteProductPageItems(!0); */ // sayfa yapısını bozuyor 1 //Nerede aktif olduğu bilinmiyor bu yüzden kapatıldı
+      createDeleteProductPageItems(!0); // sayfa yapısını bozuyor 1 //Nerede aktif olduğu bilinmiyor bu yüzden kapatılacak
       createFixProductPageItems(); // sayfa yapısını bozuyor 2
     }
     //Manuel autopricer işlemleri için kullanılıyor fakat nasıl çalıştığı bilinmediği için kapatıldı.
@@ -405,7 +404,7 @@ function createExtensionTools() {
     } */
   }
  }
-}
+
 
 function createListingUploadPageItems() {
   setTimeout(() => {
