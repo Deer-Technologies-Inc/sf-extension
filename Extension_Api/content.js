@@ -24,7 +24,7 @@ const endPoints = {
   Extension: {
     filterSettings: "extension-settings/filter",
     productSearchHistories: "extension-settings/product-search-histories",
-    updatExtensioneSettings: "extension-settings"
+    updatExtensioneSettings: "extension-settings",
   },
 };
 
@@ -324,12 +324,9 @@ function createExtensionTools() {
       //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
       else if (location.href.includes("/addresses/add")) {
         createAddNewAddressPageItems();
-      }
-       else if (location.href.includes("/a/addresses")) {
+      } else if (location.href.includes("/a/addresses")) {
         createAllAddressesPageItems();
-      } 
-     
-      else if (
+      } else if (
         location.href.includes("/print.html") ||
         location.href.includes("/message-us")
       ) {
@@ -339,15 +336,14 @@ function createExtensionTools() {
       }
     }
     //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
-      else if (location.hostname == "www.amazon.co.jp") {
+    else if (location.hostname == "www.amazon.co.jp") {
       if (location.href.includes("/addresses/add")) {
         createAddNewAddressPageItems();
       } else if (location.href.includes("gp/buy/addressselect")) {
         createAddNewAddressPageItems();
       }
     }
-  } 
-  else if (
+  } else if (
     location.origin.includes("sellercentral") &&
     location.origin.includes("amazon")
   ) {
@@ -362,9 +358,9 @@ function createExtensionTools() {
       createOrdersPageItems();
     } else if (location.href.includes("/orders-v3/order")) {
       createOrderDetailPageItems();
-    } 
+    }
     //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
-     else if (location.href.includes("/addresses/add")) {
+    else if (location.href.includes("/addresses/add")) {
       createAddNewAddressPageItems();
     } else if (location.href.includes("/a/addresses")) {
       createAllAddressesPageItems();
@@ -372,8 +368,7 @@ function createExtensionTools() {
     //Nerede aktif olduğu bilinmiyor bu yüzden kapatılacak
     else if (location.href.indexOf("inventory/confirmAction") > -1) {
       createDeleteProductPageItems(!1);
-    }
-    else if (
+    } else if (
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
@@ -385,15 +380,15 @@ function createExtensionTools() {
     //Manuel autopricer işlemleri için kullanılıyor fakat nasıl çalıştığı bilinmediği için kapatıldı.
     /*  else if (location.href.indexOf("/automatepricing/rules/listings/") > -1) {
       createAutoPricePageItems();
-    } */ 
+    } */
     else if (location.href.includes("/performance/dashboard")) {
       createPerformanceDashboardPageItems();
     } else if (location.href.includes("/fixyourproducts")) {
       // Yukarıda da var !!!
       createFixProductPageItems();
-    } 
+    }
     //Manuel yönetim
-   /*  else if (location.href.includes("/listing/upload")) {
+    /*  else if (location.href.includes("/listing/upload")) {
       createListingUploadPageItems();
     }  */
     //Manuel yönetim
@@ -403,8 +398,7 @@ function createExtensionTools() {
       createSellerCentralOrderFileUploadPageItems();
     } */
   }
- }
-
+}
 
 function createListingUploadPageItems() {
   setTimeout(() => {
@@ -849,7 +843,7 @@ function getFilterSettingAsync() {
 
       let result = JSON.parse(response);
 
-      var divFilters = `<select name="sfFilterOptions" id="sfFilterOptions" style="font-size: 15px; width: 190px;">`;
+      var divFilters = `<select name="sfFilterOptions" id="sfFilterOptions" style="margin:10px 0; padding:8px; border:none; font-size: 15px; width: 190px;">`;
 
       divFilters += `<option selected value="0">${language["1000172"][activeLanguage]}</option>`;
 
@@ -5264,7 +5258,6 @@ function createOrderSummaryDiv(hideContinueButton) {
 }
 
 async function updateAutoPilotValue(newValue) {
-
   let putModel = {
     autoPilotOn: newValue,
     pauseAtCardStep: orderDetails.pauseAtCardStep,
@@ -5289,8 +5282,8 @@ async function updateAutoPilotValue(newValue) {
     orderDetails.isAutoPilotOn = newValue;
     chromeSaveOrderDetails(orderDetails);
   }
-  
-/*   $.ajax({
+
+  /*   $.ajax({
     type: "PUT",
     url:`${baseUrl}${endPoints.Extension.updatExtensioneSettings}`,
     contentType: "application/json; charset=utf-8",
@@ -5306,7 +5299,7 @@ async function updateAutoPilotValue(newValue) {
       }
     },
   });*/
-} 
+}
 
 var amazonOrderId = "",
   sendType = "";
@@ -5682,7 +5675,7 @@ function getMarketPlaces() {
     url: `${baseUrl}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
-      var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="width:210px;">`;
+      var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px; border:none;">`;
 
       $.each(response, function (index, value) {
         divMarketPlaces += `<option value="${value.id}">${value.name} (${value.country})</option>`;
@@ -5713,7 +5706,7 @@ function getMarketPlacesForBuyer() {
     url: `${baseUrl}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
-      var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="width:210px;">`;
+      var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px; border:none;">`;
 
       $.each(response, function (index, value) {
         divMarketPlaces += `<option value="${value.id}">${value.name} (${value.country})</option>`;
