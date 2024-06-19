@@ -3054,7 +3054,6 @@ function createShippingTrackerItems() {
   $("body").append(div);
 
   getMarketPlacesForBuyer();
-  console.log("test --------------------------------------");
 
   $("#sfButton").click(function () {
     $("#sfContainer").show();
@@ -3219,7 +3218,6 @@ function sfCheckCargoButtonClicked() {
           if (siList[index2].AmazonOrderId == response[index].amazonOrderId) {
             si = siList[index2];
           }
-        }
 
         if (si != "") {
           if (
@@ -3241,6 +3239,7 @@ function sfCheckCargoButtonClicked() {
             if (!delete si.ShipDate) delete si.ShipDate;
 
             updateSiList.push(si);
+            }
           }
         }
       }
