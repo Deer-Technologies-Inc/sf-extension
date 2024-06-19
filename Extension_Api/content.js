@@ -843,7 +843,7 @@ function getFilterSettingAsync() {
 
       let result = JSON.parse(response);
 
-      var divFilters = `<select name="sfFilterOptions" id="sfFilterOptions" style="font-size: 15px; width: 190px;">`;
+      var divFilters = `<select name="sfFilterOptions" id="sfFilterOptions" style="margin:10px 0; padding:8px; border:none; font-size: 15px; width: 190px;">`;
 
       divFilters += `<option selected value="0">${language["1000172"][activeLanguage]}</option>`;
 
@@ -5707,7 +5707,7 @@ function getMarketPlacesForBuyer() {
     url: `${baseUrl}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
-      var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="width:210px;">`;
+      var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px; border:none;">`;
 
       $.each(response, function (index, value) {
         divMarketPlaces += `<option value="${value.id}">${value.name} (${value.country})</option>`;
