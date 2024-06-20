@@ -3937,7 +3937,7 @@ async function getShippingInformation(content) {
   si.AmazonOrderId = s.orderId;
   si.BuyerAmazonOrderId = s.orderId;
   si.TrackingId = s.trackingId;
-  si.DeliveryDate = parseDate(s.promise.promiseMessage);
+  si.DeliveryDate = parseDate(s.promise.deliveryDate);
 
   var carrier = page
     .find("div#tracking-events-container div.tracking-event-carrier-header h2")
