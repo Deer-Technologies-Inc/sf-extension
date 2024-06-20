@@ -3173,7 +3173,7 @@ function sfCheckCargoButtonClicked() {
             } else {
               var si = await getShippingInformation(response2);
               siList.push(si);
-
+              console.log(siList);
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
                   Math.min(index + 1, totalCount) +
