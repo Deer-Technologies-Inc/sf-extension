@@ -3230,7 +3230,7 @@ function sfCheckCargoButtonClicked() {
             if (!si.ExpectedDeliveryDateStart)
               delete si.ExpectedDeliveryDateStart;
 
-            if (!delete si.ShipDate) delete si.ShipDate;
+            /* if (!delete si.ShipDate) delete si.ShipDate; */
 
             updateSiList.push(si);
             }
