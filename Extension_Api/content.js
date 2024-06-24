@@ -6425,7 +6425,7 @@ function saveAsinList(prefix, asinList, storeId) {
           padding: "10px",
         });
         $("#sfSaveAsinDescription").show();
-      } else if (response.addInventoryItemResult == 3) {
+      } else if (response.details == "errors.asinLimitExceeded") {
         // InsertLimitExceeded
         $("#sfSavingInfo").text(language["1000123"][activeLanguage]);
         $("#sfSavingInfo").css({
