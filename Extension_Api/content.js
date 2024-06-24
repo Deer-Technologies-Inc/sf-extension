@@ -848,6 +848,7 @@ function getFilterSettingAsync() {
       divFilters += `<option selected value="0">${language["1000172"][activeLanguage]}</option>`;
 
       $.each(result, function (index, value) {
+        console.log(value);
         divFilters += `<option value="${value.filterSettingId}">${value.filterName}</option>`;
       });
 
@@ -3213,26 +3214,27 @@ function sfCheckCargoButtonClicked() {
             si = siList[index2];
           }
 
-        if (si != "") {
-          if (
-            isShippingStatusUpdatable(
-              1,
-              lastShortStatus,
-              lastPromise,
-              si.ShortStatus,
-              si.PromiseMessage
-            )
-          ) {
-            if (!si.DeliveryDate) delete si.DeliveryDate;
+          if (si != "") {
+            if (
+              isShippingStatusUpdatable(
+                1,
+                lastShortStatus,
+                lastPromise,
+                si.ShortStatus,
+                si.PromiseMessage
+              )
+            ) {
+              if (!si.DeliveryDate) delete si.DeliveryDate;
 
-            if (!si.ExpectedDeliveryDateEnd) delete si.ExpectedDeliveryDateEnd;
+              if (!si.ExpectedDeliveryDateEnd)
+                delete si.ExpectedDeliveryDateEnd;
 
-            if (!si.ExpectedDeliveryDateStart)
-              delete si.ExpectedDeliveryDateStart;
+              if (!si.ExpectedDeliveryDateStart)
+                delete si.ExpectedDeliveryDateStart;
 
-            /* if (!delete si.ShipDate) delete si.ShipDate; */
+              /* if (!delete si.ShipDate) delete si.ShipDate; */
 
-            updateSiList.push(si);
+              updateSiList.push(si);
             }
           }
         }
@@ -3937,10 +3939,9 @@ async function getShippingInformation(content) {
   si.AmazonOrderId = s.orderId;
   si.BuyerAmazonOrderId = s.orderId;
   si.TrackingId = s.trackingId;
-  if(s.shortStatus == "DELIVERED"){
+  if (s.shortStatus == "DELIVERED") {
     si.DeliveryDate = parseDate(s.promise.promiseMessage);
   }
-  
 
   var carrier = page
     .find("div#tracking-events-container div.tracking-event-carrier-header h2")
