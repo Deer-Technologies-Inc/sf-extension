@@ -6031,16 +6031,12 @@ function createSearchPageItems() {
   });
   //POST filter settings
   $("#sfSaveFilters").click(async function () {
-    const selectedFilterSettingId = $("#sfFilterOptions")[0].value;
-
     let tempFilterName = "update";
 
-    if (parseInt(selectedFilterSettingId) === 0) {
-      const filterName = prompt(language["1000173"][activeLanguage]);
-      if (!filterName) return;
+    const filterName = prompt(language["1000173"][activeLanguage]);
+    if (!filterName) return;
 
-      tempFilterName = filterName;
-    }
+    tempFilterName = filterName;
 
     let postModel = {
       buySponsoredProducts: $("#sfSponsored").is(":checked"),
