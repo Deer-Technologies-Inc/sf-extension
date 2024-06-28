@@ -5814,10 +5814,10 @@ function createSearchPageItems() {
             <div class="flex ai-c jc-sb mb-10" style="gap: 4px;">
                 <button class="red-button small-button flex1" id='sfClearFilters' style="width:100%;border-raidus:9px;">
                 ${language["1000139"][activeLanguage]}</button>
-                <button class="light-blue-button small-button flex1"  id='sfSaveFilters' style="width:100%;border-raidus:9px;height: 34px;
+                <button class="green-button small-button flex1"  id='sfSaveFilters' style="width:100%;border-raidus:9px;height: 34px;
                 font-size: 12px;">
                 ${language["1000175"][activeLanguage]}</button>
-                <button class="light-blue-button small-button flex1" id='sfUpdateFilters' style="width:100%;border-raidus:9px;height: 34px;
+                <button class="green-button small-button flex1" id='sfUpdateFilters' style="width:100%;border-raidus:9px;height: 34px;
                 font-size: 12px;">
                 ${language["1000170"][activeLanguage]}</button>
             </div>
@@ -5827,7 +5827,7 @@ function createSearchPageItems() {
                 margin-left: 6px;">
                 ${language["1000174"][activeLanguage]}
                 </div>
-                <div id="sfFilterSelect" style="margin-right: 60px;">
+                <div id="sfFilterSelect" >
                 </div>
                 <button
                   id='sfDeleteFilterButton'
