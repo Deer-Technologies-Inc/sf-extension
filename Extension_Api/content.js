@@ -1,6 +1,6 @@
 // SellerFlash Chrome Extension
 
-const baseUrl = "https://x-test-api.sellerfull.com/api/";
+const baseUrl = "https://x-preprod-api.sellerfull.com/api/";
 const endPoints = {
   User: {
     me: "users/me",
@@ -2703,7 +2703,7 @@ function getOrderStatusList(n) {
     sellerAmazonOrderIds: n,
   };
 
-  const panelLink = "https://x-test.sellerfull.com/";
+  const panelLink = "https://x-preprod.sellerfull.com/";
 
   $.ajax({
     type: "POST",
@@ -2806,8 +2806,8 @@ function getOrderStatusList(n) {
 
 function createMessagesPageItems() {
   var panelLink = "https://www.sellerfull.com";
-  if (user.platform == "test") panelLink = "https://x-test.sellerfull.com";
-  else if (user.platform == "dev") panelLink = "https://x-test.sellerfull.com";
+  if (user.platform == "test") panelLink = "https://x-preprod.sellerfull.com";
+  else if (user.platform == "dev") panelLink = "https://x-preprod.sellerfull.com";
 
   var n = "";
   setInterval(function () {
@@ -6513,7 +6513,7 @@ function getShortDateTime(addedDays) {
 
 function createSellerFlashMenu(loggedIn) {
   var divMenu = "";
-  var panelLink = "https://x-test.sellerfull.com/";
+  var panelLink = "https://x-preprod.sellerfull.com/";
 
   if (loggedIn) {
     var msg = "";
