@@ -47,14 +47,14 @@ newStyle.appendChild(
     "\
 @font-face {\
     font-family: " +
-      nameFont +
-      ";\
+    nameFont +
+    ";\
     src: url('" +
-      chrome.runtime.getURL("fonts/Poppins-ExtraLight.ttf") +
-      "');\
+    chrome.runtime.getURL("fonts/Poppins-ExtraLight.ttf") +
+    "');\
     font-weight: " +
-      light +
-      ";\
+    light +
+    ";\
 }\
 "
   )
@@ -64,14 +64,14 @@ newStyle2.appendChild(
     "\
 @font-face {\
     font-family: " +
-      nameFont +
-      ";\
+    nameFont +
+    ";\
     src: url('" +
-      chrome.runtime.getURL("fonts/Poppins-Bold.ttf") +
-      "');\
+    chrome.runtime.getURL("fonts/Poppins-Bold.ttf") +
+    "');\
     font-weight: " +
-      bold +
-      ";\
+    bold +
+    ";\
 }\
 "
   )
@@ -81,14 +81,14 @@ newStyle3.appendChild(
     "\
 @font-face {\
     font-family: " +
-      nameFont +
-      ";\
+    nameFont +
+    ";\
     src: url('" +
-      chrome.runtime.getURL("fonts/Poppins-Thin.ttf") +
-      "');\
+    chrome.runtime.getURL("fonts/Poppins-Thin.ttf") +
+    "');\
     font-weight: " +
-      thin +
-      ";\
+    thin +
+    ";\
 }\
 "
   )
@@ -98,14 +98,14 @@ newStyle4.appendChild(
     "\
 @font-face {\
     font-family: " +
-      nameFont +
-      ";\
+    nameFont +
+    ";\
     src: url('" +
-      chrome.runtime.getURL("fonts/Poppins-Regular.ttf") +
-      "');\
+    chrome.runtime.getURL("fonts/Poppins-Regular.ttf") +
+    "');\
     font-weight: " +
-      regular +
-      ";\
+    regular +
+    ";\
 }\
 "
   )
@@ -115,14 +115,14 @@ newStyle5.appendChild(
     "\
 @font-face {\
     font-family: " +
-      nameFont +
-      ";\
+    nameFont +
+    ";\
     src: url('" +
-      chrome.runtime.getURL("fonts/Poppins-Medium.ttf") +
-      "');\
+    chrome.runtime.getURL("fonts/Poppins-Medium.ttf") +
+    "');\
     font-weight: " +
-      medium +
-      ";\
+    medium +
+    ";\
 }\
 "
   )
@@ -169,7 +169,7 @@ $(document).ready(function () {
   //TODO: AÇ!
   fetch(
     "https://extensions-bucket.fra1.cdn.digitaloceanspaces.com/content.css?v=" +
-      date
+    date
   )
     .then((response) => response.text())
     .then(function (response) {
@@ -185,7 +185,7 @@ $(document).ready(function () {
 
   fetch(
     "https://extensions-bucket.fra1.cdn.digitaloceanspaces.com/language.json?v=" +
-      date
+    date
   )
     .then((response) => response.json())
     .then(function (json) {
@@ -419,24 +419,24 @@ function createListingUploadPageItems() {
 function createAutoPricePageItems() {
   var input1 = $(
     '<span class="a-button a-button-primary a-button-small green-button" id="sf-startbulkautoprice" style="width: 127px;"><span class="a-button-inner"><img style="width:20px;height:auto;float:left;" src="' +
-      chrome.runtime.getURL("img/sf_extension.svg") +
-      '"><input class="a-button-input" type="button" id="sf-startautorepricing"><span  class="a-button-text" aria-hidden="true">' +
-      language["1000098"][activeLanguage] +
-      "</span></span></span>"
+    chrome.runtime.getURL("img/sf_extension.svg") +
+    '"><input class="a-button-input" type="button" id="sf-startautorepricing"><span  class="a-button-text" aria-hidden="true">' +
+    language["1000098"][activeLanguage] +
+    "</span></span></span>"
   );
   var input2 = $(
     '<span class="a-button a-button-primary a-button-small green-button" id="sf-clearbulkautoprice" style="width: 127px;"><span class="a-button-inner"><img style="width:20px;height:auto;float:left;" src="' +
-      chrome.runtime.getURL("img/sf_extension.svg") +
-      '"><input class="a-button-input" type="button" id="sf-clearautorepricing"><span  class="a-button-text" aria-hidden="true">' +
-      language["1000100"][activeLanguage] +
-      "</span></span></span>"
+    chrome.runtime.getURL("img/sf_extension.svg") +
+    '"><input class="a-button-input" type="button" id="sf-clearautorepricing"><span  class="a-button-text" aria-hidden="true">' +
+    language["1000100"][activeLanguage] +
+    "</span></span></span>"
   );
   var input3 = $(
     '<span class="a-button a-button-primary a-button-small green-button" id="sf-stopbulkautoprice" style="display:none;width: 127px;"><span class="a-button-inner"><img style="width:20px;height:auto;float:left;" src="' +
-      chrome.runtime.getURL("img/sf_extension.svg") +
-      '"><input class="a-button-input" type="button" id="sf-stopautorepricing"><span  class="a-button-text" aria-hidden="true">' +
-      language["1000099"][activeLanguage] +
-      "</span></span></span>"
+    chrome.runtime.getURL("img/sf_extension.svg") +
+    '"><input class="a-button-input" type="button" id="sf-stopautorepricing"><span  class="a-button-text" aria-hidden="true">' +
+    language["1000099"][activeLanguage] +
+    "</span></span></span>"
   );
 
   input1.appendTo(jQuery(".horizontalFieldFirst"));
@@ -584,8 +584,8 @@ function createInactivePageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px;
     background: none; border: none;  display: inline-block">
         <img src=${chrome.runtime.getURL(
-          "img/sf_extension.svg"
-        )} style="width: 90px;">
+    "img/sf_extension.svg"
+  )} style="width: 90px;">
     </button>`;
   $("body").prepend(sfButton);
 
@@ -644,8 +644,8 @@ function createOrderResultPageItems() {
 
         <div id='sfPreloader-message'>
         <img src='${chrome.runtime.getURL(
-          "img/loading.gif"
-        )}' style='height:50px; margin-left:20px;' /><br>
+      "img/loading.gif"
+    )}' style='height:50px; margin-left:20px;' /><br>
         ${language["1000087"][activeLanguage]}
         </div>
 
@@ -681,7 +681,7 @@ function createOrderResultPageItems() {
         }
       }
     },
-    failure: function () {},
+    failure: function () { },
     complete: function () {
       console.log("email", email);
     },
@@ -1009,8 +1009,8 @@ async function createRequestApprovalPageItems() {
 
             <div id='sfPreloader-message'>
             <img src='${chrome.runtime.getURL(
-              "img/loading.gif"
-            )}' style='height:50px; margin-left:20px;' /><br>
+          "img/loading.gif"
+        )}' style='height:50px; margin-left:20px;' /><br>
               <div id='sfProgressMessage'>
               </div>
             </div>
@@ -1270,8 +1270,8 @@ async function createRequestApprovalRemoveItems() {
 
             <div id='sfPreloader-message'>
             <img src='${chrome.runtime.getURL(
-              "img/loading.gif"
-            )}' style='display:block; height:50px; margin-left: auto; margin-right: auto;' /><br>
+          "img/loading.gif"
+        )}' style='display:block; height:50px; margin-left: auto; margin-right: auto;' /><br>
               <div id='sfProgressMessage'>
               </div>
             </div>
@@ -1402,7 +1402,7 @@ async function createRequestApprovalRemoveItems() {
               storeProductIds: [],
               asiNs: [],
             }),
-            success: function () {},
+            success: function () { },
             failure: function (response) {
               console.log("Error (failure)! ", response);
             },
@@ -1414,7 +1414,7 @@ async function createRequestApprovalRemoveItems() {
               } else {
                 $(".sf-alert-content").html(
                   "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                    language["1000009"][activeLanguage]
+                  language["1000009"][activeLanguage]
                 );
               }
             },
@@ -1660,10 +1660,10 @@ function createSellerCentralHomePageItems() {
       if (!container || container.length == 0) {
         container = $("#KpiCardList casino-channel-grid");
         sfDiv = `
-          <casino-card class="hydrated" style="order: 200; grid-column: span 10;">
-            ${sfDiv}
-          </casino-card>
-        `;
+              <div class="hydrated" style="order: 200; grid-column: span 10;">
+                ${sfDiv}
+              </div>
+            `;
       }
 
       container.first().append(sfDiv);
@@ -1923,48 +1923,48 @@ function createDeleteProductPageItems(n) {
 
       n
         ? $("#tableBody .item-row").each(function (n, i) {
-            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-              var r = $(i).find("div.asin"),
-                u = $(r)
-                  .text()
-                  .replace(/ASIN\s*: /, "")
-                  .trim();
-              asinList.push(u);
-            }
-          })
+          if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+            var r = $(i).find("div.asin"),
+              u = $(r)
+                .text()
+                .replace(/ASIN\s*: /, "")
+                .trim();
+            asinList.push(u);
+          }
+        })
         : $("div[data-column='asin']")
-            .find("span")
-            .each(function (n, i) {
-              var r = $(i).text().trim();
-              asinList.push(r);
-            });
+          .find("span")
+          .each(function (n, i) {
+            var r = $(i).text().trim();
+            asinList.push(r);
+          });
 
       n
         ? $("#tableBody .item-row").each(function (n, i) {
-            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-              var r = $(i).find("div.sku"),
-                u = $(r)
-                  .text()
-                  .replace(/SKU\s*: /, "")
-                  .trim();
-              skuList.push(u);
-            }
-          })
+          if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+            var r = $(i).find("div.sku"),
+              u = $(r)
+                .text()
+                .replace(/SKU\s*: /, "")
+                .trim();
+            skuList.push(u);
+          }
+        })
         : $("div[data-column='sku']")
-            .find("a")
-            .each(function (n, i) {
-              var r = $(i).text().trim();
-              skuList.push(r);
-            });
+          .find("a")
+          .each(function (n, i) {
+            var r = $(i).text().trim();
+            skuList.push(r);
+          });
 
       n
         ? $("#tableBody .item-row").each(function (n, i) {
-            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-              var r = $(i).find("div.reason-code"),
-                u = $(r).contents().text().trim();
-              reasonList.push(u);
-            }
-          })
+          if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+            var r = $(i).find("div.reason-code"),
+              u = $(r).contents().text().trim();
+            reasonList.push(u);
+          }
+        })
         : "";
 
       var pList = [];
@@ -1991,7 +1991,7 @@ function createDeleteProductPageItems(n) {
         this.id == "sfDeleteProducts"
           ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
           : user.apiSubdomain +
-            "api/inventoryItem/removeAndBlockInventoryItems";
+          "api/inventoryItem/removeAndBlockInventoryItems";
 
       $.ajax({
         url: url,
@@ -2003,7 +2003,7 @@ function createDeleteProductPageItems(n) {
           marketPlaceCode: mp,
           productList: pList,
         }),
-        success: function () {},
+        success: function () { },
         failure: function (response) {
           console.log("Error (failure)! ", response);
         },
@@ -2013,7 +2013,7 @@ function createDeleteProductPageItems(n) {
           } else {
             $(".sf-alert-content").html(
               "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                language["1000009"][activeLanguage]
+              language["1000009"][activeLanguage]
             );
           }
         },
@@ -2054,8 +2054,8 @@ function createDeleteProductPageItems(n) {
       .toLowerCase()
       .indexOf("delete product and listing") > -1 &&
       ((r = $("#interstitialPageWarningAlert .a-alert-content")),
-      r.append(i),
-      t());
+        r.append(i),
+        t());
 }
 function createOrderDetailPageItems() {
   var orderIdFromUrl = location.href.replace(
@@ -2721,14 +2721,14 @@ function getOrderStatusList(n) {
       response = JSON.parse(response);
       $.each(response, function (n, t) {
         var r = $("#orders-table tbody")
-            .find(
-              "a[href*='orderId=" +
-                t.sellerAmazonOrderId +
-                "'], a[href*='/orders-v3/order/" +
-                t.sellerAmazonOrderId +
-                "']"
-            )
-            .parents("div.cell-body"),
+          .find(
+            "a[href*='orderId=" +
+            t.sellerAmazonOrderId +
+            "'], a[href*='/orders-v3/order/" +
+            t.sellerAmazonOrderId +
+            "']"
+          )
+          .parents("div.cell-body"),
           i = "";
         t.buyerStatus == "Delivered" &&
           (i = ": " + formatTimestamp(t.deliveryDate));
@@ -2778,29 +2778,29 @@ function getOrderStatusList(n) {
 
         r.prepend(
           "<div class='sfOrderStatus' style='border-radius: 5px; height: 24px; padding: 1px; background-color:" +
-            bgColor +
-            ";'> " +
-            "<a href='" +
-            panelLink +
-            "/sellerOrder/" +
-            t.sellerAmazonOrderId +
-            "' title=\"" +
-            language["1000014"][activeLanguage] +
-            "\" target='_blank'><span class='sf-badge-l sf-badge-warning'><img src='" +
-            chrome.runtime.getURL("img/sf_extension.svg") +
-            "' style='width: 34px; height: 34px; margin-top:-6px; margin-left:-6px' alt='' /></span><span style='color: " +
-            statusColor +
-            "; font-weight:bold '>" +
-            t.buyerStatus.toUpperCase() +
-            i +
-            "</span></a></div>"
+          bgColor +
+          ";'> " +
+          "<a href='" +
+          panelLink +
+          "/sellerOrder/" +
+          t.sellerAmazonOrderId +
+          "' title=\"" +
+          language["1000014"][activeLanguage] +
+          "\" target='_blank'><span class='sf-badge-l sf-badge-warning'><img src='" +
+          chrome.runtime.getURL("img/sf_extension.svg") +
+          "' style='width: 34px; height: 34px; margin-top:-6px; margin-left:-6px' alt='' /></span><span style='color: " +
+          statusColor +
+          "; font-weight:bold '>" +
+          t.buyerStatus.toUpperCase() +
+          i +
+          "</span></a></div>"
         );
       });
     },
     failure: function () {
       $("#sfOrderDetails").html(language["1000021"][activeLanguage]);
     },
-    complete: function () {},
+    complete: function () { },
   });
 }
 
@@ -2832,16 +2832,16 @@ function createMessagesPageItems() {
       ).first();
       i.prepend(
         "<div class='order-context-property-item sfOrderInformation' style='border: 2px solid; border-radius: 5px; margin-top:5px; padding: 5px;'>" +
-          "<div class='order-context-property-label'>" +
-          language["1000022"][activeLanguage] +
-          "</div><div><div class='sf-order-item'>" +
-          "<span class='sf-badge-l sf-badge-warning'><img style='height: 30px;' src='" +
-          chrome.runtime.getURL("img/sf_extension.svg") +
-          "'>" +
-          "<span id='sfOrderDetails'>" +
-          language["1000044"][activeLanguage] +
-          "</span>" +
-          "</div></div>"
+        "<div class='order-context-property-label'>" +
+        language["1000022"][activeLanguage] +
+        "</div><div><div class='sf-order-item'>" +
+        "<span class='sf-badge-l sf-badge-warning'><img style='height: 30px;' src='" +
+        chrome.runtime.getURL("img/sf_extension.svg") +
+        "'>" +
+        "<span id='sfOrderDetails'>" +
+        language["1000044"][activeLanguage] +
+        "</span>" +
+        "</div></div>"
       );
 
       $.ajax({
@@ -2857,16 +2857,16 @@ function createMessagesPageItems() {
           if (response == undefined || response == "") {
             i.prepend(
               "<div class='order-context-property-item sfOrderInformation' style='border: 2px solid; border-radius: 5px; margin-top:5px; padding: 5px;'>" +
-                "<div class='order-context-property-label'>" +
-                language["1000022"][activeLanguage] +
-                "</div><div><div class='sf-order-item'>" +
-                "<span class='sf-badge-l sf-badge-warning'><img style='height: 30px;' src='" +
-                chrome.runtime.getURL("img/sf_extension.svg") +
-                "'>" +
-                "<span id='sfOrderDetails'>" +
-                language["1000023"][activeLanguage] +
-                "</span>" +
-                "</div></div>"
+              "<div class='order-context-property-label'>" +
+              language["1000022"][activeLanguage] +
+              "</div><div><div class='sf-order-item'>" +
+              "<span class='sf-badge-l sf-badge-warning'><img style='height: 30px;' src='" +
+              chrome.runtime.getURL("img/sf_extension.svg") +
+              "'>" +
+              "<span id='sfOrderDetails'>" +
+              language["1000023"][activeLanguage] +
+              "</span>" +
+              "</div></div>"
             );
 
             return;
@@ -2899,69 +2899,69 @@ function createMessagesPageItems() {
 
           i.prepend(
             "<div class='order-context-property-item sfOrderInformation' style='border: 2px solid; border-radius: 5px; margin-top:5px; padding: 5px;'>" +
-              "<div class='order-context-property-label'> <img style='height: 30px;' title='" +
-              language["1000112"][activeLanguage] +
-              "'  src='" +
-              chrome.runtime.getURL("img/sf_extension.svg") +
-              "'>" +
-              language["1000022"][activeLanguage] +
-              "</div><div><div class='sf-order-item'>" +
-              "<div class='sf-badge' style='background-color: " +
-              bColor +
-              "; border-color: " +
-              bColor +
-              ";'> <span class='sf-badge-initial'>B</span> <span class='sf-badge-text'>" +
-              response.buyerOrder.buyerOrderStatus +
-              "</span></div>" +
-              "<div class='sf-badge' style='background-color: " +
-              sColor +
-              "; border-color: " +
-              sColor +
-              ";'> <span class='sf-badge-initial'>S</span> <span class='sf-badge-text'>" +
-              response.sellerOrder.orderStatus +
-              "</span></div>" +
-              "</div></div>" +
+            "<div class='order-context-property-label'> <img style='height: 30px;' title='" +
+            language["1000112"][activeLanguage] +
+            "'  src='" +
+            chrome.runtime.getURL("img/sf_extension.svg") +
+            "'>" +
+            language["1000022"][activeLanguage] +
+            "</div><div><div class='sf-order-item'>" +
+            "<div class='sf-badge' style='background-color: " +
+            bColor +
+            "; border-color: " +
+            bColor +
+            ";'> <span class='sf-badge-initial'>B</span> <span class='sf-badge-text'>" +
+            response.buyerOrder.buyerOrderStatus +
+            "</span></div>" +
+            "<div class='sf-badge' style='background-color: " +
+            sColor +
+            "; border-color: " +
+            sColor +
+            ";'> <span class='sf-badge-initial'>S</span> <span class='sf-badge-text'>" +
+            response.sellerOrder.orderStatus +
+            "</span></div>" +
+            "</div></div>" +
+            "<hr />" +
+            "<div><strong>" +
+            language["1000114"][activeLanguage] +
+            ": </strong> <br>" +
+            "<a href='" +
+            panelLink +
+            "/sellerOrder/" +
+            t +
+            "' target='_blank'> " +
+            t +
+            "</a>" +
+            ' <button id="sf-copySellerOrderId" style="width:25px; height:25px; font-weight:bold; background-color: transparent; border-width: 0px;"><i class="fa fa-copy"></i> </button>' +
+            "</div>" +
+            (response.buyerOrder.buyerOrderDetails[0].amazonOrderId != null
+              ? "<div><strong>" +
+              language["1000094"][activeLanguage] +
+              ": </strong> <br>" +
+              "<a href='https://www.amazon.com/gp/your-account/order-details/?orderID=" +
+              response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
+              "' target='_blank'>" +
+              response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
+              "</a> " +
+              ' <button id="sf-copyBuyerOrderId" style="width:25px; height:25px; font-weight:bold;  background-color: transparent; border-width: 0px;"><i class="fa fa-copy"></i> </button>' +
+              "<br>" +
+              "</div>" +
               "<hr />" +
               "<div><strong>" +
-              language["1000114"][activeLanguage] +
-              ": </strong> <br>" +
-              "<a href='" +
-              panelLink +
-              "/sellerOrder/" +
-              t +
+              language["1000025"][activeLanguage] +
+              ": </strong> " +
+              response.sellerOrder.sellerOrderDetails[0].profit +
+              "</div><div><strong>" +
+              language["1000026"][activeLanguage] +
+              ": </strong> " +
+              "<a href='https://www.amazon.com/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&orderId=" +
+              response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
+              "&packageIndex=0&shipmentId=1" +
               "' target='_blank'> " +
-              t +
+              response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
               "</a>" +
-              ' <button id="sf-copySellerOrderId" style="width:25px; height:25px; font-weight:bold; background-color: transparent; border-width: 0px;"><i class="fa fa-copy"></i> </button>' +
-              "</div>" +
-              (response.buyerOrder.buyerOrderDetails[0].amazonOrderId != null
-                ? "<div><strong>" +
-                  language["1000094"][activeLanguage] +
-                  ": </strong> <br>" +
-                  "<a href='https://www.amazon.com/gp/your-account/order-details/?orderID=" +
-                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
-                  "' target='_blank'>" +
-                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
-                  "</a> " +
-                  ' <button id="sf-copyBuyerOrderId" style="width:25px; height:25px; font-weight:bold;  background-color: transparent; border-width: 0px;"><i class="fa fa-copy"></i> </button>' +
-                  "<br>" +
-                  "</div>" +
-                  "<hr />" +
-                  "<div><strong>" +
-                  language["1000025"][activeLanguage] +
-                  ": </strong> " +
-                  response.sellerOrder.sellerOrderDetails[0].profit +
-                  "</div><div><strong>" +
-                  language["1000026"][activeLanguage] +
-                  ": </strong> " +
-                  "<a href='https://www.amazon.com/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&orderId=" +
-                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
-                  "&packageIndex=0&shipmentId=1" +
-                  "' target='_blank'> " +
-                  response.buyerOrder.buyerOrderDetails[0].amazonOrderId +
-                  "</a>" +
-                  "</div></div>"
-                : "</div>")
+              "</div></div>"
+              : "</div>")
           );
 
           $("#sf-copyBuyerOrderId").click(function () {
@@ -3007,17 +3007,16 @@ function createShippingTrackerItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="transparent-button" id="sf-hideTracker" style="width:30px; font-weight:bold;">${
-                          language["1000070"][activeLanguage]
-                        }</button>
+                        <button class="transparent-button" id="sf-hideTracker" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]
+    }</button>
                     </div>
                 </div>
             </div>
             <div class="sfContent">
                 <div style="margin-top:0px;">
                     <img src=${chrome.runtime.getURL(
-                      "img/logo_uzun.png"
-                    )} style="height: 40px; margin:20px;">
+      "img/logo_uzun.png"
+    )} style="height: 40px; margin:20px;">
                 </div>
                 <div id="stores-for-buyer">
                 </div>
@@ -3042,8 +3041,8 @@ function createShippingTrackerItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:80px; height: 80px; bottom: 10px; right: 10px; display: none;
     background: none; border: none; ">
         <img src=${chrome.runtime.getURL(
-          "img/sf_extension.svg"
-        )} style="width: 80px;">
+    "img/sf_extension.svg"
+  )} style="width: 80px;">
     </button>`;
   $("body").prepend(sfButton);
   $("body").append(div);
@@ -3136,13 +3135,13 @@ function sfCheckCargoButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000125"][activeLanguage] +
-                  "<br> <a style='color: white;' href='" +
-                  location.origin +
-                  "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
-                  amazonOrderId +
-                  "'> " +
-                  language["1000126"][activeLanguage] +
-                  "</a>"
+                "<br> <a style='color: white;' href='" +
+                location.origin +
+                "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
+                amazonOrderId +
+                "'> " +
+                language["1000126"][activeLanguage] +
+                "</a>"
               );
               $("#sfShippingCheckProgress").css({
                 background: "red",
@@ -3161,9 +3160,9 @@ function sfCheckCargoButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                  Math.min(index + 1, totalCount) +
-                  " / " +
-                  totalCount
+                Math.min(index + 1, totalCount) +
+                " / " +
+                totalCount
               );
               $("#sfShippingCheckProgress").css({
                 background: "white",
@@ -3177,9 +3176,9 @@ function sfCheckCargoButtonClicked() {
               console.log(siList);
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                  Math.min(index + 1, totalCount) +
-                  " / " +
-                  totalCount
+                Math.min(index + 1, totalCount) +
+                " / " +
+                totalCount
               );
             }
           },
@@ -3263,9 +3262,9 @@ function sfCheckCargoButtonClicked() {
 
       $("#sfShippingCheckProgress").html(
         $("#sfShippingCheckProgress").html() +
-          "<br>" +
-          language["1000147"][activeLanguage] +
-          updateSiList.length
+        "<br>" +
+        language["1000147"][activeLanguage] +
+        updateSiList.length
       );
 
       $("#sfCheckCargoButton").prop("disabled", false);
@@ -3347,13 +3346,13 @@ function sfCheckDeliveryButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000125"][activeLanguage] +
-                  "<br> <a style='color: white;' href='" +
-                  location.origin +
-                  "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
-                  amazonOrderId +
-                  "'> " +
-                  language["1000126"][activeLanguage] +
-                  "</a>"
+                "<br> <a style='color: white;' href='" +
+                location.origin +
+                "/progress-tracker/package/ref=TE_SIMP_typ?_encoding=UTF8&from=gp&itemId=&packageIndex=0&shipmentId=1&orderId=" +
+                amazonOrderId +
+                "'> " +
+                language["1000126"][activeLanguage] +
+                "</a>"
               );
               $("#sfShippingCheckProgress").css({
                 background: "red",
@@ -3372,9 +3371,9 @@ function sfCheckDeliveryButtonClicked() {
             ) {
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                  Math.min(index + 1, totalCount) +
-                  " / " +
-                  totalCount
+                Math.min(index + 1, totalCount) +
+                " / " +
+                totalCount
               );
             } else {
               var si = await getShippingInformation(response2);
@@ -3382,9 +3381,9 @@ function sfCheckDeliveryButtonClicked() {
 
               $("#sfShippingCheckProgress").html(
                 language["1000032"][activeLanguage] +
-                  Math.min(index + 1, totalCount) +
-                  " / " +
-                  totalCount
+                Math.min(index + 1, totalCount) +
+                " / " +
+                totalCount
               );
             }
           },
@@ -3469,9 +3468,9 @@ function sfCheckDeliveryButtonClicked() {
 
       $("#sfShippingCheckProgress").html(
         $("#sfShippingCheckProgress").html() +
-          "<br>" +
-          language["1000148"][activeLanguage] +
-          updateSiList.length
+        "<br>" +
+        language["1000148"][activeLanguage] +
+        updateSiList.length
       );
 
       $("#sfCheckCargoButton").prop("disabled", false);
@@ -3527,8 +3526,8 @@ function createPerformanceDashboardPageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px; display: none;
     background: none; border: none; ">
         <img src=${chrome.runtime.getURL(
-          "img/sf_extension.svg"
-        )} style="width: 90px;">
+    "img/sf_extension.svg"
+  )} style="width: 90px;">
     </button>`;
 
   $("body").prepend(sfButton);
@@ -3676,8 +3675,8 @@ function createFixProductPageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px; display: none;
     background: none; border: none; ">
         <img src=${chrome.runtime.getURL(
-          "img/sf_extension.svg"
-        )} style="width: 90px;">
+    "img/sf_extension.svg"
+  )} style="width: 90px;">
     </button>`;
 
   $("body").prepend(sfButton);
@@ -4015,7 +4014,7 @@ function checkBuyingPages() {
       localStorage.setItem("configurationIdSelected", 0);
       location.replace(
         location.origin +
-          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
       );
     }
 
@@ -4034,7 +4033,7 @@ function checkBuyingPages() {
       setTimeout(() => {
         location.replace(
           location.origin +
-            "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
         );
       }, 1000);
     }
@@ -4144,7 +4143,7 @@ function createOrder_WrongAddressPageItems() {
     setTimeout(() => {
       location.replace(
         location.origin +
-          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
       );
     }, 2e3);
   }
@@ -4164,13 +4163,13 @@ function createOrder_WrongAddressPageItems() {
       setTimeout(() => {
         location.replace(
           location.origin +
-            "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+          "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
         );
       }, 2e3);
     }
   });
 
-  $("#sfContinueButton").click(function () {});
+  $("#sfContinueButton").click(function () { });
 
   chromeGetOrderDetails();
 }
@@ -4251,8 +4250,8 @@ function createOrder_AddressPageItems() {
             (orderDetails.purchaserInfo.addressLine2 != null
               ? orderDetails.purchaserInfo.addressLine2
               : "") +
-              " " +
-              orderDetails.purchaserInfo.addressLine3
+            " " +
+            orderDetails.purchaserInfo.addressLine3
           );
         }
 
@@ -4267,7 +4266,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.phone
             );
-          } catch (t) {}
+          } catch (t) { }
 
           try {
             $(
@@ -4279,7 +4278,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.postalCode
             );
-          } catch (t) {}
+          } catch (t) { }
 
           setTimeout(() => {
             $(
@@ -4327,7 +4326,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.postalCode
             );
-          } catch (t) {}
+          } catch (t) { }
           $(
             "#address-ui-widgets-enterAddressPhoneNumber, #enterAddressPhoneNumber, [id^=address-ui-widgets-enterAddressPhoneNumber]"
           ).val(orderDetails.purchaserInfo.phone);
@@ -4338,7 +4337,7 @@ function createOrder_AddressPageItems() {
               )[0],
               orderDetails.purchaserInfo.phone
             );
-          } catch (t) {}
+          } catch (t) { }
         }
 
         $(
@@ -4413,11 +4412,11 @@ function createOrder_AddressPageItems() {
             $("input[name='address-ui-widgets-saveOriginalOrSuggestedAddress']")
               .length &&
               (triggerClick("input[value='original-address-']", 1),
-              triggerClick(
-                "input[name='address-ui-widgets-saveOriginalOrSuggestedAddress']",
-                1
-              ),
-              clearInterval(t));
+                triggerClick(
+                  "input[name='address-ui-widgets-saveOriginalOrSuggestedAddress']",
+                  1
+                ),
+                clearInterval(t));
           }, 1e3);
         }
 
@@ -4445,9 +4444,9 @@ function createOrder_AddressPageItems() {
 
   $("#sfOrderDetails").html(
     language["1000044"][activeLanguage] +
-      "<img src='" +
-      chrome.runtime.getURL("img/loading.gif") +
-      "' style='width: 60%; height: 60%;' />"
+    "<img src='" +
+    chrome.runtime.getURL("img/loading.gif") +
+    "' style='width: 60%; height: 60%;' />"
   );
 
   $("#sfContinueButton").click(function () {
@@ -4469,7 +4468,7 @@ function createOrder_GiftPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -4553,12 +4552,12 @@ function createOrder_ShipOptionPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   } else if (localStorage.getItem("giftMessageSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -4594,12 +4593,12 @@ function createOrder_PaymentPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   } else if (localStorage.getItem("giftMessageSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -4649,22 +4648,22 @@ function createOrder_PaymentPageItems() {
         tt = setInterval(function () {
           if (orderDetails.isAutoPilotOn && !orderDetails.pauseAtCardStep) {
             var t = $("span:contains('ending in " + 2238 + "')") // TODO: Last4Digits
-                .parents(".payment-row, .pmts-instrument-box")
-                .first()
-                .find(
-                  "input[name='paymentMethod'], input[name='ppw-instrumentRowSelection']"
-                )
-                .first(),
+              .parents(".payment-row, .pmts-instrument-box")
+              .first()
+              .find(
+                "input[name='paymentMethod'], input[name='ppw-instrumentRowSelection']"
+              )
+              .first(),
               i;
 
             if (t.length) {
               triggerClick(t, 1);
               i = $(
                 "input#addCreditCardNumber[placeholder='ending in " +
-                  3911 + // TODO: Last4Digits
-                  "'], div.apx-add-credit-card-number input[placeholder='ending in " +
-                  3911 +
-                  "']"
+                3911 + // TODO: Last4Digits
+                "'], div.apx-add-credit-card-number input[placeholder='ending in " +
+                3911 +
+                "']"
               );
               if (i.length) {
                 triggerClick(
@@ -4714,12 +4713,12 @@ function createOrder_PlaceOrderPageItems() {
   if (localStorage.getItem("addressSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/addressselect/handlers/display.html?hasWorkingJavascript=1"
     );
   } else if (localStorage.getItem("giftMessageSelected") != 1) {
     location.replace(
       location.origin +
-        "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
+      "/gp/buy/gift/handlers/display.html?hasWorkingJavascript=1"
     );
   }
 
@@ -4859,8 +4858,8 @@ function createOrder_PlaceOrderPageItems() {
 
           $("#sfPageMessage").html(
             "<div class='sf-alert' style='margin-top:0px;  margin-bottom: 5px;'>" +
-              language["1000041"][activeLanguage] +
-              "</div>"
+            language["1000041"][activeLanguage] +
+            "</div>"
           );
           $(".shipping-group").css("border", "2px solid red");
         }
@@ -4929,9 +4928,9 @@ function createOrder_PlaceOrderPageItems() {
         if (addressFromApi != addressFromScreen) {
           $("#sfPageMessage").html(
             $("#sfPageMessage").html() +
-              "<div class='sf-alert' style='margin-top:0px; margin-bottom: 5px;'>" +
-              language["1000042"][activeLanguage] +
-              "</div>"
+            "<div class='sf-alert' style='margin-top:0px; margin-bottom: 5px;'>" +
+            language["1000042"][activeLanguage] +
+            "</div>"
           );
           $("#desktop-shipping-address-div, #shipaddress").css(
             "border",
@@ -4942,9 +4941,9 @@ function createOrder_PlaceOrderPageItems() {
         if (nameFromApi != nameFromScreen) {
           $("#sfPageMessage").html(
             $("#sfPageMessage").html() +
-              "<div class='sf-alert' style='margin-top:0px;  margin-bottom: 5px;'>" +
-              language["1000043"][activeLanguage] +
-              "</div>"
+            "<div class='sf-alert' style='margin-top:0px;  margin-bottom: 5px;'>" +
+            language["1000043"][activeLanguage] +
+            "</div>"
           );
           $("#desktop-shipping-address-div, #shipaddress").css(
             "border",
@@ -4991,9 +4990,9 @@ function createOrderPageStep2Items() {
   // API CALL : GetOrderDetails
   $("#sfOrderDetails").html(
     language["1000044"][activeLanguage] +
-      "<img src='" +
-      chrome.runtime.getURL("img/loading.gif") +
-      "' style='width: 60%; height: 60%;' />"
+    "<img src='" +
+    chrome.runtime.getURL("img/loading.gif") +
+    "' style='width: 60%; height: 60%;' />"
   );
 
   chromeGetOrderDetails();
@@ -5040,7 +5039,7 @@ function createOrderPageStep2Items() {
       $('input[name="quantityBox"]').length &&
       orderDetails.orderProducts[0].quantity > 10 &&
       $('input[name="quantityBox"]').val() !==
-        orderDetails.orderProducts[0].quantity
+      orderDetails.orderProducts[0].quantity
     ) {
       $('input[name="quantityBox"]').val(
         orderDetails.orderProducts[0].quantity
@@ -5105,9 +5104,9 @@ async function createOrderPageStep1Items() {
   // API CALL : GetOrderDetails
   $("#sfOrderDetails").html(
     language["1000044"][activeLanguage] +
-      "<img src='" +
-      chrome.runtime.getURL("img/loading.gif") +
-      "' style='width: 60%; height: 60%;' />"
+    "<img src='" +
+    chrome.runtime.getURL("img/loading.gif") +
+    "' style='width: 60%; height: 60%;' />"
   );
 
   amazonOrderId = location.href.split("AmazonOrderId=").pop().split("send")[0];
@@ -5169,11 +5168,11 @@ async function createOrderPageStep1Items() {
                 failure: function () {
                   reject();
                 },
-                complete: function () {},
+                complete: function () { },
               });
             },
-            failure: function () {},
-            complete: function () {},
+            failure: function () { },
+            complete: function () { },
           });
         });
       }
@@ -5456,8 +5455,8 @@ function setOrderSummary(response) {
       if (hasCouponDiscount) {
         $("#sfOrderDetailsCouponDiscount").html(
           "<div class='sf-info' style='margin-top:0px;  margin-bottom: 5px; font-weight: 600;'>" +
-            language["1000144"][activeLanguage] +
-            "</div>"
+          language["1000144"][activeLanguage] +
+          "</div>"
         );
         $("#sfOrderDetailsCouponDiscount").show();
       } else {
@@ -5468,8 +5467,8 @@ function setOrderSummary(response) {
       if (primeDiscount) {
         $("#sfOrderDetailsPrimeDiscount").html(
           "<div class='sf-info' style='margin-top:0px;  margin-bottom: 5px; font-weight: 600;'>" +
-            language["1000142"][activeLanguage] +
-            "</div>"
+          language["1000142"][activeLanguage] +
+          "</div>"
         );
         $("#sfOrderDetailsPrimeDiscount").show();
       } else {
@@ -5479,8 +5478,8 @@ function setOrderSummary(response) {
       if (dealDiscount) {
         $("#sfOrderDetailsDealDiscount").html(
           "<div class='sf-info' style='margin-top:0px;  margin-bottom: 5px; font-weight: 600;'>" +
-            language["1000146"][activeLanguage] +
-            "</div>"
+          language["1000146"][activeLanguage] +
+          "</div>"
         );
         $("#sfOrderDetailsDealDiscount").show();
       } else {
@@ -5501,73 +5500,61 @@ function setOrderSummary(response) {
 
       var content = `
             <div class="order-number mb-10">${response.amazonOrderId}</div>
-            <div class="order-owner-name mb-10">${
-              response.purchaserInfo.name
-            }</div>
+            <div class="order-owner-name mb-10">${response.purchaserInfo.name
+        }</div>
             <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:6px;">
               <div class="order-address" style="display:flex; justify-content:space-between;">
                 <div style="flex:1;">
                   <strong>${language["1000106"][activeLanguage]} :</strong>
                 </div>    
                 <div style="flex:3;">
-                  ${
-                    response.purchaserInfo.addressLine1
-                      ? response.purchaserInfo.addressLine1 + " "
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.addressLine2
-                      ? response.purchaserInfo.addressLine2 + " "
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.addressLine3
-                      ? response.purchaserInfo.addressLine3 + " "
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.city
-                      ? response.purchaserInfo.city + ","
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.county
-                      ? response.purchaserInfo.county + ","
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.district
-                      ? response.purchaserInfo.district + ","
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.stateOrRegion
-                      ? response.purchaserInfo.stateOrRegion + ","
-                      : ""
-                  }
-                  ${
-                    response.purchaserInfo.postalCode
-                      ? response.purchaserInfo.postalCode
-                      : ""
-                  }
+                  ${response.purchaserInfo.addressLine1
+          ? response.purchaserInfo.addressLine1 + " "
+          : ""
+        }
+                  ${response.purchaserInfo.addressLine2
+          ? response.purchaserInfo.addressLine2 + " "
+          : ""
+        }
+                  ${response.purchaserInfo.addressLine3
+          ? response.purchaserInfo.addressLine3 + " "
+          : ""
+        }
+                  ${response.purchaserInfo.city
+          ? response.purchaserInfo.city + ","
+          : ""
+        }
+                  ${response.purchaserInfo.county
+          ? response.purchaserInfo.county + ","
+          : ""
+        }
+                  ${response.purchaserInfo.district
+          ? response.purchaserInfo.district + ","
+          : ""
+        }
+                  ${response.purchaserInfo.stateOrRegion
+          ? response.purchaserInfo.stateOrRegion + ","
+          : ""
+        }
+                  ${response.purchaserInfo.postalCode
+          ? response.purchaserInfo.postalCode
+          : ""
+        }
                 </div>
               </div>
               <div style="display:flex; justify-content:space-between;">
-                <strong style="flex:1">${
-                  language["1000051"][activeLanguage]
-                } :</strong>
+                <strong style="flex:1">${language["1000051"][activeLanguage]
+        } :</strong>
                 <div style="flex:3">${formatDate(response.initialDate)}</div>
               </div>
               <div style="display:flex; justify-content:space-between;">
-                <strong style="flex:1">${
-                  language["1000052"][activeLanguage]
-                } :</strong>
+                <strong style="flex:1">${language["1000052"][activeLanguage]
+        } :</strong>
                 <div style="flex:3">${response.purchaserInfo.phone}</div>
               </div>
               <div style="display:flex; justify-content:space-between;">
-                <strong style="flex:1">${
-                  language["1000086"][activeLanguage]
-                } :</strong>
+                <strong style="flex:1">${language["1000086"][activeLanguage]
+        } :</strong>
                 <div style="flex:3">${shippingInfo}</div>
               </div>
             </div>
@@ -5748,8 +5735,8 @@ function createSearchPageItems() {
     <button id="sfButton" style="z-index: 999999; position: fixed; width:70px; height: 70px; bottom: 10px; right: 10px;
     background: none; border: none;  display: inline-block">
         <img src=${chrome.runtime.getURL(
-          "img/sf_extension.svg"
-        )} style="width: 90px;">
+    "img/sf_extension.svg"
+  )} style="width: 90px;">
     </button>`;
   $("body").prepend(sfButton);
 
@@ -6324,9 +6311,9 @@ function getASINsFromPage(pageUrl) {
 
         $("#sfSavingInfo").text(
           totalPageCount +
-            language["1000072"][activeLanguage] +
-            totalAsinCount +
-            language["1000073"][activeLanguage]
+          language["1000072"][activeLanguage] +
+          totalAsinCount +
+          language["1000073"][activeLanguage]
         );
 
         var curPageNo = parseInt(
@@ -6410,9 +6397,9 @@ function saveAsinList(prefix, asinList, storeId) {
         // PartiallyAdded
         $("#sfSavingInfo").html(
           language["1000122"][activeLanguage] +
-            "<br>" +
-            language["1000124"][activeLanguage] +
-            response.differenceCount
+          "<br>" +
+          language["1000124"][activeLanguage] +
+          response.differenceCount
         );
         $("#sfSavingInfo").css({
           background: "orange",
@@ -6533,9 +6520,8 @@ function createSellerFlashMenu(loggedIn) {
                     <span>+</span>
                     <img src=${chrome.runtime.getURL("img/chrome.svg")}>
                 </div>
-                <div class="list-title">${
-                  language["1000078"][activeLanguage]
-                };</div>
+                <div class="list-title">${language["1000078"][activeLanguage]
+      };</div>
                 <ul class="list">
                     <li>${language["1000079"][activeLanguage]}</li>
                     <li>${language["1000080"][activeLanguage]}</li>
@@ -6545,17 +6531,15 @@ function createSellerFlashMenu(loggedIn) {
                 </ul>
                 
                 <div class="flex ai-c" style="margin-top:25px; margin-bottom:25px">
-                    <button class="green-button"><a href='${panelLink}'>${
-      language["1000076"][activeLanguage]
-    }</a></button>
+                    <button class="green-button"><a href='${panelLink}'>${language["1000076"][activeLanguage]
+      }</a></button>
                 </div>
                 <div class="bottom-area">
                     <div class="flex ai-c jc-sb" style="height:42px;padding: 0 15px;">
                         <div class="flex ai-c">
                             <i class="fas fa-cog"></i>
-                            <a href="${panelLink}plugin" class="ml-10" target="_blank" style="color:white">${
-      language["1000045"][activeLanguage]
-    }</a>
+                            <a href="${panelLink}plugin" class="ml-10" target="_blank" style="color:white">${language["1000045"][activeLanguage]
+      }</a>
                         </div>
                     </div>
                     <div class="flex ai-c jc-sb" style="height:42px;padding: 0 15px;">
@@ -6565,11 +6549,10 @@ function createSellerFlashMenu(loggedIn) {
                     </div>
                     <div>
                         <img id="sf-languangeButton" src="${chrome.runtime.getURL(
-                          "img/" + `${activeLanguage}` + ".png"
-                        )}" style="width: 24px;cursor: pointer;" />
-                        <button id="sf-logout" title="${
-                          language["1000054"][activeLanguage]
-                        }" class="logout-button" style="margin-left: 5px;display: inline-block;">
+        "img/" + `${activeLanguage}` + ".png"
+      )}" style="width: 24px;cursor: pointer;" />
+                        <button id="sf-logout" title="${language["1000054"][activeLanguage]
+      }" class="logout-button" style="margin-left: 5px;display: inline-block;">
                             <i class="fa-solid fa-arrow-right-from-bracket"></i>
                         </button>
 
@@ -6589,17 +6572,16 @@ function createSellerFlashMenu(loggedIn) {
                 </div>
 
                 <div class="list-title" style="margin-top:50px">
-                 <button class="green-button"><a href='${panelLink}'>${
-      language["1000084"][activeLanguage]
-    }</a></button>
+                 <button class="green-button"><a href='${panelLink}'>${language["1000084"][activeLanguage]
+      }</a></button>
                   
                 </div>
 
                 <div class="bottom-area" style="height:42px;padding: 0 10px;">
                     <div class="flex ai-c jc-end" style="height: 100%;">
                         <img id="sf-languangeButton" src="${chrome.runtime.getURL(
-                          "img/" + `${activeLanguage}` + ".png"
-                        )}" style="width: 24px;cursor: pointer;" />
+        "img/" + `${activeLanguage}` + ".png"
+      )}" style="width: 24px;cursor: pointer;" />
                     </div>
                 </div>
                 <div>
@@ -6828,17 +6810,17 @@ chrome.extension.onMessage.addListener(function (msg) {
 
         $("#sfMessage").html(
           language["1000009"][activeLanguage] +
-            ": " +
-            msg.countryCode +
-            " (" +
-            msg.orderId +
-            ") <br>" +
-            language["1000115"][activeLanguage] +
-            "<a href='" +
-            domain +
-            "'>" +
-            language["1000085"][activeLanguage] +
-            "</a>"
+          ": " +
+          msg.countryCode +
+          " (" +
+          msg.orderId +
+          ") <br>" +
+          language["1000115"][activeLanguage] +
+          "<a href='" +
+          domain +
+          "'>" +
+          language["1000085"][activeLanguage] +
+          "</a>"
         );
 
         $("#sfCheckAddresses").prop("disabled", false);
@@ -6899,10 +6881,10 @@ chrome.extension.onMessage.addListener(function (msg) {
 
         if (t == undefined) {
           var l = r
-              .find("div[id^='shipToInsertionNode-shippingAddress']")
-              .first()
-              .attr("id")
-              .replace("shipToInsertionNode-shippingAddress-", ""),
+            .find("div[id^='shipToInsertionNode-shippingAddress']")
+            .first()
+            .attr("id")
+            .replace("shipToInsertionNode-shippingAddress-", ""),
             a = o
               .find("#shipToData-shippingAddress-" + l)
               .first()
@@ -7089,9 +7071,9 @@ function editDistance(n, t) {
       u == 0
         ? (r[i] = i)
         : i > 0 &&
-          ((e = r[i - 1]),
+        ((e = r[i - 1]),
           n.charAt(u - 1) != t.charAt(i - 1) &&
-            (e = Math.min(Math.min(e, f), r[i]) + 1),
+          (e = Math.min(Math.min(e, f), r[i]) + 1),
           (r[i - 1] = f),
           (f = e));
     u > 0 && (r[t.length] = f);
@@ -7123,7 +7105,7 @@ function getMarketplaceByPage() {
     .trim();
   return (
     (n == null || n == "") &&
-      (n = $("#partner-switcher").data("marketplace_selection").trim()),
+    (n = $("#partner-switcher").data("marketplace_selection").trim()),
     getMarketplaceItemByDomain(n)
   );
 }
@@ -7137,39 +7119,39 @@ function getMarketplaceItemByDomain(n) {
     n == "www.amazon.com" || n == "ATVPDKIKX0DER"
       ? ((t.AmazonMarketplaceId = "ATVPDKIKX0DER"), (t.MarketplaceId = 1))
       : n == "www.amazon.ca" || n == "A2EUQ1WTGCTBG2"
-      ? ((t.AmazonMarketplaceId = "A2EUQ1WTGCTBG2"), (t.MarketplaceId = 2))
-      : n == "www.amazon.com.mx" || n == "A1AM78C64UM0Y8"
-      ? ((t.AmazonMarketplaceId = "A1AM78C64UM0Y8"), (t.MarketplaceId = 3))
-      : n == "www.amazon.co.uk" || n == "A1F83G8C2ARO7P"
-      ? ((t.AmazonMarketplaceId = "A1F83G8C2ARO7P"), (t.MarketplaceId = 4))
-      : n == "www.amazon.de" || n == "A1PA6795UKMFR9"
-      ? ((t.AmazonMarketplaceId = "A1PA6795UKMFR9"), (t.MarketplaceId = 5))
-      : n == "www.amazon.fr" || n == "A13V1IB3VIYZZH"
-      ? ((t.AmazonMarketplaceId = "A13V1IB3VIYZZH"), (t.MarketplaceId = 6))
-      : n == "www.amazon.it" || n == "APJ6JRA9NG5V4"
-      ? ((t.AmazonMarketplaceId = "APJ6JRA9NG5V4"), (t.MarketplaceId = 7))
-      : n == "www.amazon.es" || n == "A1RKKUPIHCS9HS"
-      ? ((t.AmazonMarketplaceId = "A1RKKUPIHCS9HS"), (t.MarketplaceId = 8))
-      : n == "www.amazon.ae" || n == "A2VIGQ35RCS4UG"
-      ? ((t.AmazonMarketplaceId = "A2VIGQ35RCS4UG"), (t.MarketplaceId = 9))
-      : n == "www.amazon.com.au" || n == "A39IBJ37TRP1C6"
-      ? ((t.AmazonMarketplaceId = "A39IBJ37TRP1C6"), (t.MarketplaceId = 10))
-      : n == "www.amazon.co.jp" || n == "www.amazon.jp" || n == "A1VC38T7YXB528"
-      ? ((t.AmazonMarketplaceId = "A1VC38T7YXB528"), (t.MarketplaceId = 11))
-      : n == "www.amazon.sg" || n == "A19VAU5U5O7RUS"
-      ? ((t.AmazonMarketplaceId = "A19VAU5U5O7RUS"), (t.MarketplaceId = 12))
-      : n == "www.amazon.sa" || n == "A17E79C6D8DWNP"
-      ? ((t.AmazonMarketplaceId = "A17E79C6D8DWNP"), (t.MarketplaceId = 13))
-      : n == "www.amazon.eg" || n == "ARBP9OOSHTCHU"
-      ? ((t.AmazonMarketplaceId = "ARBP9OOSHTCHU"), (t.MarketplaceId = 14))
-      : n == "www.amazon.pl" || n == "A1C3SOZRARQ6R3"
-      ? ((t.AmazonMarketplaceId = "A1C3SOZRARQ6R3"), (t.MarketplaceId = 15))
-      : n == "www.amazon.be" || n == "AMEN7PMS3EDWL"
-      ? ((t.AmazonMarketplaceId = "AMEN7PMS3EDWL"), (t.MarketplaceId = 16))
-      : n == "www.amazon.se" || n == "A2NODRKZP88ZB9"
-      ? ((t.AmazonMarketplaceId = "A2NODRKZP88ZB9"), (t.MarketplaceId = 17))
-      : (n == "www.amazon.nl" || n == "A1805IZSGTT6HS") &&
-        ((t.AmazonMarketplaceId = "A1805IZSGTT6HS"), (t.MarketplaceId = 18)),
+        ? ((t.AmazonMarketplaceId = "A2EUQ1WTGCTBG2"), (t.MarketplaceId = 2))
+        : n == "www.amazon.com.mx" || n == "A1AM78C64UM0Y8"
+          ? ((t.AmazonMarketplaceId = "A1AM78C64UM0Y8"), (t.MarketplaceId = 3))
+          : n == "www.amazon.co.uk" || n == "A1F83G8C2ARO7P"
+            ? ((t.AmazonMarketplaceId = "A1F83G8C2ARO7P"), (t.MarketplaceId = 4))
+            : n == "www.amazon.de" || n == "A1PA6795UKMFR9"
+              ? ((t.AmazonMarketplaceId = "A1PA6795UKMFR9"), (t.MarketplaceId = 5))
+              : n == "www.amazon.fr" || n == "A13V1IB3VIYZZH"
+                ? ((t.AmazonMarketplaceId = "A13V1IB3VIYZZH"), (t.MarketplaceId = 6))
+                : n == "www.amazon.it" || n == "APJ6JRA9NG5V4"
+                  ? ((t.AmazonMarketplaceId = "APJ6JRA9NG5V4"), (t.MarketplaceId = 7))
+                  : n == "www.amazon.es" || n == "A1RKKUPIHCS9HS"
+                    ? ((t.AmazonMarketplaceId = "A1RKKUPIHCS9HS"), (t.MarketplaceId = 8))
+                    : n == "www.amazon.ae" || n == "A2VIGQ35RCS4UG"
+                      ? ((t.AmazonMarketplaceId = "A2VIGQ35RCS4UG"), (t.MarketplaceId = 9))
+                      : n == "www.amazon.com.au" || n == "A39IBJ37TRP1C6"
+                        ? ((t.AmazonMarketplaceId = "A39IBJ37TRP1C6"), (t.MarketplaceId = 10))
+                        : n == "www.amazon.co.jp" || n == "www.amazon.jp" || n == "A1VC38T7YXB528"
+                          ? ((t.AmazonMarketplaceId = "A1VC38T7YXB528"), (t.MarketplaceId = 11))
+                          : n == "www.amazon.sg" || n == "A19VAU5U5O7RUS"
+                            ? ((t.AmazonMarketplaceId = "A19VAU5U5O7RUS"), (t.MarketplaceId = 12))
+                            : n == "www.amazon.sa" || n == "A17E79C6D8DWNP"
+                              ? ((t.AmazonMarketplaceId = "A17E79C6D8DWNP"), (t.MarketplaceId = 13))
+                              : n == "www.amazon.eg" || n == "ARBP9OOSHTCHU"
+                                ? ((t.AmazonMarketplaceId = "ARBP9OOSHTCHU"), (t.MarketplaceId = 14))
+                                : n == "www.amazon.pl" || n == "A1C3SOZRARQ6R3"
+                                  ? ((t.AmazonMarketplaceId = "A1C3SOZRARQ6R3"), (t.MarketplaceId = 15))
+                                  : n == "www.amazon.be" || n == "AMEN7PMS3EDWL"
+                                    ? ((t.AmazonMarketplaceId = "AMEN7PMS3EDWL"), (t.MarketplaceId = 16))
+                                    : n == "www.amazon.se" || n == "A2NODRKZP88ZB9"
+                                      ? ((t.AmazonMarketplaceId = "A2NODRKZP88ZB9"), (t.MarketplaceId = 17))
+                                      : (n == "www.amazon.nl" || n == "A1805IZSGTT6HS") &&
+                                      ((t.AmazonMarketplaceId = "A1805IZSGTT6HS"), (t.MarketplaceId = 18)),
     t
   );
 }
@@ -7339,7 +7321,7 @@ async function changeAddress(countryCode, postalCode) {
         type: "POST",
         url: url,
         data: formData.toString(), // serializes the form's elements.
-        success: function () {},
+        success: function () { },
       });
     }
   }
