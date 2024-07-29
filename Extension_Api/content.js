@@ -1666,7 +1666,7 @@ function createSellerCentralHomePageItems() {
             `;
       }
 
-      container.first().append(sfDiv);
+      container.first().after(sfDiv);
 
       $("#sfCheckAddresses").click(async function () {
         $("#sfMessage").text(language["1000090"][activeLanguage]);
