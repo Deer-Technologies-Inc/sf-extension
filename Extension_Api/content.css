@@ -137,7 +137,9 @@
 .transparent-button:hover {
   opacity: 0.7;
 }
-
+#sfCheckAddresses:disabled{
+  color: gray;
+}
 .green-button {
   width: 171px;
   height: 34px;
