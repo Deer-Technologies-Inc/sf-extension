@@ -2507,8 +2507,8 @@ class SFUserInformation {
     this.token = token;
     this.checkDate = checkDate;
     this.name = name;
-    this.email = email;
     this.platform = platform;
+    this.email = email;
   }
 }
 
@@ -2600,7 +2600,7 @@ function checkLogin() {
 
 function checkStoredLoginInformation() {
   chrome.storage.sync.get(
-    ["token", "checkDate", "name", "email"],
+    ["token", "checkDate", "name", "email", "platform"],
     function (items) {
       if (items.token != undefined) {
         user.token = items.token;
@@ -2614,6 +2614,9 @@ function checkStoredLoginInformation() {
         }
         if (items.email != undefined || items.email != "") {
           user.email = items.email;
+        }
+        if (items.email != undefined || items.email != "") {
+          user.platform = items.platform;
         }
       } else {
         setTimeout(() => {
