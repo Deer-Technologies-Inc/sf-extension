@@ -2591,11 +2591,14 @@ function checkLogin() {
   const accessToken = sessionStorage.getItem("accessToken");
   var name = "";
   var email = "";
+  var _platform = "";
   if (location.href.includes("sellerfull.com")) {
     if (location.href.includes("x-test.sellerfull.com")) {
       platform = "test";
+      _platform = "test";
     } else if (location.href.includes("x-preprod.sellerfull.com")) {
       platform = "preprod";
+      _platform = "preprod";
     }
     if (accessToken) {
       $.ajax({
@@ -2608,7 +2611,7 @@ function checkLogin() {
           email = response.email;
           if (accessToken && name && email) {
             alert(platform + "girişi");
-            signIn(accessToken, name, email, platform);
+            signIn(accessToken, name, email, _platform);
           }
         },
         error: function (xhr, status, error) {
