@@ -841,7 +841,7 @@ function getFilterSettingAsync() {
   };
   //getting extension filters
   fetch(
-    `${baseUrls[platform]}${endPoints.Extension.filterSettings}`,
+    `${baseUrls[user.platform]}${endPoints.Extension.filterSettings}`,
     fetchOptions
   )
     .then((response) => response.text())
@@ -1402,7 +1402,9 @@ async function createRequestApprovalRemoveItems() {
           console.log("P List");
           console.log(pList);
           $.ajax({
-            url: `${baseUrls[platform]}${endPoints.StoreProduct.storeProducts}`,
+            url: `${baseUrls[user.platform]}${
+              endPoints.StoreProduct.storeProducts
+            }`,
             type: "DELETE",
             contentType: "application/json;charset=utf-8",
             headers: { Authorization: "Bearer " + user.token },
@@ -2501,11 +2503,12 @@ function createOrderDetailPageItems() {
 } */
 
 class SFUserInformation {
-  constructor(token, checkDate, name, email) {
+  constructor(token, checkDate, name, email, platform) {
     this.token = token;
     this.checkDate = checkDate;
     this.name = name;
     this.email = email;
+    this.platform = platform;
   }
 }
 // class SFUserInformation {
@@ -2553,16 +2556,17 @@ function signOut() {
   );
 }
 
-function signIn(token, name, email) {
+function signIn(token, name, email, platform) {
   chrome.storage.sync.set(
     {
       token: token,
       checkDate: Date.now(),
       name: name,
       email: email,
+      platform: platform,
     },
     function () {
-      user = new SFUserInformation(token, Date.now(), name, email);
+      user = new SFUserInformation(token, Date.now(), name, email, platform);
       console.log(user);
     }
   );
@@ -2595,7 +2599,7 @@ function checkLogin() {
     }
     if (accessToken) {
       $.ajax({
-        url: `${baseUrls[platform]}${endPoints.User.me}`,
+        url: `${baseUrls[user.platform]}${endPoints.User.me}`,
         type: "GET",
         headers: { Authorization: "Bearer " + accessToken },
         success: function (response) {
@@ -2604,7 +2608,7 @@ function checkLogin() {
           email = response.email;
           if (accessToken && name && email) {
             alert(platform + "girişi");
-            signIn(accessToken, name, email);
+            signIn(accessToken, name, email, platform);
           }
         },
         error: function (xhr, status, error) {
@@ -2650,7 +2654,7 @@ function checkStoredLoginInformation() {
 
 function checkIfNotFullAddressExists() {
   $.ajax({
-    url: `${baseUrls[platform]}${endPoints.Order.addressNotCompleted}`,
+    url: `${baseUrls[user.platform]}${endPoints.Order.addressNotCompleted}`,
     type: "GET",
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
@@ -2671,7 +2675,7 @@ function checkIfNotFullAddressExists() {
             orderId: orderId,
             countryCode: countryCode,
             token: user.token,
-            apiSubdomain: baseUrls[platform],
+            apiSubdomain: baseUrls[user.platform],
             isLastOne: index == response.length - 1,
           });
         }
@@ -2722,7 +2726,7 @@ function getOrderStatusList(n) {
 
   $.ajax({
     type: "POST",
-    url: `${baseUrls[platform]}${endPoints.Order.byAmazonOrderIds}`,
+    url: `${baseUrls[user.platform]}${endPoints.Order.byAmazonOrderIds}`,
     contentType: "application/json; charset=utf-8",
     dataType: "text",
     data: JSON.stringify(data),
@@ -2861,7 +2865,9 @@ function createMessagesPageItems() {
 
       $.ajax({
         type: "GET",
-        url: `${baseUrls[platform]}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${t}`,
+        url: `${baseUrls[user.platform]}${
+          endPoints.Order.byAmazonOrderId
+        }?sellerOrderId=${t}`,
         headers: { Authorization: "Bearer " + user.token },
         success: function (response) {
           var i = $(
@@ -3110,7 +3116,9 @@ function sfCheckCargoButtonClicked() {
   console.log(selectedStoreId);
   $.ajax({
     type: "GET",
-    url: `${baseUrls[platform]}${endPoints.Order.notShipped}?storeId=${selectedStoreId}`,
+    url: `${baseUrls[user.platform]}${
+      endPoints.Order.notShipped
+    }?storeId=${selectedStoreId}`,
     headers: { Authorization: "Bearer " + user.token },
     success: async function (response) {
       $("#sfShippingDetails").html(language["1000031"][activeLanguage]);
@@ -3258,7 +3266,7 @@ function sfCheckCargoButtonClicked() {
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
           type: "PUT",
-          url: `${baseUrls[platform]}${endPoints.Order.updateAsShipped}`,
+          url: `${baseUrls[user.platform]}${endPoints.Order.updateAsShipped}`,
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
@@ -3326,7 +3334,9 @@ function sfCheckDeliveryButtonClicked() {
 
   $.ajax({
     type: "GET",
-    url: `${baseUrls[platform]}${endPoints.Order.notDelivered}?storeId=${selectedStoreId}`,
+    url: `${baseUrls[user.platform]}${
+      endPoints.Order.notDelivered
+    }?storeId=${selectedStoreId}`,
     headers: { Authorization: "Bearer " + user.token },
     success: async function (response) {
       $("#sfShippingDetails").html(language["1000035"][activeLanguage]);
@@ -3464,7 +3474,7 @@ function sfCheckDeliveryButtonClicked() {
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
           type: "PUT",
-          url: `${baseUrls[platform]}${endPoints.Order.updateAsDelivered}`,
+          url: `${baseUrls[user.platform]}${endPoints.Order.updateAsDelivered}`,
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
@@ -5294,7 +5304,7 @@ async function updateAutoPilotValue(newValue) {
   };
 
   const result = await fetch(
-    `${baseUrls[platform]}${endPoints.Extension.updatExtensioneSettings}`,
+    `${baseUrls[user.platform]}${endPoints.Extension.updatExtensioneSettings}`,
     fetchOptions
   );
   if (result.status == 200) {
@@ -5304,7 +5314,7 @@ async function updateAutoPilotValue(newValue) {
 
   /*   $.ajax({
     type: "PUT",
-    url:`${baseUrls[platform]}${endPoints.Extension.updatExtensioneSettings}`,
+    url:`${baseUrls[user.platform]}${endPoints.Extension.updatExtensioneSettings}`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: { Authorization: "Bearer " + user.token },
@@ -5358,7 +5368,9 @@ function getOrderDetails() {
     $.ajax({
       type: "GET",
       async: false,
-      url: `${baseUrls[platform]}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${amazonOrderId}`,
+      url: `${baseUrls[user.platform]}${
+        endPoints.Order.byAmazonOrderId
+      }?sellerOrderId=${amazonOrderId}`,
       headers: { Authorization: "Bearer " + user.token },
       success: function (response) {
         orderDetails = response;
@@ -5691,7 +5703,7 @@ function setOrderSummary(response) {
 function getMarketPlaces() {
   $.ajax({
     type: "GET",
-    url: `${baseUrls[platform]}${endPoints.Store.stores}`,
+    url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
       var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px; ">`;
@@ -5722,7 +5734,7 @@ function getMarketPlaces() {
 function getMarketPlacesForBuyer() {
   $.ajax({
     type: "GET",
-    url: `${baseUrls[platform]}${endPoints.Store.stores}`,
+    url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
       var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px;">`;
@@ -6013,7 +6025,9 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      `${baseUrls[platform]}${endPoints.Extension.filterSettings}?filterSettingId=${selectedFilterSettingId}`,
+      `${baseUrls[user.platform]}${
+        endPoints.Extension.filterSettings
+      }?filterSettingId=${selectedFilterSettingId}`,
       fetchOptions
     );
 
@@ -6076,7 +6090,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      `${baseUrls[platform]}${endPoints.Extension.filterSettings}`,
+      `${baseUrls[user.platform]}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
@@ -6143,7 +6157,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      `${baseUrls[platform]}${endPoints.Extension.filterSettings}`,
+      `${baseUrls[user.platform]}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
@@ -6394,7 +6408,7 @@ function getASINsFromPage(pageUrl) {
 function saveAsinList(prefix, asinList, storeId) {
   $.ajax({
     type: "POST",
-    url: `${baseUrls[platform]}${endPoints.StoreProduct.storeProducts}`,
+    url: `${baseUrls[user.platform]}${endPoints.StoreProduct.storeProducts}`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify({
@@ -6488,7 +6502,9 @@ function saveProductSearchInfo(fromPage, toPage) {
 
   $.ajax({
     type: "POST",
-    url: `${baseUrls[platform]}${endPoints.Extension.productSearchHistories}`,
+    url: `${baseUrls[user.platform]}${
+      endPoints.Extension.productSearchHistories
+    }`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify({
@@ -6780,7 +6796,7 @@ chrome.extension.onMessage.addListener(function (msg) {
         });
         // - update as purchased
         $.ajax({
-          url: `${baseUrls[platform]}${endPoints.Order.updateAsPurchased}`,
+          url: `${baseUrls[user.platform]}${endPoints.Order.updateAsPurchased}`,
           type: "PUT",
           data: data,
           contentType: "application/json;charset=utf-8",
@@ -7040,7 +7056,7 @@ chrome.extension.onMessage.addListener(function (msg) {
       });
 
       $.ajax({
-        url: `${baseUrls[platform]}${endPoints.Order.updateAsPurchased}`,
+        url: `${baseUrls[user.platform]}${endPoints.Order.updateAsPurchased}`,
         type: "PUT",
         data: data,
         contentType: "application/json;charset=utf-8",
