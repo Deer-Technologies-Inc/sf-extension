@@ -1669,13 +1669,13 @@ function createSellerCentralHomePageItems() {
       if (!container || container.length == 0) {
         container = $("#KpiCardList casino-channel-grid");
         sfDiv = `
-          <casino-card class="hydrated" style="order: 200; grid-column: span 10;">
-            ${sfDiv}
-          </casino-card>
-        `;
+              <div class="hydrated" style="order: 200; grid-column: span 10;">
+                ${sfDiv}
+              </div>
+            `;
       }
 
-      container.first().append(sfDiv);
+      container.first().after(sfDiv);
 
       $("#sfCheckAddresses").click(async function () {
         $("#sfMessage").text(language["1000090"][activeLanguage]);
@@ -2718,7 +2718,7 @@ function getOrderStatusList(n) {
     sellerAmazonOrderIds: n,
   };
 
-  const panelLink = "https://x-test.sellerfull.com/";
+  const panelLink = "https://x-preprod.sellerfull.com/";
 
   $.ajax({
     type: "POST",
@@ -6528,7 +6528,7 @@ function getShortDateTime(addedDays) {
 
 function createSellerFlashMenu(loggedIn) {
   var divMenu = "";
-  var panelLink = "https://x-test.sellerfull.com/";
+  var panelLink = "https://x-preprod.sellerfull.com/";
 
   if (loggedIn) {
     var msg = "";
