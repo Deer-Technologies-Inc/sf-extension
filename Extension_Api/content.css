@@ -171,14 +171,14 @@
   line-height: normal;
   letter-spacing: normal;
   text-align: center;
-  color: #dc3545;
+  color: #dc3543;
   border: 1px solid;
   cursor: pointer;
 }
 
 .red-button:hover {
   opacity: 0.7;
-  background-color: #dc3545;
+  background-color: #dc3543;
   color: #fff;
 }
 
