@@ -5389,7 +5389,7 @@ function getOrderDetails() {
         const responseTemp = {
           amazonOrderId: response.sellerOrder.amazonOrderId,
           initialDate: response.sellerOrder.purchaseDate,
-          deliveryEndDate: response.sellerOrder.latestShipDate,
+          deliveryEndDate: response.sellerOrder.latestDeliveryDate,
           purchaserInfo: {
             name: response.sellerOrder.customerName,
             addressLine1: response.sellerOrder.customerAddressLine1,
@@ -5592,9 +5592,7 @@ function setOrderSummary(response) {
                 <div style="flex:3">${response.purchaserInfo.phone}</div>
               </div>
               <div style="display:flex; justify-content:space-between;">
-                <strong style="flex:1">${
-                  language["1000086"][activeLanguage]
-                } :</strong>
+                <strong style="flex:1">${language["1000086"][activeLanguage]}:</strong>
                 <div style="flex:3">${shippingInfo}</div>
               </div>
             </div>
