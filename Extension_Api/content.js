@@ -2599,7 +2599,7 @@ function checkLogin() {
     }
     if (accessToken) {
       $.ajax({
-        url: `${baseUrls[user.platform]}${endPoints.User.me}`,
+        url: `${baseUrls[platform]}${endPoints.User.me}`,
         type: "GET",
         headers: { Authorization: "Bearer " + accessToken },
         success: function (response) {
