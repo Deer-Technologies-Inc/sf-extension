@@ -2511,37 +2511,8 @@ class SFUserInformation {
     this.platform = platform;
   }
 }
-// class SFUserInformation {
-//   constructor(
-//     customerId,
-//     token,
-//     userType,
-//     checkDate,
-//     platform,
-//     apiSubdomain,
-//     name,
-//     email
-//   ) {
-//     this.customerId = customerId;
-//     this.token = token;
-//     this.userType = userType;
-//     this.checkDate = checkDate;
-//     this.platform = platform;
-//     this.apiSubdomain = apiSubdomain;
-//     this.name = name;
-//     this.email = email;
-//   }
-// }
-// class SellerFullUserInformation {
-//   constructor(token, checkDate, name, email) {
-//     this.token = token;
-//     this.checkDate = checkDate;
-//     this.name = name;
-//     this.email = email;
-//   }
-// }
+
 var user = new SFUserInformation();
-// var SellerFull_User = new SellerFullUserInformation();
 
 function signOut() {
   chrome.storage.sync.set(
@@ -5703,6 +5674,7 @@ function setOrderSummary(response) {
 } */
 
 function getMarketPlaces() {
+  alert(user.platform);
   $.ajax({
     type: "GET",
     url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
