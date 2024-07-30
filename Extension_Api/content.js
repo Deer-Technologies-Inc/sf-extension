@@ -2594,15 +2594,16 @@ function checkLogin() {
         type: "GET",
         headers: { Authorization: "Bearer " + accessToken },
         success: function (response) {
-          if (location.href.includes("x-test.sellerfull.com")) {
-            platform = "test";
-          } else if (location.href.includes("x-preprod.sellerfull.com")) {
-            platform = "preprod";
-          }
           console.log("Başarılı istek: ", response);
           name = `${response.name} ${response.surname}`;
           email = response.email;
           if (accessToken && name && email) {
+            if (location.href.includes("x-test.sellerfull.com")) {
+              platform = "test";
+            } else if (location.href.includes("x-preprod.sellerfull.com")) {
+              platform = "preprod";
+            }
+            alert(platform + "girişi");
             signIn(accessToken, name, email);
           }
         },
