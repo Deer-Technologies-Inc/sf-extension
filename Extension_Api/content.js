@@ -2,7 +2,7 @@
 
 const baseUrls = {
   test: "https://x-test-api.sellerfull.com/api/",
-  preprod: "https://x-prod-api.sellerfull.com/api/",
+  preprod: "https://x-preprod-api.sellerfull.com/api/",
 };
 
 const endPoints = {
@@ -2588,6 +2588,11 @@ function checkLogin() {
   var name = "";
   var email = "";
   if (location.href.includes("sellerfull.com")) {
+    if (location.href.includes("x-test.sellerfull.com")) {
+      platform = "test";
+    } else if (location.href.includes("x-preprod.sellerfull.com")) {
+      platform = "preprod";
+    }
     if (accessToken) {
       $.ajax({
         url: `${baseUrl[platform]}${endPoints.User.me}`,
@@ -2598,11 +2603,6 @@ function checkLogin() {
           name = `${response.name} ${response.surname}`;
           email = response.email;
           if (accessToken && name && email) {
-            if (location.href.includes("x-test.sellerfull.com")) {
-              platform = "test";
-            } else if (location.href.includes("x-preprod.sellerfull.com")) {
-              platform = "preprod";
-            }
             alert(platform + "girişi");
             signIn(accessToken, name, email);
           }
