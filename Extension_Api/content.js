@@ -5361,7 +5361,7 @@ function getOrderDetails() {
         const responseTemp = {
           amazonOrderId: response.sellerOrder.amazonOrderId,
           initialDate: response.sellerOrder.purchaseDate,
-          deliveryEndDate: response.sellerOrder.latestShipDate,
+          deliveryEndDate: response.sellerOrder.latestDeliveryDate,
           purchaserInfo: {
             name: response.sellerOrder.customerName,
             addressLine1: response.sellerOrder.customerAddressLine1,
