@@ -4978,7 +4978,7 @@ function createOrderPageStep2Items() {
   }
 
   setTimeout(() => {
-    if (orderDetails.orderProducts.find((x) => x.isWareHouseOrder == true)) {
+    if (orderDetails.isWareHouseOrder == true) {
       $("#sc-buy-box-gift-checkbox").prop("checked", false);
       localStorage.setItem("giftMessageSelected", 1);
     } else {
@@ -5350,7 +5350,7 @@ function getOrderDetails() {
         const sellerOrderDetails = response.sellerOrder.sellerOrderDetails;
         const orderProducts = sellerOrderDetails.map((detail) => ({
           quantity: detail.quantity,
-          isWareHouseOrder: response.isWareHouseOrder,
+          //isWareHouseOrder: response.isWareHouseOrder,
           asin: detail.asin,
           productName: detail.productTitle,
           estimatedPurchasePrice: detail.productCostInUSD,
