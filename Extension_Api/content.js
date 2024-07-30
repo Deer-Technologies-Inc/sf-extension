@@ -5674,7 +5674,7 @@ function setOrderSummary(response) {
 } */
 
 function getMarketPlaces() {
-  alert(user);
+  alert(user.token, user.platform);
   $.ajax({
     type: "GET",
     url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
