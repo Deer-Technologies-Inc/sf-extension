@@ -2557,6 +2557,7 @@ function signOut() {
 }
 
 function signIn(token, name, email, platform) {
+  alert(platform);
   chrome.storage.sync.set(
     {
       token: token,
@@ -2610,7 +2611,6 @@ function checkLogin() {
           name = `${response.name} ${response.surname}`;
           email = response.email;
           if (accessToken && name && email) {
-            alert(user.platform + "girişi");
             signIn(accessToken, name, email, _platform);
           }
         },
