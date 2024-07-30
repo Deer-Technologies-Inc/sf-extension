@@ -2557,7 +2557,6 @@ function signOut() {
 }
 
 function signIn(token, name, email, platform) {
-  alert(platform);
   chrome.storage.sync.set(
     {
       token: token,
@@ -2567,8 +2566,8 @@ function signIn(token, name, email, platform) {
       platform: platform,
     },
     function () {
-      user = new SFUserInformation(token, Date.now(), name, email, platform);
       console.log(user);
+      user = new SFUserInformation(token, Date.now(), name, email, platform);
     }
   );
 }
