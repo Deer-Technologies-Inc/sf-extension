@@ -2610,7 +2610,7 @@ function checkLogin() {
           name = `${response.name} ${response.surname}`;
           email = response.email;
           if (accessToken && name && email) {
-            alert(platform + "girişi");
+            alert(user.platform + "girişi");
             signIn(accessToken, name, email, _platform);
           }
         },
