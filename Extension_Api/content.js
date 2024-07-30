@@ -1,6 +1,10 @@
 // SellerFlash Chrome Extension
 
-const baseUrl = "https://x-test-api.sellerfull.com/api/";
+const baseUrls = {
+  test: "https://x-test-api.sellerfull.com/api/",
+  preprod: "https://x-prod-api.sellerfull.com/api/",
+};
+
 const endPoints = {
   User: {
     me: "users/me",
@@ -27,6 +31,8 @@ const endPoints = {
     updatExtensioneSettings: "extension-settings",
   },
 };
+
+var platform = "test";
 
 /* #region  Colors & Fonts */
 var newStyle = document.createElement("style");
@@ -834,7 +840,10 @@ function getFilterSettingAsync() {
     headers: fetchHeaders,
   };
   //getting extension filters
-  fetch(`${baseUrl}${endPoints.Extension.filterSettings}`, fetchOptions)
+  fetch(
+    `${baseUrl[platform][platform]}${endPoints.Extension.filterSettings}`,
+    fetchOptions
+  )
     .then((response) => response.text())
     .then(function (response) {
       if (!response) {
@@ -1393,7 +1402,7 @@ async function createRequestApprovalRemoveItems() {
           console.log("P List");
           console.log(pList);
           $.ajax({
-            url: `${baseUrl}${endPoints.StoreProduct.storeProducts}`,
+            url: `${baseUrl[platform]}${endPoints.StoreProduct.storeProducts}`,
             type: "DELETE",
             contentType: "application/json;charset=utf-8",
             headers: { Authorization: "Bearer " + user.token },
@@ -2581,10 +2590,15 @@ function checkLogin() {
   if (location.href.includes("sellerfull.com")) {
     if (accessToken) {
       $.ajax({
-        url: `${baseUrl}${endPoints.User.me}`,
+        url: `${baseUrl[platform]}${endPoints.User.me}`,
         type: "GET",
         headers: { Authorization: "Bearer " + accessToken },
         success: function (response) {
+          if (location.href.includes("x-test.sellerfull.com")) {
+            platform = "test";
+          } else if (location.href.includes("x-preprod.sellerfull.com")) {
+            platform = "preprod";
+          }
           console.log("Başarılı istek: ", response);
           name = `${response.name} ${response.surname}`;
           email = response.email;
@@ -2635,7 +2649,7 @@ function checkStoredLoginInformation() {
 
 function checkIfNotFullAddressExists() {
   $.ajax({
-    url: `${baseUrl}${endPoints.Order.addressNotCompleted}`,
+    url: `${baseUrl[platform]}${endPoints.Order.addressNotCompleted}`,
     type: "GET",
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
@@ -2656,7 +2670,7 @@ function checkIfNotFullAddressExists() {
             orderId: orderId,
             countryCode: countryCode,
             token: user.token,
-            apiSubdomain: baseUrl,
+            apiSubdomain: baseUrl[platform],
             isLastOne: index == response.length - 1,
           });
         }
@@ -2707,7 +2721,7 @@ function getOrderStatusList(n) {
 
   $.ajax({
     type: "POST",
-    url: `${baseUrl}${endPoints.Order.byAmazonOrderIds}`,
+    url: `${baseUrl[platform]}${endPoints.Order.byAmazonOrderIds}`,
     contentType: "application/json; charset=utf-8",
     dataType: "text",
     data: JSON.stringify(data),
@@ -2846,7 +2860,7 @@ function createMessagesPageItems() {
 
       $.ajax({
         type: "GET",
-        url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${t}`,
+        url: `${baseUrl[platform]}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${t}`,
         headers: { Authorization: "Bearer " + user.token },
         success: function (response) {
           var i = $(
@@ -3095,7 +3109,7 @@ function sfCheckCargoButtonClicked() {
   console.log(selectedStoreId);
   $.ajax({
     type: "GET",
-    url: `${baseUrl}${endPoints.Order.notShipped}?storeId=${selectedStoreId}`,
+    url: `${baseUrl[platform]}${endPoints.Order.notShipped}?storeId=${selectedStoreId}`,
     headers: { Authorization: "Bearer " + user.token },
     success: async function (response) {
       $("#sfShippingDetails").html(language["1000031"][activeLanguage]);
@@ -3243,7 +3257,7 @@ function sfCheckCargoButtonClicked() {
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
           type: "PUT",
-          url: `${baseUrl}${endPoints.Order.updateAsShipped}`,
+          url: `${baseUrl[platform]}${endPoints.Order.updateAsShipped}`,
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
@@ -3311,7 +3325,7 @@ function sfCheckDeliveryButtonClicked() {
 
   $.ajax({
     type: "GET",
-    url: `${baseUrl}${endPoints.Order.notDelivered}?storeId=${selectedStoreId}`,
+    url: `${baseUrl[platform]}${endPoints.Order.notDelivered}?storeId=${selectedStoreId}`,
     headers: { Authorization: "Bearer " + user.token },
     success: async function (response) {
       $("#sfShippingDetails").html(language["1000035"][activeLanguage]);
@@ -3449,7 +3463,7 @@ function sfCheckDeliveryButtonClicked() {
       if (updateSiList && updateSiList.length > 0) {
         $.ajax({
           type: "PUT",
-          url: `${baseUrl}${endPoints.Order.updateAsDelivered}`,
+          url: `${baseUrl[platform]}${endPoints.Order.updateAsDelivered}`,
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(updateSiList),
@@ -5279,7 +5293,7 @@ async function updateAutoPilotValue(newValue) {
   };
 
   const result = await fetch(
-    `${baseUrl}${endPoints.Extension.updatExtensioneSettings}`,
+    `${baseUrl[platform]}${endPoints.Extension.updatExtensioneSettings}`,
     fetchOptions
   );
   if (result.status == 200) {
@@ -5289,7 +5303,7 @@ async function updateAutoPilotValue(newValue) {
 
   /*   $.ajax({
     type: "PUT",
-    url:`${baseUrl}${endPoints.Extension.updatExtensioneSettings}`,
+    url:`${baseUrl[platform]}${endPoints.Extension.updatExtensioneSettings}`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: { Authorization: "Bearer " + user.token },
@@ -5343,7 +5357,7 @@ function getOrderDetails() {
     $.ajax({
       type: "GET",
       async: false,
-      url: `${baseUrl}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${amazonOrderId}`,
+      url: `${baseUrl[platform]}${endPoints.Order.byAmazonOrderId}?sellerOrderId=${amazonOrderId}`,
       headers: { Authorization: "Bearer " + user.token },
       success: function (response) {
         orderDetails = response;
@@ -5676,7 +5690,7 @@ function setOrderSummary(response) {
 function getMarketPlaces() {
   $.ajax({
     type: "GET",
-    url: `${baseUrl}${endPoints.Store.stores}`,
+    url: `${baseUrl[platform]}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
       var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px; ">`;
@@ -5707,7 +5721,7 @@ function getMarketPlaces() {
 function getMarketPlacesForBuyer() {
   $.ajax({
     type: "GET",
-    url: `${baseUrl}${endPoints.Store.stores}`,
+    url: `${baseUrl[platform]}${endPoints.Store.stores}`,
     headers: { Authorization: "Bearer " + user.token },
     success: function (response) {
       var divMarketPlaces = `<select name="sfMarketPlace" id="sfMarketPlace" style="min-width:210px; width:100%; margin:10px 0; padding:8px;">`;
@@ -5998,7 +6012,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      `${baseUrl}${endPoints.Extension.filterSettings}?filterSettingId=${selectedFilterSettingId}`,
+      `${baseUrl[platform]}${endPoints.Extension.filterSettings}?filterSettingId=${selectedFilterSettingId}`,
       fetchOptions
     );
 
@@ -6061,7 +6075,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      `${baseUrl}${endPoints.Extension.filterSettings}`,
+      `${baseUrl[platform]}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
@@ -6128,7 +6142,7 @@ function createSearchPageItems() {
     };
 
     const result = await fetch(
-      `${baseUrl}${endPoints.Extension.filterSettings}`,
+      `${baseUrl[platform]}${endPoints.Extension.filterSettings}`,
       fetchOptions
     );
 
@@ -6379,7 +6393,7 @@ function getASINsFromPage(pageUrl) {
 function saveAsinList(prefix, asinList, storeId) {
   $.ajax({
     type: "POST",
-    url: `${baseUrl}${endPoints.StoreProduct.storeProducts}`,
+    url: `${baseUrl[platform]}${endPoints.StoreProduct.storeProducts}`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify({
@@ -6473,7 +6487,7 @@ function saveProductSearchInfo(fromPage, toPage) {
 
   $.ajax({
     type: "POST",
-    url: `${baseUrl}${endPoints.Extension.productSearchHistories}`,
+    url: `${baseUrl[platform]}${endPoints.Extension.productSearchHistories}`,
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     data: JSON.stringify({
@@ -6765,7 +6779,7 @@ chrome.extension.onMessage.addListener(function (msg) {
         });
         // - update as purchased
         $.ajax({
-          url: `${baseUrl}${endPoints.Order.updateAsPurchased}`,
+          url: `${baseUrl[platform]}${endPoints.Order.updateAsPurchased}`,
           type: "PUT",
           data: data,
           contentType: "application/json;charset=utf-8",
@@ -7025,7 +7039,7 @@ chrome.extension.onMessage.addListener(function (msg) {
       });
 
       $.ajax({
-        url: `${baseUrl}${endPoints.Order.updateAsPurchased}`,
+        url: `${baseUrl[platform]}${endPoints.Order.updateAsPurchased}`,
         type: "PUT",
         data: data,
         contentType: "application/json;charset=utf-8",
