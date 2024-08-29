@@ -3578,10 +3578,11 @@ function createPerformanceDashboardPageItems() {
         response = response.replaceAll("$cc_metadata", "cc_metadata");
 
         response = JSON.parse(response);
-        //account health data burada çekiliyor
+        console.log(response)
+        //account health data burada gönderiliyor
         $.ajax({
           type: "POST",
-          url: sub + "api/Inventory/AddAccountHealthData",
+          url: baseUrls.test + "api/Inventory/AddAccountHealthData",
           contentType: "application/json; charset=utf-8",
           dataType: "json",
           data: JSON.stringify(response),
