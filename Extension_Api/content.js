@@ -3580,7 +3580,7 @@ function createPerformanceDashboardPageItems() {
         response = JSON.parse(response);
         console.log(response)
         //account health data burada gönderiliyor
-        $.ajax({
+        /* $.ajax({
           type: "POST",
           url: baseUrls.test + "api/Inventory/AddAccountHealthData",
           contentType: "application/json; charset=utf-8",
@@ -3636,7 +3636,7 @@ function createPerformanceDashboardPageItems() {
               });
             }
           },
-        });
+        }); */
       },
       failure: function (response) {
         console.log("Error! ", response);
