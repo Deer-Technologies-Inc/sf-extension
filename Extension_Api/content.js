@@ -3578,7 +3578,7 @@ function createPerformanceDashboardPageItems() {
         response = response.replaceAll("$cc_metadata", "cc_metadata");
 
         response = JSON.parse(response);
-        console.log(response)
+        console.log(response);
         //account health data burada gönderiliyor
         /* $.ajax({
           type: "POST",
@@ -5354,7 +5354,6 @@ function getOrderDetails() {
         const sellerOrderDetails = response.sellerOrder.sellerOrderDetails;
         const orderProducts = sellerOrderDetails.map((detail) => ({
           quantity: detail.quantity,
-          //isWareHouseOrder: response.isWareHouseOrder,
           asin: detail.asin,
           productName: detail.productTitle,
           estimatedPurchasePrice: detail.productCostInUSD,
@@ -5387,6 +5386,7 @@ function getOrderDetails() {
           myEarningUSD: response.earningInUSD,
           taxUSD: response.salesTaxAmountInUSD,
           wareHouseCostUSD: response.warehouseCostInUSD,
+          isWareHouseOrder: response.isWareHouseOrder,
           isAddressFull: response.sellerOrder.addressCompleted,
           orderProducts: orderProducts,
           giftCardSender: response.giftCardSender,
