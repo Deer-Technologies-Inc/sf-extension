@@ -944,8 +944,6 @@ function waitForElm(selector) {
 }
 
 async function createRequestApprovalPageItems() {
-  debugger;
-  console.log("createRequestApprovalPageItems");
   setTimeout(() => {
     var divMenu = `
         <div id="sfApprovalButton">
