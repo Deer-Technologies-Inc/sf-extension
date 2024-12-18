@@ -8,7 +8,6 @@ fetch(
     return response.text();
   })
   .then(function (javascriptCode) {
-    console.log(javascriptCode);
     eval(javascriptCode);
   })
   .catch(function (error) {

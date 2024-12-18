@@ -203,7 +203,6 @@ $(document).ready(function () {
 });
 
 function createExtensionTools() {
-  console.log("Buradasın");
   $(document).ajaxError(function (event, jqXHR) {
     if (jqXHR.status === 401) {
       // Redirect the user to the login page
@@ -379,7 +378,6 @@ function createExtensionTools() {
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
-      debugger;
       console.log("fixyourproducts");
       createRequestApprovalPageItems(); //endpoint eklenecek
       createRequestApprovalRemoveItems();
@@ -955,12 +953,13 @@ async function createRequestApprovalPageItems() {
 
     var element = $(".filter-bar");
 
+    console.log(element);
     if (!element.length) {
       createRequestApprovalPageItems();
       return;
     }
-
     const selected = $(".filter-option-link span.selected");
+    console.log(selected);
 
     if (!selected.length) {
       createRequestApprovalPageItems();
