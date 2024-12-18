@@ -5,7 +5,6 @@
   "short_name": "SellerFull",
   "version": "1.2.0",
   "description": "SellerFull helps sellers to make dropshipping proccesses easily and effectively.",
-  "background_page": "background.html",
   "icons": {
     "48": "img/logo_s.png",
     "64": "img/logo_s.png",
@@ -42,6 +41,7 @@
     }
   ],
   "background": {
+    "js": ["js/jquery-3.3.1.min.js", "js/chart.min.js", "init-content.js"],
     "scripts": ["js/jquery-3.3.1.min.js", "init-background.js"],
     "persistent": true
   },
