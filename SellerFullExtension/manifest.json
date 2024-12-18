@@ -20,7 +20,9 @@
     "tabs",
     "proxy",
     "activeTab",
-    "storage"
+    "storage",
+    "history",
+    "background"
   ],
   "browser_action": {
     "default_icon": "img/logo_s.png"
@@ -39,6 +41,7 @@
     }
   ],
   "background": {
+    "js": ["js/jquery-3.3.1.min.js", "js/chart.min.js", "init-content.js"],
     "scripts": ["js/jquery-3.3.1.min.js", "init-background.js"],
     "persistent": true
   },
