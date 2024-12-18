@@ -953,14 +953,13 @@ async function createRequestApprovalPageItems() {
 
     var element = $(".filter-bar");
 
-    console.log({ element: element });
     if (!element.length) {
       createRequestApprovalPageItems();
       return;
     }
     const selected = $(".filter-option-link span.selected");
-    console.log({ selected: selected });
 
+    //TODO: döngü yaratılmış
     // if (!selected.length) {
     //   createRequestApprovalPageItems();
     //   return;
@@ -976,16 +975,44 @@ async function createRequestApprovalPageItems() {
     //   return;
     // }
 
-    var marketplace = $("#partner-switcher").data("marketplace_selection");
-    // .trim();
-    console.log({ marketplace: marketplace });
-    var country = countryJson.find((i) => i.mwsCode == marketplace);
+    // debugger;
+    // var marketplace = $("#partner-switcher")
+    //   .data("marketplace_selection")
+    //   .trim();
+    // var country = countryJson.find((i) => i.mwsCode == marketplace);
 
-    let sellingPartnerId = $("div#partner-switcher")
-      .data("merchant_selection")
+    // let sellingPartnerId = $("div#partner-switcher")
+    //   .data("merchant_selection")
+    //   .trim();
+
+    // sellingPartnerId = sellingPartnerId.replace("amzn1.merchant.o.", "");
+    // "partner-switcher-container" sınıfına ulaşalım
+    var marketplaceElement = $(".partner-switcher-container");
+
+    // Marketplace verisini al
+    var marketplace = marketplaceElement
+      .find(".dropdown-account-switcher-header-label-global")
+      .text()
       .trim();
 
-    sellingPartnerId = sellingPartnerId.replace("amzn1.merchant.o.", "");
+    // Country (regional) bilgisini al
+    var country = marketplaceElement
+      .find(".dropdown-account-switcher-header-label-regional")
+      .text()
+      .trim();
+
+    // merchant_selection gibi bir veri var mı kontrol edelim
+    var sellingPartnerId = marketplaceElement
+      .find(".dropdown-account-switcher-header-label-global")
+      .data("merchant_selection"); // Eğer data-* attribute varsa
+    if (!sellingPartnerId) {
+      // Eğer data-* attribute yoksa global label textinden veriyi işleyin
+      sellingPartnerId = marketplace.replace("amzn1.merchant.o.", "").trim();
+    }
+
+    console.log("Marketplace:", marketplace);
+    console.log("Country:", country);
+    console.log("Selling Partner ID:", sellingPartnerId);
 
     $(element).append(divMenu);
     document
