@@ -956,7 +956,6 @@ async function createRequestApprovalPageItems() {
         </div>`;
 
     var element = $(".filter-bar");
-    console.log(element);
 
     if (!element.length) {
       createRequestApprovalPageItems();
