@@ -944,10 +944,10 @@ function waitForElm(selector) {
 }
 
 async function createRequestApprovalPageItems() {
-  setTimeout(() => {
+  setTimeout(async () => {
     var divMenu = `
         <div id="sfApprovalButton">
-            <input type="button" value="${language["1000163"][activeLanguage]}" title="${language["1000168"][activeLanguage]}" class="green-button" style="width:auto; margin-left:10px" id="approveButtonSf" >
+            <input type="button" value="${language["1000163"][activeLanguage]}" title="${language["1000168"][activeLanguage]}" class="yellow-button" style="width:auto; margin-left:10px" id="approveButtonSf" >
             </input>
         </div>`;
 
@@ -957,62 +957,26 @@ async function createRequestApprovalPageItems() {
       createRequestApprovalPageItems();
       return;
     }
+
     const selected = $(".filter-option-link span.selected");
 
-    //TODO: döngü yaratılmış
-    // if (!selected.length) {
-    //   createRequestApprovalPageItems();
-    //   return;
-    // }
-
-    // if (!selected[0].textContent) {
-    //   createRequestApprovalPageItems();
-    //   return;
-    // }
-
-    // if (!selected[0].textContent.includes("Approval")) {
-    //   createRequestApprovalPageItems();
-    //   return;
-    // }
-
-    // debugger;
-    // var marketplace = $("#partner-switcher")
-    //   .data("marketplace_selection")
-    //   .trim();
-    // var country = countryJson.find((i) => i.mwsCode == marketplace);
-
-    // let sellingPartnerId = $("div#partner-switcher")
-    //   .data("merchant_selection")
-    //   .trim();
-
-    // sellingPartnerId = sellingPartnerId.replace("amzn1.merchant.o.", "");
-    // "partner-switcher-container" sınıfına ulaşalım
-    var marketplaceElement = $(".partner-switcher-container");
-
-    // Marketplace verisini al
-    var marketplace = marketplaceElement
-      .find(".dropdown-account-switcher-header-label-global")
-      .text()
-      .trim();
-
-    // Country (regional) bilgisini al
-    var country = marketplaceElement
-      .find(".dropdown-account-switcher-header-label-regional")
-      .text()
-      .trim();
-
-    // merchant_selection gibi bir veri var mı kontrol edelim
-    var sellingPartnerId = marketplaceElement
-      .find(".dropdown-account-switcher-header-label-global")
-      .data("merchant_selection"); // Eğer data-* attribute varsa
-    if (!sellingPartnerId) {
-      // Eğer data-* attribute yoksa global label textinden veriyi işleyin
-      sellingPartnerId = marketplace.replace("amzn1.merchant.o.", "").trim();
+    if (!selected.length) {
+      createRequestApprovalPageItems();
+      return;
     }
 
-    console.log("Marketplace:", marketplace);
-    console.log("Country:", country);
-    console.log("Selling Partner ID:", sellingPartnerId);
+    if (!selected[0].textContent) {
+      createRequestApprovalPageItems();
+      return;
+    }
+
+    if (!selected[0].textContent.includes("Approval")) {
+      createRequestApprovalPageItems();
+      return;
+    }
+
+    const [marketplace, country, sellingPartnerId] =
+      await getSellingPartnerInfo();
 
     $(element).append(divMenu);
     document
@@ -1043,17 +1007,32 @@ async function createRequestApprovalPageItems() {
         );
 
         var div = `
-
-            <div id='sfPreloader-message'>
-            <img src='${chrome.runtime.getURL(
+      
+        <div id='sfPreloader-message'>
+            <img id='sfLoadingImage' src='${chrome.runtime.getURL(
               "img/loading.gif"
             )}' style='height:50px; margin-left:20px;' /><br>
-              <div id='sfProgressMessage'>
-              </div>
-            </div>
-            <div id='sfPreloader'><div>
+          <div id='sfProgressMessage'>
+          </div>
+          <div>${
+            language["1000185"][activeLanguage]
+          } <span id='processedAsinCount'>0</span></div>
+          <div id='lastApprovedCountMessage' style='display:none;'>${
+            language["1000186"][activeLanguage]
+          } <span id='lastApprovedCount'>0</span></div>
+          <button id='closeMessageButton' style='display:none; margin-top:10px; padding:10px 20px; background-color:#4CAF50; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;'>${
+            language["1000187"][activeLanguage]
+          }</button>
+        </div>
+        <div id='sfPreloader'><div>
          `;
         $("body").prepend(div);
+        let lastApprovedCount = 0;
+        let processedAsinCount = 0;
+        let notApprovedSkus = [];
+        localStorage.removeItem(
+          `notApprovedSkus_${sellingPartnerId}_${marketplace}`
+        );
 
         for (let i = 1; i <= totalPage; i++) {
           let progressText = `${language["1000164"][activeLanguage]} <br> ${language["1000165"][activeLanguage]} ${i}/${totalPage}`;
@@ -1078,14 +1057,32 @@ async function createRequestApprovalPageItems() {
           ).map((r) => r.textContent.replace("ASIN: ", "").trim());
           const approvedAsins = [];
           const { origin } = location;
+          const skus = Array.from(
+            document.querySelectorAll(".product-details-card .sku")
+          ).map((r) => r.textContent.replace("SKU: ", "").trim());
+          const skuMap = new Map();
+
+          for (let i = 0; i < asins.length; ++i) {
+            skuMap.set(asins[i], skus[i]);
+          }
+
           for (const asin of asins) {
+            processedAsinCount++;
+            $("#processedAsinCount").text(processedAsinCount);
             try {
               const url = `${origin}/hz/approvalrequest/restrictions/approve?asin=${asin}&itemcondition=new&ref=myi_il_ra`;
 
               const response = await fetch(url);
 
               if (response.status !== 200) {
-                console.log(`${response.status} for ASIN: ${asin}`);
+                const sku = skuMap.get(asin);
+                if (sku && !notApprovedSkus.includes(sku)) {
+                  notApprovedSkus.push(sku);
+                  localStorage.setItem(
+                    `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                    JSON.stringify(notApprovedSkus)
+                  );
+                }
                 continue;
               }
 
@@ -1117,6 +1114,18 @@ async function createRequestApprovalPageItems() {
                 referrer,
               });
 
+              if (!redirect.redirected) {
+                const sku = skuMap.get(asin);
+                if (sku && !notApprovedSkus.includes(sku)) {
+                  notApprovedSkus.push(sku);
+                  localStorage.setItem(
+                    `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                    JSON.stringify(notApprovedSkus)
+                  );
+                }
+                continue;
+              }
+
               const approvalUrl = redirect.url;
               const applicationId = approvalUrl.split("application-id=").pop();
 
@@ -1131,15 +1140,68 @@ async function createRequestApprovalPageItems() {
               );
               if ($documentRequired.length) {
                 console.log("document required skipping asin ", asin);
+                const sku = skuMap.get(asin);
+                if (sku && !notApprovedSkus.includes(sku)) {
+                  notApprovedSkus.push(sku);
+                  localStorage.setItem(
+                    `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                    JSON.stringify(notApprovedSkus)
+                  );
+                }
                 continue;
               }
-
               const approvalCsrf = $approvalForm
                 .find("input[name=appFormPageCsrfToken]")
                 .val();
               const config = $approvalForm
                 .find(".SellerUniversityWidgetDocumentConfig")
                 .attr("data-su-widget-config");
+
+              if (approveResponse.status !== 200) {
+                console.log("not approved for asin: ", asin);
+                const sku = skuMap.get(asin);
+                if (sku && !notApprovedSkus.includes(sku)) {
+                  notApprovedSkus.push(sku);
+                  localStorage.setItem(
+                    `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                    JSON.stringify(notApprovedSkus)
+                  );
+                }
+                continue;
+              }
+
+              if (approveResponse.status === 200) {
+                const approvedMessages = [
+                  "Your selling application is approved",
+                  "You can sell this product in the following conditions",
+                ];
+                const isApproved = approvedMessages.some((message) =>
+                  approvalBody.includes(message)
+                );
+
+                if (isApproved) {
+                  console.log("approved for asin: ", asin);
+                  approvedAsins.push(asin);
+                  lastApprovedCount++;
+                  continue;
+                }
+              }
+              if (config == null) {
+                console.log(
+                  "Skipping the ASIN because the configuration for the selling application is null for ASIN: ",
+                  asin
+                );
+                const sku = skuMap.get(asin);
+                if (sku && !notApprovedSkus.includes(sku)) {
+                  notApprovedSkus.push(sku);
+                  localStorage.setItem(
+                    `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                    JSON.stringify(notApprovedSkus)
+                  );
+                }
+                continue;
+              }
+
               const configJson = JSON.parse(config);
               const { moduleId } = configJson;
 
@@ -1180,19 +1242,35 @@ async function createRequestApprovalPageItems() {
               approvalForm.append("appFormPageCsrfToken", approvalCsrf);
 
               const searchParams = new URLSearchParams(approvalForm);
-              const approvalResult = await fetch(
-                approveUrl,
-
-                {
-                  body: searchParams,
-                  method: "POST",
-                }
-              );
+              const approvalResult = await fetch(approveUrl, {
+                body: searchParams,
+                method: "POST",
+              });
 
               if (approvalResult.ok) {
+                console.log("approved for asin: ", asin);
                 approvedAsins.push(asin);
+                lastApprovedCount++;
+                continue;
+              } else {
+                const sku = skuMap.get(asin);
+                if (sku && !notApprovedSkus.includes(sku)) {
+                  notApprovedSkus.push(sku);
+                  localStorage.setItem(
+                    `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                    JSON.stringify(notApprovedSkus)
+                  );
+                }
               }
             } catch (err) {
+              const sku = skuMap.get(asin);
+              if (sku && !notApprovedSkus.includes(sku)) {
+                notApprovedSkus.push(sku);
+                localStorage.setItem(
+                  `notApprovedSkus_${sellingPartnerId.trim()}_${marketplace}`,
+                  JSON.stringify(notApprovedSkus)
+                );
+              }
               console.log(`error for asin ${asin}`, err);
               continue;
             }
@@ -1201,25 +1279,21 @@ async function createRequestApprovalPageItems() {
           if (!approvedAsins.length) {
             continue;
           }
-          var formData1 = new FormData();
 
-          formData1.append("countryCode", country.countryCode.trim());
-          formData1.append("sellingPartnerId", sellingPartnerId.trim());
-          formData1.append("customerId", 0);
-
-          for (let index = 0; index < approvedAsins.length; index++) {
-            formData1.append("asinList[]", approvedAsins[index]);
-          }
-          //Approve request yapılan ürünler backende bildiriliyor ama ne için kullanıldığı bilinmediği için kapatıldı.
           // $.ajax({
           //   type: "POST",
           //   url:
           //     user.apiSubdomain +
           //     "api/inventoryitem/updateinventoryitemsfromextension",
           //   headers: { Authorization: "Bearer " + user.token },
-          //   data: formData1,
+          //   data: JSON.stringify({
+          //     customerId: 0,
+          //     countryCode: country.countryCode.trim(),
+          //     sellingPartnerId: sellingPartnerId.trim(),
+          //     asinList: approvedAsins,
+          //   }),
           //   processData: false,
-          //   contentType: false,
+          //   contentType: "application/json;charset=utf-8",
           //   success: async function () {
           //     console.log("inventory item updates success!");
           //   },
@@ -1232,8 +1306,17 @@ async function createRequestApprovalPageItems() {
           // });
         }
 
-        $("#sfPreloader").hide();
-        $("#sfPreloader-message").hide();
+        $("#lastApprovedCount").text(lastApprovedCount);
+        $("#lastApprovedCountMessage").show();
+        $("#sfProgressMessage").text(language["1000188"][activeLanguage]);
+        $("#sfLoadingImage").hide();
+        $("#closeMessageButton").show();
+        document
+          .getElementById("closeMessageButton")
+          .addEventListener("click", () => {
+            $("#sfPreloader").hide();
+            $("#sfPreloader-message").remove();
+          });
       });
   }, 500);
 }
