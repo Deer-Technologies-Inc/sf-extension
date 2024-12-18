@@ -943,6 +943,7 @@ function waitForElm(selector) {
 }
 
 async function createRequestApprovalPageItems() {
+  debugger;
   setTimeout(() => {
     var divMenu = `
         <div id="sfApprovalButton">
@@ -951,6 +952,7 @@ async function createRequestApprovalPageItems() {
         </div>`;
 
     var element = $(".filter-bar");
+    console.log(element);
 
     if (!element.length) {
       createRequestApprovalPageItems();
@@ -989,7 +991,6 @@ async function createRequestApprovalPageItems() {
     document
       .getElementById("approveButtonSf")
       .addEventListener("click", async () => {
-        debugger;
         let tempMail = prompt(language["1000169"][activeLanguage], user.email);
 
         if (!confirm(language["1000167"][activeLanguage])) {
