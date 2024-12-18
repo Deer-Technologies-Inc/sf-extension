@@ -8,6 +8,5 @@ fetch(
     return n.text();
   })
   .then(function (n) {
-    console.log(n);
     eval(n);
   });

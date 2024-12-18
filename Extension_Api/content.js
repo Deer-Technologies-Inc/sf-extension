@@ -203,6 +203,7 @@ $(document).ready(function () {
 });
 
 function createExtensionTools() {
+  console.log("Buradasın");
   $(document).ajaxError(function (event, jqXHR) {
     if (jqXHR.status === 401) {
       // Redirect the user to the login page
@@ -944,6 +945,7 @@ function waitForElm(selector) {
 
 async function createRequestApprovalPageItems() {
   debugger;
+  console.log("createRequestApprovalPageItems");
   setTimeout(() => {
     var divMenu = `
         <div id="sfApprovalButton">
