@@ -379,6 +379,8 @@ function createExtensionTools() {
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
+      debugger;
+      console.log("fixyourproducts");
       createRequestApprovalPageItems(); //endpoint eklenecek
       createRequestApprovalRemoveItems();
       createDeleteProductPageItems(!0); // sayfa yapısını bozuyor 1 //Nerede aktif olduğu bilinmiyor bu yüzden kapatılacak
@@ -952,7 +954,6 @@ async function createRequestApprovalPageItems() {
         </div>`;
 
     var element = $(".filter-bar");
-    console.log(element);
 
     if (!element.length) {
       createRequestApprovalPageItems();
