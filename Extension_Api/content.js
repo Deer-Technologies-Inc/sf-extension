@@ -976,9 +976,9 @@ async function createRequestApprovalPageItems() {
     //   return;
     // }
 
-    var marketplace = $("#partner-switcher")
-      .data("marketplace_selection")
-      .trim();
+    var marketplace = $("#partner-switcher").data("marketplace_selection");
+    // .trim();
+    console.log({ marketplace: marketplace });
     var country = countryJson.find((i) => i.mwsCode == marketplace);
 
     let sellingPartnerId = $("div#partner-switcher")
