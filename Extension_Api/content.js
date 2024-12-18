@@ -378,10 +378,9 @@ function createExtensionTools() {
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
-      console.log("fixyourproducts");
-      createRequestApprovalPageItems(); //endpoint eklenecek
+      createRequestApprovalPageItems();
       createRequestApprovalRemoveItems();
-      createDeleteProductPageItems(!0); // sayfa yapısını bozuyor 1 //Nerede aktif olduğu bilinmiyor bu yüzden kapatılacak
+      createDeleteProductSuppressedListingPageItems(); // sayfa yapısını bozuyor 1
       createFixProductPageItems(); // sayfa yapısını bozuyor 2
     }
     //Manuel autopricer işlemleri için kullanılıyor fakat nasıl çalıştığı bilinmediği için kapatıldı.
@@ -1322,10 +1321,10 @@ async function createRequestApprovalPageItems() {
 }
 
 async function createRequestApprovalRemoveItems() {
-  setTimeout(() => {
+  setTimeout(async () => {
     var divMenu = `
         <div>
-            <input type="button" value="${language["1000182"][activeLanguage]}" title="${language["1000183"][activeLanguage]}" class="green-button" style="width:auto; margin-left:10px; color: white; background-color: #ff4242" id="approveRemoveButtonSf" >
+            <input type="button" value="${language["1000182"][activeLanguage]}" title="${language["1000183"][activeLanguage]}" class="yellow-button" style="width:auto; margin-left:10px; color: white; background-color: #ff4242" id="approveRemoveButtonSf">
             </input>
         </div>`;
 
@@ -1353,198 +1352,104 @@ async function createRequestApprovalRemoveItems() {
       return;
     }
 
-    var marketplace = $("#partner-switcher")
-      .data("marketplace_selection")
-      .trim();
-
-    var country = countryJson.find((i) => i.mwsCode == marketplace);
-
-    let sellingPartnerId = $("div#partner-switcher")
-      .data("merchant_selection")
-      .trim();
-
-    sellingPartnerId = sellingPartnerId.replace("amzn1.merchant.o.", "");
+    const [mp, , sellingPartnerId] = await getSellingPartnerInfo();
 
     $(element).append(divMenu);
     document
       .getElementById("approveRemoveButtonSf")
       .addEventListener("click", async () => {
-        if (
-          !$(".filter-option-link span.selected")[0].textContent.includes(
-            "Approval"
-          )
-        ) {
-          alert(language["1000166"][activeLanguage]);
+        const notApprovedSkus =
+          JSON.parse(
+            localStorage.getItem(
+              `notApprovedSkus_${sellingPartnerId.trim()}_${mp}`
+            )
+          ) || [];
+
+        if (notApprovedSkus.length === 0) {
+          alert(language["1000193"][activeLanguage]); // "No SKUs to remove."
           return;
         }
 
-        const pages = $(
-          ".pagination-container .pagination-component-wrapper kat-pagination"
-        )[0].shadowRoot.querySelectorAll("ul li.item.page");
-
-        const totalPage = parseInt(
-          pages[pages.length - 1].attributes["data-page"].value
-        );
-
-        var div = `
-
-            <div id='sfPreloader-message'>
-            <img src='${chrome.runtime.getURL(
-              "img/loading.gif"
-            )}' style='display:block; height:50px; margin-left: auto; margin-right: auto;' /><br>
-              <div id='sfProgressMessage'>
-              </div>
-            </div>
-            <div id='sfPreloader'><div>
-         `;
-        $("body").prepend(div);
-
-        for (let i = 1; i <= totalPage; i++) {
-          let progressText = `${language["1000164"][activeLanguage]} <br> ${language["1000165"][activeLanguage]} ${i}/${totalPage}`;
-
-          $("#sfProgressMessage").html(progressText);
-
-          const currentPage = $(
-            ".pagination-container .pagination-component-wrapper kat-pagination"
-          )[0].shadowRoot.querySelector(`ul li.item.page[data-page="${i}"]`);
-
-          if (!currentPage) {
-            console.error("could not found page", i);
-            continue;
-          }
-
-          currentPage.click();
-
-          await waitForElm("#row-0");
-
-          const asins = Array.from(
-            document.querySelectorAll(".product-details-card .asin")
-          ).map((r) => r.textContent.replace("ASIN: ", "").trim());
-          const skus = Array.from(
-            document.querySelectorAll(".product-details-card .sku")
-          ).map((r) => r.textContent.replace("SKU: ", "").trim());
-          const skuMap = new Map();
-
-          for (let i = 0; i < asins.length; ++i) {
-            skuMap.set(asins[i], skus[i]);
-          }
-
-          const removeAsins = [];
-          const { origin } = location;
-          for (const asin of asins) {
-            try {
-              const url = `${origin}/hz/approvalrequest/restrictions/approve?asin=${asin}&itemcondition=new&ref=myi_il_ra`;
-              const response = await fetch(url);
-
-              if (response.status !== 200) {
-                console.log(`${response.status} for ASIN: ${asin}`);
-                continue;
-              }
-
-              const body = await response.text();
-              const $approval = $(body);
-              const href = `/abis/Display/ItemSelected?asin=${asin}`;
-
-              const $alreadyApproved = $approval.find(`a[href='${href}']`);
-              if ($alreadyApproved.length) {
-                console.log("already approved skipping", asin);
-                continue;
-              }
-
-              const approveItemText = $approval.find(".a-list-item").text();
-
-              if (approveItemText.indexOf(asin) > -1) {
-                removeAsins.push(asin);
-                continue;
-              }
-
-              const csrf = $approval
-                .find("input[name=appFormPageCsrfToken]")
-                .val();
-
-              const form = new FormData();
-
-              form.append("appFormPageCsrfToken", csrf);
-
-              const url2 = `${origin}/hz/approvalrequest?asin=${asin}&itemcondition=new`;
-              const referrer = url;
-              const redirect = await fetch(url2, {
-                body: new URLSearchParams(form),
-                method: "POST",
-                referrer,
-              });
-
-              const approvalUrl = redirect.url;
-
-              const approveResponse = await fetch(approvalUrl, {
-                referrer,
-              });
-
-              const approvalBody = await approveResponse.text();
-              const $approvalForm = $(approvalBody);
-              const $documentRequired = $approvalForm.find(
-                "#container-dnd-invoice-checkboxes-new-1--, #container-dnd-Invoice-SU--"
-              );
-              if ($documentRequired.length) {
-                removeAsins.push(asin);
-              }
-            } catch (err) {
-              console.log(`error for asin ${asin}`, err);
-              continue;
-            }
-          }
-
-          if (!removeAsins.length) {
-            continue;
-          }
-          debugger;
-          var pList = [];
-
-          // for (let i = 0; i < removeAsins.length; ++i) {
-          //   var obj = {};
-          //   obj["Sku"] = skuMap.get(removeAsins[i]);
-          //   pList.push(obj);
-          // }
-          for (let i = 0; i < removeAsins.length; ++i) {
-            pList.push(skuMap.get(removeAsins[i]));
-          }
-
-          // var mp = getMarketplaceByPage().AmazonMarketplaceId;
-          console.log("P List");
-          console.log(pList);
-          $.ajax({
-            url: `${baseUrls[user.platform]}${
-              endPoints.StoreProduct.storeProducts
-            }`,
-            type: "DELETE",
-            contentType: "application/json;charset=utf-8",
-            headers: { Authorization: "Bearer " + user.token },
-            data: JSON.stringify({
-              skUs: pList,
-              storeProductIds: [],
-              asiNs: [],
-            }),
-            success: function () {},
-            failure: function (response) {
-              console.log("Error (failure)! ", response);
-            },
-            complete: function (data) {
-              if (data.status == 200) {
-                $(".sf-alert-content").html(
-                  language["1000008"][activeLanguage]
-                );
-              } else {
-                $(".sf-alert-content").html(
-                  "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                    language["1000009"][activeLanguage]
-                );
-              }
-            },
-          });
+        if (!confirm(language["1000167"][activeLanguage])) {
+          return;
         }
 
-        $("#sfPreloader").hide();
-        $("#sfPreloader-message").hide();
+        var pList = notApprovedSkus.map((sku) => {
+          return { Sku: sku }; // Using SKU directly
+        });
+        $.ajax({
+          url: `${baseUrls[user.platform]}${
+            endPoints.StoreProduct.storeProducts
+          }`,
+          type: "DELETE",
+          contentType: "application/json;charset=utf-8",
+          headers: { Authorization: "Bearer " + user.token },
+          data: JSON.stringify({
+            skUs: pList,
+            storeProductIds: [],
+            asiNs: [],
+          }),
+          success: function () {},
+          failure: function (response) {
+            console.log("Error (failure)! ", response);
+          },
+          complete: function (data) {
+            if (data.status == 200) {
+              $(".sf-alert-content").html(language["1000008"][activeLanguage]);
+            } else {
+              $(".sf-alert-content").html(
+                "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+                  language["1000009"][activeLanguage]
+              );
+            }
+          },
+        });
+        // $.ajax({
+        //   url: user.apiSubdomain + "api/inventoryItem/removeInventoryItems",
+        //   type: "POST",
+        //   contentType: "application/json;charset=utf-8",
+        //   headers: { Authorization: "Bearer " + user.token },
+        //   data: JSON.stringify({
+        //     customerId: user.customerId,
+        //     marketPlaceCode: mp,
+        //     productList: pList,
+        //   }),
+        //   success: function () {},
+        //   failure: function (response) {
+        //     console.log("Error (failure)! ", response);
+        //   },
+        //   complete: function (data) {
+        //     if (data.status == 200) {
+        //       localStorage.removeItem(
+        //         `notApprovedSkus_${sellingPartnerId.trim()}_${mp}`
+        //       );
+        //       console.log("Items removed successfully!");
+        //       var divFinished = `
+        //         <div id='sfPreloaderFinished'>
+        //             <div id='sfPreloaderFinished-message'>
+        //                 <div style="float:right; margin-right: 0px;">
+        //                     <button class="yellow-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+        //                 </div>
+        //                 <div style="margin-top:40px">
+        //                     <p style="margin-top:110px">${language["1000008"][activeLanguage]}</p>
+        //                     <p>${language["1000194"][activeLanguage]}: ${notApprovedSkus.length}</p>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //       `;
+        //       $("body").prepend(divFinished);
+        //       $("#sf-hidePreloader").click(function () {
+        //         $("#sfPreloaderFinished").hide();
+        //       });
+        //     } else {
+        //       console.log("Failed to remove items.");
+        //       $(".sf-alert-content").html(
+        //         "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+        //           language["1000009"][activeLanguage]
+        //       );
+        //     }
+        //   },
+        // });
       });
   }, 500);
 }
