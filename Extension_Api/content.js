@@ -953,28 +953,28 @@ async function createRequestApprovalPageItems() {
 
     var element = $(".filter-bar");
 
-    console.log(element);
+    console.log({ element: element });
     if (!element.length) {
       createRequestApprovalPageItems();
       return;
     }
     const selected = $(".filter-option-link span.selected");
-    console.log(selected);
+    console.log({ selected: selected });
 
-    if (!selected.length) {
-      createRequestApprovalPageItems();
-      return;
-    }
+    // if (!selected.length) {
+    //   createRequestApprovalPageItems();
+    //   return;
+    // }
 
-    if (!selected[0].textContent) {
-      createRequestApprovalPageItems();
-      return;
-    }
+    // if (!selected[0].textContent) {
+    //   createRequestApprovalPageItems();
+    //   return;
+    // }
 
-    if (!selected[0].textContent.includes("Approval")) {
-      createRequestApprovalPageItems();
-      return;
-    }
+    // if (!selected[0].textContent.includes("Approval")) {
+    //   createRequestApprovalPageItems();
+    //   return;
+    // }
 
     var marketplace = $("#partner-switcher")
       .data("marketplace_selection")
