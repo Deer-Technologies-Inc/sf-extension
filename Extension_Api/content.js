@@ -329,9 +329,9 @@ function createExtensionTools() {
       }
       //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
       else if (location.href.includes("/addresses/add")) {
-        createAddNewAddressPageItems();
+        // createAddNewAddressPageItems(); // TODO: SELLERFULL Adres işlemleri bekleniyor
       } else if (location.href.includes("/a/addresses")) {
-        createAllAddressesPageItems();
+        // createAllAddressesPageItems(); // TODO: SELLERFULL Adres işlemleri bekleniyor
       } else if (
         location.href.includes("/print.html") ||
         location.href.includes("/message-us")
@@ -344,9 +344,9 @@ function createExtensionTools() {
     //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
     else if (location.hostname == "www.amazon.co.jp") {
       if (location.href.includes("/addresses/add")) {
-        createAddNewAddressPageItems();
+        // createAddNewAddressPageItems(); // TODO: SELLERFULL Adres işlemleri bekleniyor
       } else if (location.href.includes("gp/buy/addressselect")) {
-        createAddNewAddressPageItems();
+        // createAddNewAddressPageItems(); // TODO: SELLERFULL Adres işlemleri bekleniyor
       }
     }
   } else if (
@@ -367,20 +367,37 @@ function createExtensionTools() {
     }
     //Adres kopyalama özelliği şimdilik eklenmedi bu yüzden kapatılacak
     else if (location.href.includes("/addresses/add")) {
-      createAddNewAddressPageItems();
+      // createAddNewAddressPageItems();  // TODO: SELLERFULL Adres işlemleri bekleniyor
     } else if (location.href.includes("/a/addresses")) {
-      createAllAddressesPageItems();
-    }
-    //Nerede aktif olduğu bilinmiyor bu yüzden kapatılacak
-    else if (location.href.indexOf("inventory/confirmAction") > -1) {
-      createDeleteProductPageItems(!1);
+      // createAllAddressesPageItems(); // TODO: SELLERFULL Adres işlemleri bekleniyor
+    } else if (location.href.indexOf("myinventory/inventory") > -1) {
+      let hasLogged = false;
+
+      const observer = new MutationObserver(function (mutations) {
+        mutations.forEach(function (mutation) {
+          if (mutation.addedNodes.length > 0) {
+            const deleteButton = document.querySelector(
+              "kat-button[label='Delete listing']"
+            );
+            if (deleteButton && !hasLogged) {
+              hasLogged = true;
+              // createDeleteProductPageItems(); // TODO: SELLERFULL Kapattı
+              observer.disconnect();
+            }
+          }
+        });
+      });
+
+      const targetNode = document.body;
+      const config = { childList: true, subtree: true };
+      observer.observe(targetNode, config);
     } else if (
       location.href.indexOf("inventory/pivot/inactive") > -1 ||
       location.href.indexOf("fixyourproducts") > -1
     ) {
       createRequestApprovalPageItems();
       createRequestApprovalRemoveItems();
-      createDeleteProductSuppressedListingPageItems(); // sayfa yapısını bozuyor 1
+      // createDeleteProductSuppressedListingPageItems(); // sayfa yapısını bozuyor 1
       createFixProductPageItems(); // sayfa yapısını bozuyor 2
     }
     //Manuel autopricer işlemleri için kullanılıyor fakat nasıl çalıştığı bilinmediği için kapatıldı.
@@ -946,7 +963,7 @@ async function createRequestApprovalPageItems() {
   setTimeout(async () => {
     var divMenu = `
         <div id="sfApprovalButton">
-            <input type="button" value="${language["1000163"][activeLanguage]}" title="${language["1000168"][activeLanguage]}" class="yellow-button" style="width:auto; margin-left:10px" id="approveButtonSf" >
+            <input type="button" value="${language["1000163"][activeLanguage]}" title="${language["1000168"][activeLanguage]}" class="green-button" style="width:auto; margin-left:10px" id="approveButtonSf" >
             </input>
         </div>`;
 
@@ -1320,11 +1337,32 @@ async function createRequestApprovalPageItems() {
   }, 500);
 }
 
+async function getSellingPartnerInfo() {
+  var ps = $("#partner-switcher");
+
+  if (!ps.length) {
+    var partnerHtml = await fetch("/trim/component/partner-dropdown").then(
+      (r) => r.text()
+    );
+
+    ps = $(partnerHtml);
+  }
+
+  var marketplace = ps.data("marketplace_selection").trim();
+  var country = countryJson.find((i) => i.mwsCode == marketplace);
+  var sellingPartnerId = ps
+    .data("merchant_selection")
+    .replace("amzn1.merchant.o.", "")
+    .trim();
+
+  return [marketplace, country, sellingPartnerId];
+}
+
 async function createRequestApprovalRemoveItems() {
   setTimeout(async () => {
     var divMenu = `
         <div>
-            <input type="button" value="${language["1000182"][activeLanguage]}" title="${language["1000183"][activeLanguage]}" class="yellow-button" style="width:auto; margin-left:10px; color: white; background-color: #ff4242" id="approveRemoveButtonSf">
+            <input type="button" value="${language["1000182"][activeLanguage]}" title="${language["1000183"][activeLanguage]}" class="green-button" style="width:auto; margin-left:10px; color: white; background-color: #ff4242" id="approveRemoveButtonSf">
             </input>
         </div>`;
 
@@ -1428,7 +1466,7 @@ async function createRequestApprovalRemoveItems() {
         //         <div id='sfPreloaderFinished'>
         //             <div id='sfPreloaderFinished-message'>
         //                 <div style="float:right; margin-right: 0px;">
-        //                     <button class="yellow-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+        //                     <button class="green-button" id="sf-hidePreloader" style="width:25px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
         //                 </div>
         //                 <div style="margin-top:40px">
         //                     <p style="margin-top:110px">${language["1000008"][activeLanguage]}</p>
@@ -1654,14 +1692,30 @@ async function createRequestApprovalRemoveItems() {
 
 function createSellerCentralHomePageItems() {
   setTimeout(async () => {
-    var marketplace = $("#partner-switcher")
-      .data("marketplace_selection")
-      .trim();
-    var country = countryJson.find((i) => i.mwsCode == marketplace);
-    var sellerId = $("div#partner-switcher").data("merchant_selection").trim();
-    sellerId = sellerId.replace("amzn1.merchant.o.", "");
+    const [, country, sellerId] = await getSellingPartnerInfo();
 
     var isManualManagementMarketPlace = false;
+
+    // TODO: SELLERFULL isManualManagementMarketPlace kontrolü yapılıyor fakat biz bunu yapmamışız false olarak devam etmişiz
+    // await new Promise((resolve) => {
+    //   $.ajax({
+    //     type: "GET",
+    //     url:
+    //       user.apiSubdomain +
+    //       "api/CustomerMarketPlace/IsManualManagementMarketPlace?sellingPartnerId=" +
+    //       sellerId +
+    //       "&countryCode=" +
+    //       country.countryCode,
+    //     headers: { Authorization: "Bearer " + user.token },
+    //     success: async function (response) {
+    //       if (response == true) {
+    //         isManualManagementMarketPlace = true;
+    //       }
+
+    //       resolve();
+    //     },
+    //   });
+    // });
 
     setTimeout(() => {
       var s = $("#KPI_CARD_LIST_DATA").text();
@@ -1672,25 +1726,25 @@ function createSellerCentralHomePageItems() {
 
     if (!isManualManagementMarketPlace) {
       let sfDiv = `
-        <div class="css-93gqc1" style="min-height: 67px; border: 1px solid rgb(206, 209, 210);padding: 8px;">
-          <div id="sfContainer" style="width:250px;">
-            <button id='sfCheckAddresses' class="green-button">
-                  ${language["1000088"][activeLanguage]}
-            </button>
-            <p id="sfMessage"> ${language["1000089"][activeLanguage]}</p>
+          <div class="css-93gqc1" style="min-height: 67px; border: 1px solid rgb(206, 209, 210);padding: 8px;">
+            <div id="sfContainer" style="width:250px;">
+              <button id='sfCheckAddresses' class="green-button">
+                    ${language["1000088"][activeLanguage]}
+              </button>
+              <p id="sfMessage"> ${language["1000089"][activeLanguage]}</p>
+            </div>
           </div>
-        </div>
-          `;
+            `;
 
       let container = $("#kpiCardList div[data-testid='Grid']");
 
       if (!container || container.length == 0) {
-        container = $("#KpiCardList casino-channel-grid");
+        container = $("#KpiCardList casino-channel-grid, casino-channel-grid");
         sfDiv = `
-              <div class="hydrated" style="order: 200; grid-column: span 10;">
-                ${sfDiv}
-              </div>
-            `;
+            <div class="hydrated" style="order: 200; grid-column: span 10;">
+              ${sfDiv}
+            </div>
+          `;
       }
 
       container.first().after(sfDiv);
@@ -1705,6 +1759,264 @@ function createSellerCentralHomePageItems() {
       setInterval(() => {
         checkIfNotFullAddressExists();
       }, 60000 * 10); // Every 10 min.
+    } else {
+      var divMenu = `
+                  <div id="sfContainerMenu" class="sfContainer-bg3" style="width:450px; height:580px;">
+                      <div class="sfContainer-top">
+                          <div class="flex ai-c jc-sb" style="height:42px; padding: 0 0 0 15px;">
+                              <div class="flex ai-c">
+                                  <i class="fas fa-user"></i>
+                                  <span class="ml-15">${user.name}</span>
+                              </div>
+                              <div>
+                                  <button class="green-button" id="sf-hideTracker" style="width:30px;  font-weight:bold;">${
+                                    language["1000070"][activeLanguage]
+                                  }</button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="sfContent">
+                          <div style="text-align: center !important; margin-top:0px;">
+                              <img src=${chrome.runtime.getURL(
+                                "img/logo_uzun.png"
+                              )} style="height: 40px; margin:20px;">
+                          </div>
+                          <div style="text-align: center; margin-bottom:10px;">
+                          <span style="font-family: 'Poppins';">Manuel Yönetim İşlemleri</span>
+                          </div>
+  
+                          <div class="flex ai-c jc-sb mb-10">
+                              <div style="margin-top: 3px;">
+                                  <img src='${chrome.runtime.getURL(
+                                    "img/amz2sf.png"
+                                  )}' style='height: 34px;' alt='' />
+                              </div>
+                              <div class="flex ai-c jc-end">
+                                  <button id='sfManualTransferOrders' class="green-button" style="width:310px; font-family: 'Poppins';">
+                                          ${language["1000150"][activeLanguage]}
+                                  </button>
+                                  <div>
+                                      <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
+                                      <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
+                                          <ul style="color: white;">
+                                              <li>Siparişleriniz SellerCentral’dan SellerFlash Panel uygulamasına aktarıalcaktır.</li>
+                                              <li>Siparişlerinizin panelde görülmesi için bu işlemi yeteri sıklıkta gerçekleştirilmeniz gerekmektedir. </li>
+                                              <li>Yeni sipariş bilgileriniz taranarak bilgilerinin aktarılması sağlanacaktır. </li>
+                                          </ul>
+                                      </span>
+                                      </i>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="flex ai-c jc-sb mb-10">
+                              <div style="margin-top: 3px;">
+                                  <img src='${chrome.runtime.getURL(
+                                    "img/amz2sf.png"
+                                  )}' style='height: 34px;' alt='' />
+                              </div>
+                              <div class="flex ai-c jc-end">
+                                  <button id='sfManualTransferInventory' class="green-button " style="width:310px; font-family: 'Poppins';">
+                                      ${language["1000151"][activeLanguage]}
+                                  </button>
+                                  <div>
+                                      <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
+                                      <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
+                                          <ul style="color: white;">
+                                              <li>Envanter bilgileriniz SellerCentral’dan SellerFlash Panel uygulamasına aktarılacaktır.</li>
+                                              <li>Envanter uyumluğu için;
+                                                  <ul>
+                                                      <li>İlk mağazanızı bağladığınızda,</li>
+                                                      <li>SellerCentraldaki manuel envanter değişikliklerinde bu işlemin yapılması gerekmektedir. </li>
+                                                  </ul>
+                                              </li>
+                                          </ul>
+                                      </span>
+                                      </i>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="flex ai-c jc-sb mb-10">
+                              <div style="margin-top: 3px;">
+                                  <img src='${chrome.runtime.getURL(
+                                    "img/sf2amz.png"
+                                  )}' style='height: 34px;' alt='' />
+                              </div>
+                              <div class="flex ai-c jc-end">
+                                  <button id='sfManualGetInventoryUpdatesFromSF' class="green-button" style="width:310px; font-family: 'Poppins';">
+                                      ${language["1000152"][activeLanguage]}
+                                  </button>
+                                  <div>
+                                      <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
+                                      <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
+                                          <ul style="color: white;">
+                                              <li>Envanterinizin stok ve fiyat güncellemeleri SellerFlash’tan Amazon’a aktarılacaktır.</li>
+                                              <li>Stok ve değişimlerinin yansıtılabilmesi için her 2 saatte bir bu işlemin yapılması gerekmektedir. </li>
+                                              <li>SellerFlashta, kar oranı, vergi oranı vb. Stok ve fiyat bilgilerinin değitiren ayarlar yapılması durumunda 30 dakika sonra bu işlemin yapılması gerekmektedir. </li>
+                                              <li>Ürün Silme, ürün ekleme işlemlerinden 30 dakika sonra bu işlemin yapılması gerekmektedir. </li>
+                                          </ul>
+                                      </span>
+                                      </i>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="flex ai-c jc-sb mb-10">
+                              <div style="margin-top: 3px;">
+                                  <img src='${chrome.runtime.getURL(
+                                    "img/sf2amz.png"
+                                  )}' style='height: 34px;' alt='' />
+                              </div>
+                              <div class="flex ai-c jc-end">
+                                  <button id='sfManualTransferLoadingResults' class="green-button" style="width:310px; font-family: 'Poppins';">
+                                      ${language["1000154"][activeLanguage]}
+                                  </button>
+                                  <div>
+                                      <i class='fa fa-info-circle sftooltip' style='margin-left: 5px;' >
+                                      <span class="sftooltiptext" style="top: -35px;left: -400px; width: 400px;">
+                                          <ul style="color: white;">
+                                              <li>Manuel Envanter güncelleme raporları oluştukça bu buton aktif olacaktır.</li>
+                                              <li>Tamamlanan raporlar sonuçları SellerFlash’a aktarılarak envanter güncelleme işlemleri tamamlanmış olur. </li>
+                                              <li>Buton aktif ise bekleyen rapor sonuçlarının işlenmesi için işlem yapılmalıdır. </li>
+                                          </ul>
+                                      </span>
+                                      </i>
+                                  </div>
+                              </div>
+                          </div>
+                          <button id='sfManualGoOrderUploadPage' class="blue-button" style="width:100%; font-family: 'Poppins';">
+                              ${language["1000156"][activeLanguage]}
+                          </button>
+                          <div style="width: 100%;">
+                              <div id="sfProcessDetails" class="sf-process mt-10  jc-center" style="display:none;">
+                              </div>
+                          </div>
+                      </div>
+                  </div> `;
+
+      var sfButton = `
+                  <button id="sfButton" style="z-index: 999999; position: fixed; width:80px; height: 80px; bottom: 10px; right: 10px; display: none;
+                  background: none; border: none; ">
+                      <img src=${chrome.runtime.getURL(
+                        "img/sf_extension.svg"
+                      )} style="width: 80px;">
+                  </button>`;
+      $("body").prepend(sfButton);
+      $("body").append(divMenu);
+
+      $("#sfButton").click(function () {
+        $("#sfContainerMenu").show();
+        $("#sfButton").hide();
+      });
+      $("#sf-hideTracker").click(function () {
+        $("#sfContainerMenu").hide();
+        $("#sfButton").show();
+      });
+
+      $("#sfManualTransferOrders").click(async function () {
+        $("#sfProcessDetails").html(
+          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
+            chrome.runtime.getURL("img/loading.gif") +
+            "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+            language["1000090"][activeLanguage] +
+            "</div>"
+        );
+        $("#sfProcessDetails").show();
+        $("#sfManualTransferOrders").prop("disabled", true);
+
+        await manualTransferOrders();
+      });
+
+      $("#sfManualTransferInventory").click(async function () {
+        $("#sfProcessDetails").html(
+          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
+            chrome.runtime.getURL("img/loading.gif") +
+            "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+            language["1000090"][activeLanguage] +
+            "</div>"
+        );
+        $("#sfProcessDetails").show();
+        $("#sfManualTransferInventory").prop("disabled", true);
+
+        await manualTransferInventory();
+      });
+
+      // TODO: SELLERFULL burayı yine değiştirmek yerine kapatmışız
+      // $.ajax({
+      //   type: "GET",
+      //   url:
+      //     user.apiSubdomain +
+      //     "api/feeds/getPendingFeeds?sellerId=" +
+      //     sellerId +
+      //     "&feedType=7&countryCode=" +
+      //     country.countryCode,
+      //   headers: { Authorization: "Bearer " + user.token },
+      //   success: async function (response) {
+      //     if (response.length == 0) {
+      //       $("#sfManualTransferLoadingResults").prop("disabled", true);
+      //       $("#sfManualTransferLoadingResults").css("cursor", "not-allowed");
+      //       $("#sfManualTransferLoadingResults").prop(
+      //         "title",
+      //         "Tüm güncellemeler tamamlanmıştır."
+      //       );
+      //     } else {
+      //       $("#sfManualTransferLoadingResults").prop("disabled", false);
+      //       $("#sfManualTransferLoadingResults").css("cursor", "pointer");
+      //       $("#sfManualTransferLoadingResults").text(
+      //         $("#sfManualTransferLoadingResults").text() +
+      //           " (" +
+      //           response.length +
+      //           " adet)"
+      //       );
+      //     }
+      //   },
+      //   failure: function (response) {
+      //     console.log("listing/getPendingFeeds.failure!", response);
+      //   },
+      //   complete: async function (response) {
+      //     console.log("listing/getPendingFeeds.complete!", response);
+      //   },
+      // });
+
+      $("#sfManualTransferLoadingResults").click(async function () {
+        $("#sfProcessDetails").html(
+          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
+            chrome.runtime.getURL("img/loading.gif") +
+            "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+            language["1000090"][activeLanguage] +
+            "</div>"
+        );
+        $("#sfProcessDetails").show();
+        $("#sfManualTransferLoadingResults").prop("disabled", true);
+
+        await manualTransferLoadingResults();
+      });
+
+      $("#sfManualGetInventoryUpdatesFromSF").click(async function () {
+        $("#sfProcessDetails").html(
+          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
+            chrome.runtime.getURL("img/loading.gif") +
+            "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+            language["1000090"][activeLanguage] +
+            "</div>"
+        );
+        $("#sfProcessDetails").show();
+
+        await manualGetInventoryUpdatesFromSF();
+      });
+
+      $("#sfManualGoOrderUploadPage").click(async function () {
+        $("#sfProcessDetails").html(
+          `<div class='flex ai-c' style="width:100%; font-family: 'Poppins';"> <img src='` +
+            chrome.runtime.getURL("img/loading.gif") +
+            "' style='width: 40px; height: 40px; margin-right: 20px;'  />" +
+            language["1000090"][activeLanguage] +
+            "</div>"
+        );
+        $("#sfProcessDetails").show();
+
+        location.replace(
+          location.origin + "/order-reports-and-feeds/feeds/confirmShipment"
+        );
+      });
     }
   }, 1e3);
 }
@@ -1940,150 +2252,353 @@ window.addEventListener("message", function (event) {
     },
   });
 } */
-//Envanterden ürün silmek için kullanılıyor fakat ne için kullanıldığı bilinmiyor bu yüzden kapatıldı
-function createDeleteProductPageItems(n) {
-  function t() {
-    $(".sfDeleteProduct").click(function () {
-      var asinList = [];
-      var skuList = [];
-      var reasonList = [];
 
-      n
-        ? $("#tableBody .item-row").each(function (n, i) {
-            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-              var r = $(i).find("div.asin"),
-                u = $(r)
-                  .text()
-                  .replace(/ASIN\s*: /, "")
-                  .trim();
-              asinList.push(u);
-            }
-          })
-        : $("div[data-column='asin']")
-            .find("span")
-            .each(function (n, i) {
-              var r = $(i).text().trim();
-              asinList.push(r);
-            });
+//TODO: SELLERFULL kapalı
+// function createDeleteProductSuppressedListingPageItems(n) {
+//   function t() {
+//     $(".sfDeleteProduct").click(async function () {
+//       var asinList = [];
+//       var skuList = [];
+//       var reasonList = [];
 
-      n
-        ? $("#tableBody .item-row").each(function (n, i) {
-            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-              var r = $(i).find("div.sku"),
-                u = $(r)
-                  .text()
-                  .replace(/SKU\s*: /, "")
-                  .trim();
-              skuList.push(u);
-            }
-          })
-        : $("div[data-column='sku']")
-            .find("a")
-            .each(function (n, i) {
-              var r = $(i).text().trim();
-              skuList.push(r);
-            });
+//       n
+//         ? $("#tableBody .item-row").each(function (n, i) {
+//             if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+//               var r = $(i).find("div.asin"),
+//                 u = $(r)
+//                   .text()
+//                   .replace(/ASIN\s*: /, "")
+//                   .trim();
+//               asinList.push(u);
+//             }
+//           })
+//         : $("div[data-column='asin']")
+//             .find("span")
+//             .each(function (n, i) {
+//               var r = $(i).text().trim();
+//               asinList.push(r);
+//             });
 
-      n
-        ? $("#tableBody .item-row").each(function (n, i) {
-            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-              var r = $(i).find("div.reason-code"),
-                u = $(r).contents().text().trim();
-              reasonList.push(u);
-            }
-          })
-        : "";
+//       n
+//         ? $("#tableBody .item-row").each(function (n, i) {
+//             if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+//               var r = $(i).find("div.sku"),
+//                 u = $(r)
+//                   .text()
+//                   .replace(/SKU\s*: /, "")
+//                   .trim();
+//               skuList.push(u);
+//             }
+//           })
+//         : $("div[data-column='sku']")
+//             .find("a")
+//             .each(function (n, i) {
+//               var r = $(i).text().trim();
+//               skuList.push(r);
+//             });
 
-      var pList = [];
+//       n
+//         ? $("#tableBody .item-row").each(function (n, i) {
+//             if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+//               var r = $(i).find("div.reason-code"),
+//                 u = $(r).contents().text().trim();
+//               reasonList.push(u);
+//             }
+//           })
+//         : "";
 
-      for (let i = 0; i < asinList.length; ++i) {
-        var obj = {};
-        obj["Asin"] = asinList[i];
-        obj["Sku"] = skuList[i];
-        if (
-          reasonList != null &&
-          reasonList.length > i &&
-          reasonList[i] != null
-        ) {
-          obj["Reason"] = reasonList[i];
-        } else {
-          obj["Reason"] = "Inventory page";
-        }
-        pList.push(obj);
-      }
+//       var pList = [];
 
-      var mp = getMarketplaceByPage().AmazonMarketplaceId;
+//       for (let i = 0; i < asinList.length; ++i) {
+//         var obj = {};
+//         obj["Asin"] = asinList[i];
+//         obj["Sku"] = skuList[i];
+//         if (
+//           reasonList != null &&
+//           reasonList.length > i &&
+//           reasonList[i] != null
+//         ) {
+//           obj["Reason"] = reasonList[i];
+//         } else {
+//           obj["Reason"] = "Inventory page";
+//         }
+//         pList.push(obj);
+//       }
 
-      var url =
-        this.id == "sfDeleteProducts"
-          ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
-          : user.apiSubdomain +
-            "api/inventoryItem/removeAndBlockInventoryItems";
+//       const [mp] = await getSellingPartnerInfo();
 
-      $.ajax({
-        url: url,
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        headers: { Authorization: "Bearer " + user.token },
-        data: JSON.stringify({
-          customerId: user.customerId,
-          marketPlaceCode: mp,
-          productList: pList,
-        }),
-        success: function () {},
-        failure: function (response) {
-          console.log("Error (failure)! ", response);
-        },
-        complete: function (data) {
-          if (data.status == 200) {
-            $(".sf-alert-content").html(language["1000008"][activeLanguage]);
-          } else {
-            $(".sf-alert-content").html(
-              "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                language["1000009"][activeLanguage]
-            );
-          }
-        },
-      });
+//       var url =
+//         this.id == "sfDeleteProducts"
+//           ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
+//           : user.apiSubdomain +
+//             "api/inventoryItem/removeAndBlockInventoryItems";
 
-      $(".sf-alert-container-info").remove();
-    });
-  }
-  var i = `
-        <div id="sfMessage" class="sf-alert a-section">
-        <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
-        <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;">  ${language["1000002"][activeLanguage]}</button><br>
-        <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;"> ${language["1000003"][activeLanguage]} </button>
-        </div>`,
-    r;
-  if (n) {
-    function n() {
-      $(document).delegate(
-        "div.bulk-container div.select-options div.option, #bulk-delete-listing button, .fyp-bulk-selection-bar-button button, .fyp-bulk-selection-bar-button",
-        "click",
-        function () {
-          setTimeout(function () {
-            var r = $(
-              "kat-modal-content .kat-row, #delete-listing-modal .kat-row"
-            ).last();
-            r.find(".sf-alert").remove();
-            r.append(i);
-            n();
-            t();
-          }, 500);
-        }
-      );
-    }
-    n();
-  } else
-    $("#interStitialPageMessage")
-      .text()
-      .toLowerCase()
-      .indexOf("delete product and listing") > -1 &&
-      ((r = $("#interstitialPageWarningAlert .a-alert-content")),
-      r.append(i),
-      t());
-}
+//       $.ajax({
+//         url: url,
+//         type: "POST",
+//         contentType: "application/json;charset=utf-8",
+//         headers: { Authorization: "Bearer " + user.token },
+//         data: JSON.stringify({
+//           customerId: user.customerId,
+//           marketPlaceCode: mp,
+//           productList: pList,
+//         }),
+//         success: function () {},
+//         failure: function (response) {
+//           console.log("Error (failure)! ", response);
+//         },
+//         complete: function (data) {
+//           if (data.status == 200) {
+//             $(".sf-alert-content").html(language["1000008"][activeLanguage]);
+//           } else {
+//             $(".sf-alert-content").html(
+//               "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+//                 language["1000009"][activeLanguage]
+//             );
+//           }
+//         },
+//       });
+
+//       $(".sf-alert-container-info").remove();
+//     });
+//   }
+//   var i = `
+//         <div id="sfMessage" class="sf-alert a-section">
+//         <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
+//         <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;">  ${language["1000002"][activeLanguage]}</button><br>
+//         <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;"> ${language["1000003"][activeLanguage]} </button>
+//         </div>`,
+//     r;
+//   function n() {
+//     $(document).delegate(
+//       "div.bulk-container div.select-options div.option, #bulk-delete-listing button, .fyp-bulk-selection-bar-button button, .fyp-bulk-selection-bar-button",
+//       "click",
+//       function () {
+//         setTimeout(function () {
+//           var r = $(
+//             "kat-modal-content .kat-row, #delete-listing-modal .kat-row"
+//           ).last();
+//           r.find(".sf-alert").remove();
+//           r.append(i);
+//           n();
+//           t();
+//         }, 500);
+//       }
+//     );
+//   }
+//   n();
+// }
+// TODO: Envanterden ürün silmek için kullanılıyor fakat ne için kullanıldığı bilinmiyor bu yüzden kapatıldı
+// function createDeleteProductPageItems() {
+//   let asinList = [];
+//   let skuList = [];
+//   let totalSKUs = 0;
+//   let collectedSKUs = 0;
+//   let isScrolling = true;
+
+//   function extractDataFromVisibleRows() {
+//     const selectedRows = document.querySelectorAll(
+//       ".JanusTable-module__tableContentRow--MGDsi .TableCell-module__statusCellLayout--PWzJM kat-checkbox[checked]"
+//     );
+
+//     selectedRows.forEach((row) => {
+//       const asinElement = row
+//         .closest(".JanusTable-module__tableContentRow--MGDsi")
+//         .querySelector(
+//           ".JanusSplitBox-module__panel--AbYDg:nth-child(2) .JanusRichText-module__defaultText--pMlk1"
+//         );
+//       const skuElement = row
+//         .closest(".JanusTable-module__tableContentRow--MGDsi")
+//         .querySelector(".JanusSplitBox-module__panel--AbYDg a");
+
+//       const asin = asinElement
+//         ? asinElement.textContent.trim()
+//         : "ASIN bulunamadı";
+//       const sku = skuElement ? skuElement.textContent.trim() : "SKU bulunamadı";
+
+//       if (!asinList.includes(asin) && !skuList.includes(sku)) {
+//         asinList.push(asin);
+//         skuList.push(sku);
+//         collectedSKUs++;
+//       }
+//     });
+//   }
+
+//   function getTotalSKUs() {
+//     const container = document.querySelector(
+//       ".GenericActionContent-module__container--xc4YP"
+//     );
+
+//     if (!container) {
+//       totalSKUs = 0;
+//       console.log("totalSKUs not found", totalSKUs);
+//       return;
+//     }
+
+//     const innerTextMatch = container
+//       .querySelector("div")
+//       ?.innerText.match(/(\d+) listings/);
+//     if (innerTextMatch) {
+//       totalSKUs = parseInt(innerTextMatch[1], 10);
+//       console.log("totalSKUs (via innerText):", totalSKUs);
+//       return;
+//     }
+
+//     const innerHTMLMatch = container.innerHTML.match(/(\d+) listings/);
+//     totalSKUs = innerHTMLMatch ? parseInt(innerHTMLMatch[1], 10) : 0;
+//     console.log("totalSKUs (via innerHTML):", totalSKUs);
+//   }
+
+//   function displayStatus() {
+//     $("#statusMessage")?.remove();
+//     if (totalSKUs === 0 && collectedSKUs === 0) {
+//       $("#sfMessage").remove();
+//       const warningMessage = `
+//         <div class="sf-info a-section">
+//                 ${language["1000189"][activeLanguage]}<br>
+//         </div>
+//           `;
+//       const deleteButton = document.querySelector(
+//         "kat-button[label='Delete listing']"
+//       );
+//       if (deleteButton) {
+//         deleteButton.insertAdjacentHTML("beforebegin", warningMessage);
+//       }
+//     } else {
+//       let statusText =
+//         collectedSKUs >= totalSKUs
+//           ? language["1000191"][activeLanguage]
+//           : language["1000190"][activeLanguage];
+
+//       const statusMessage = `
+//       <h6 id="statusMessage" style="margin:5px">
+//       <b>${statusText}</br><br>
+//               <b>${language["1000192"][activeLanguage]}</b> ${collectedSKUs}
+//       </h6>
+//       `;
+//       const deleteButton = document.querySelector(
+//         "kat-button[label='Delete listing']"
+//       );
+//       if (deleteButton) {
+//         deleteButton.insertAdjacentHTML("beforebegin", statusMessage);
+//       }
+//     }
+//   }
+
+//   function scrollPage() {
+//     if (!isScrolling) return;
+
+//     window.scrollBy(0, 450);
+//     setTimeout(() => {
+//       extractDataFromVisibleRows();
+//       if (collectedSKUs < totalSKUs) {
+//         var scrollTop = $(window).scrollTop();
+//         var windowHeight = $(window).height();
+//         var documentHeight = $(document).height();
+
+//         if (scrollTop + windowHeight >= documentHeight - 50) {
+//           window.scrollTo(0, 0);
+//           setTimeout(scrollPage, 100);
+//         } else scrollPage();
+//         displayStatus();
+//       } else if (collectedSKUs < totalSKUs && window.scrollY === 0) {
+//         isScrolling = false;
+//         displayStatus();
+//         $("#sfDeleteProducts").prop("disabled", false);
+//         $("#sfDeleteAndBlockProducts").prop("disabled", false);
+//         t();
+//       } else {
+//         isScrolling = false;
+//         displayStatus();
+//         if (collectedSKUs > 0) {
+//           $("#sfDeleteProducts").prop("disabled", false);
+//           $("#sfDeleteAndBlockProducts").prop("disabled", false);
+//           t();
+//         }
+//       }
+//     }, 100);
+//   }
+
+//   function observePageChanges() {
+//     const observer = new MutationObserver(() => {
+//       if (isScrolling) {
+//         extractDataFromVisibleRows();
+//       }
+//     });
+
+//     observer.observe(document.body, { childList: true, subtree: true });
+//     scrollPage();
+//   }
+
+//   function t() {
+//     $(".sfDeleteProduct").click(async function () {
+//       var pList = [];
+
+//       for (let i = 0; i < asinList.length; ++i) {
+//         var obj = {};
+//         obj["Asin"] = asinList[i];
+//         obj["Sku"] = skuList[i];
+//         obj["Reason"] = "Inventory page";
+//         pList.push(obj);
+//       }
+
+//       const [mp] = await getSellingPartnerInfo();
+//       var url =
+//         this.id == "sfDeleteProducts"
+//           ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
+//           : user.apiSubdomain +
+//             "api/inventoryItem/removeAndBlockInventoryItems";
+
+//       $.ajax({
+//         url: url,
+//         type: "POST",
+//         contentType: "application/json;charset=utf-8",
+//         headers: { Authorization: "Bearer " + user.token },
+//         data: JSON.stringify({
+//           customerId: user.customerId,
+//           marketPlaceCode: mp,
+//           productList: pList,
+//         }),
+//         success: function () {},
+//         failure: function (response) {
+//           console.log("Error (failure)! ", response);
+//         },
+//         complete: function (data) {
+//           if (data.status == 200) {
+//             $(".sf-alert-content").html(
+//               language["1000008"][activeLanguage] + "<br>"
+//             );
+//             setTimeout(function () {
+//               location.reload();
+//             }, 3000);
+//           } else {
+//             $(".sf-alert-content").html(
+//               "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+//                 language["1000009"][activeLanguage]
+//             );
+//           }
+//         },
+//       });
+
+//       $(".sf-alert-container-info").remove();
+//     });
+//   }
+//   getTotalSKUs();
+//   window.scrollTo(0, 0);
+//   var i = `
+//   <div id="sfMessage" class="sf-alert a-section">
+//   <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
+//   <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;" disabled>  ${language["1000002"][activeLanguage]}</button><br>
+//   <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;" disabled> ${language["1000003"][activeLanguage]} </button>
+//   </div>`,
+//     r;
+
+//   r = document.querySelector("kat-button[label='Delete listing']");
+//   if (r) {
+//     r.insertAdjacentHTML("beforebegin", i);
+//   }
+//   observePageChanges();
+// }
 function createOrderDetailPageItems() {
   var orderIdFromUrl = location.href.replace(
     location.origin + "/orders-v3/order/",
@@ -2198,7 +2713,7 @@ function createOrderDetailPageItems() {
     }
   }, 2e3);
 }
-//Adres işlemleri şimdilik yapılmayacağı için kapatıldı
+// TODO: SELLERFULL Adres işlemleri şimdilik yapılmayacağı için kapatıldı
 /* function createAllAddressesPageItems() {
   var btn = `
         <button id='sfRemoveAddresses' class="red-button" style="position:absolute;right:0;top:40px;">
@@ -2390,7 +2905,7 @@ function createOrderDetailPageItems() {
   });
 } */
 
-//Address işlemleri şimdilik yapılmayacağı için kapatıldı
+// TODO: SELLERFULL Address işlemleri şimdilik yapılmayacağı için kapatıldı
 /* function createAddNewAddressPageItems() {
   var style = "";
   if (location.href.includes("/addresses/add")) {
@@ -3595,7 +4110,7 @@ function createPerformanceDashboardPageItems() {
 
         response = JSON.parse(response);
         console.log(response);
-        //account health data burada gönderiliyor
+        // TODO: SELLERFULL account health data burada gönderiliyor
         /* $.ajax({
           type: "POST",
           url: baseUrls.test + "api/Inventory/AddAccountHealthData",
@@ -3671,7 +4186,7 @@ function createFixProductPageItems() {
                         <span class="ml-15">${user.name}</span>
                     </div>
                     <div>
-                        <button class="transparent-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
+                        <button class="green-button" id="sf-hide" style="width:30px; font-weight:bold;">${language["1000070"][activeLanguage]}</button>
                     </div>
                 </div>
             </div>
@@ -3711,7 +4226,7 @@ function createFixProductPageItems() {
     $("#sfButton").show();
   });
 
-  $("#sfTransferAlerts").click(function () {
+  $("#sfTransferAlerts").click(async function () {
     $("#sfTransferAlerts").prop("disabled", true);
     $("#sfTransferResult").html(language["1000007"][activeLanguage]);
 
@@ -3723,13 +4238,7 @@ function createFixProductPageItems() {
       color: "white",
     });
 
-    var sub = "https://inv.sellerflash.com/";
-    if (user.platform == "test") sub = "https://invtest.sellerflash.com/";
-    else if (user.platform == "dev") sub = "https://invdev.sellerflash.com/";
-
-    var marketPlaceID = $("#partner-switcher").attr(
-      "data-marketplace_selection"
-    );
+    const [marketPlaceID] = await getSellingPartnerInfo();
 
     var offset = 0;
     var pageSize = 50;
@@ -3757,73 +4266,73 @@ function createFixProductPageItems() {
             totalCount = response.totalItems;
           }
           offset += pageSize;
-          //burası incelenecek
-          /* $.ajax({
-            type: "POST",
-            url: sub + "api/Inventory/AddPricingIssuesData",
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            data: JSON.stringify(response),
+          // TODO: SELLERFULL Kapalı incelenecek notu eklenmiş
+          // $.ajax({
+          //   type: "POST",
+          //   url: user.apiSubdomain + "api/Inventory/AddPricingIssuesData",
+          //   contentType: "application/json; charset=utf-8",
+          //   dataType: "json",
+          //   data: JSON.stringify(response),
 
-            headers: { Authorization: "Bearer " + user.token },
-            success: function () {
-              $("#sfTransferResult").html(
-                language["1000181"][activeLanguage] +
-                  offset +
-                  " / " +
-                  totalCount
-              );
+          //   headers: { Authorization: "Bearer " + user.token },
+          //   success: function () {
+          //     $("#sfTransferResult").html(
+          //       language["1000181"][activeLanguage] +
+          //         offset +
+          //         " / " +
+          //         totalCount
+          //     );
 
-              $("#sfTransferAlerts").prop("disabled", false);
-              $("#sfTransferAlerts").html(language["1000116"][activeLanguage]);
-            },
-            failure: function () {
-              $("#sfTransferAlerts").prop("disabled", false);
-              $("#sfTransferAlerts").html(language["1000116"][activeLanguage]);
+          //     $("#sfTransferAlerts").prop("disabled", false);
+          //     $("#sfTransferAlerts").html(language["1000116"][activeLanguage]);
+          //   },
+          //   failure: function () {
+          //     $("#sfTransferAlerts").prop("disabled", false);
+          //     $("#sfTransferAlerts").html(language["1000116"][activeLanguage]);
 
-              $("#sfTransferResult").html(language["1000111"][activeLanguage]);
-              $("#sfTransferResult").css({
-                background: "#D0E1FD",
-                margin: "10px 0",
-                padding: "10px",
-                color: "black",
-              });
-              isErrorOccured = true;
-            },
-            complete: function (data) {
-              if (data.status == 200) {
-                $("#sfTransferAlerts").prop("disabled", false);
-                $("#sfTransferAlerts").html(
-                  language["1000116"][activeLanguage]
-                );
+          //     $("#sfTransferResult").html(language["1000111"][activeLanguage]);
+          //     $("#sfTransferResult").css({
+          //       background: "green",
+          //       margin: "10px 0",
+          //       padding: "10px",
+          //       color: "white",
+          //     });
+          //     isErrorOccured = true;
+          //   },
+          //   complete: function (data) {
+          //     if (data.status == 200) {
+          //       $("#sfTransferAlerts").prop("disabled", false);
+          //       $("#sfTransferAlerts").html(
+          //         language["1000116"][activeLanguage]
+          //       );
 
-                $("#sfTransferResult").html(
-                  language["1000118"][activeLanguage]
-                );
-                $("#sfTransferResult").css({
-                  background: "#D0E1FD",
-                  margin: "10px 0",
-                  padding: "10px",
-                  color: "black",
-                });
-              } else {
-                $("#sfTransferAlerts").prop("disabled", false);
-                $("#sfTransferAlerts").html(
-                  language["1000116"][activeLanguage]
-                );
+          //       $("#sfTransferResult").html(
+          //         language["1000118"][activeLanguage]
+          //       );
+          //       $("#sfTransferResult").css({
+          //         background: "green",
+          //         margin: "10px 0",
+          //         padding: "10px",
+          //         color: "white",
+          //       });
+          //     } else {
+          //       $("#sfTransferAlerts").prop("disabled", false);
+          //       $("#sfTransferAlerts").html(
+          //         language["1000116"][activeLanguage]
+          //       );
 
-                $("#sfTransferResult").html(
-                  language["1000119"][activeLanguage]
-                );
-                $("#sfTransferResult").css({
-                  background: "#FAEDC4",
-                  margin: "10px 0",
-                  padding: "10px",
-                  color: "black",
-                });
-              }
-            },
-          }); */
+          //       $("#sfTransferResult").html(
+          //         language["1000119"][activeLanguage]
+          //       );
+          //       $("#sfTransferResult").css({
+          //         background: "red",
+          //         margin: "10px 0",
+          //         padding: "10px",
+          //         color: "white",
+          //       });
+          //     }
+          //   },
+          // });
         },
         failure: function () {
           isErrorOccured = true;
