@@ -1443,10 +1443,7 @@ async function createRequestApprovalRemoveItems() {
           url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
           headers: { Authorization: "Bearer " + user.token },
           success: function (response) {
-            let storeId;
-            if (mp == response.marketplaceId) {
-              storeId = response.id;
-            }
+            let storeId = response.find((i) => i.marketplaceId == mp);
             $.ajax({
               url: `${baseUrls[user.platform]}${
                 endPoints.StoreProduct.storeProducts
