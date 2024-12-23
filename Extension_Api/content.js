@@ -1413,7 +1413,8 @@ async function createRequestApprovalRemoveItems() {
     }
 
     const [mp, , sellingPartnerId] = await getSellingPartnerInfo();
-    const storeId = await getStoreIdWithMP(mp);
+    // TODO: SellerFUll const storeId = await getStoreIdWithMP(mp);
+
     $(element).append(divMenu);
     document
       .getElementById("approveRemoveButtonSf")
@@ -1438,33 +1439,50 @@ async function createRequestApprovalRemoveItems() {
           return sku; // Using SKU directly
         });
         $.ajax({
-          url: `${baseUrls[user.platform]}${
-            endPoints.StoreProduct.storeProducts
-          }`,
-          type: "DELETE",
-          contentType: "application/json;charset=utf-8",
+          type: "GET",
+          url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
           headers: { Authorization: "Bearer " + user.token },
-          data: JSON.stringify({
-            skUs: pList,
-            storeProductIds: [],
-            asiNs: [],
-            storeId: storeId,
-          }),
-          success: function () {},
-          failure: function (response) {
-            console.log("Error (failure)! ", response);
-          },
-          complete: function (data) {
-            if (data.status == 200) {
-              $(".sf-alert-content").html(language["1000008"][activeLanguage]);
-            } else {
-              $(".sf-alert-content").html(
-                "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                  language["1000009"][activeLanguage]
-              );
+          success: function (response) {
+            let storeId;
+            if (mp == response.marketplaceId) {
+              storeId = response.id;
             }
+            $.ajax({
+              url: `${baseUrls[user.platform]}${
+                endPoints.StoreProduct.storeProducts
+              }`,
+              type: "DELETE",
+              contentType: "application/json;charset=utf-8",
+              headers: { Authorization: "Bearer " + user.token },
+              data: JSON.stringify({
+                skUs: pList,
+                storeProductIds: [],
+                asiNs: [],
+                storeId: storeId,
+              }),
+              success: function () {},
+              failure: function (response) {
+                console.log("Error (failure)! ", response);
+              },
+              complete: function (data) {
+                if (data.status == 200) {
+                  $(".sf-alert-content").html(
+                    language["1000008"][activeLanguage]
+                  );
+                } else {
+                  $(".sf-alert-content").html(
+                    "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+                      language["1000009"][activeLanguage]
+                  );
+                }
+              },
+            });
+          },
+          failure: function (response) {
+            console.log("Marketplace bilgileri alınamadı!", response);
           },
         });
+
         // $.ajax({
         //   url: user.apiSubdomain + "api/inventoryItem/removeInventoryItems",
         //   type: "POST",
