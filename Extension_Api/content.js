@@ -2327,7 +2327,11 @@ function createDeleteProductSuppressedListingPageItems(n) {
         pList.push(obj);
       }
 
+      console.log(pList);
+
       const [mp] = await getSellingPartnerInfo();
+
+      console.log(mp);
 
       // TODO eğer bloklama gerekiyorsa blok atılacak
       var url =
