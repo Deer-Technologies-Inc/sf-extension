@@ -30,6 +30,9 @@ const endPoints = {
     productSearchHistories: "extension-settings/product-search-histories",
     updatExtensioneSettings: "extension-settings",
   },
+  Restricted: {
+    addRestrictedProducts: "restricted/add-restricted-products",
+  },
 };
 
 var platform = "test";
@@ -381,7 +384,7 @@ function createExtensionTools() {
             );
             if (deleteButton && !hasLogged) {
               hasLogged = true;
-              // createDeleteProductPageItems(); // TODO: SELLERFULL Kapattı
+              createDeleteProductPageItems(); // TODO: SELLERFULL Kapattı
               observer.disconnect();
             }
           }
@@ -397,7 +400,7 @@ function createExtensionTools() {
     ) {
       createRequestApprovalPageItems();
       createRequestApprovalRemoveItems();
-      // createDeleteProductSuppressedListingPageItems(); // sayfa yapısını bozuyor 1
+      createDeleteProductSuppressedListingPageItems(); // sayfa yapısını bozuyor 1
       createFixProductPageItems(); // sayfa yapısını bozuyor 2
     }
     //Manuel autopricer işlemleri için kullanılıyor fakat nasıl çalıştığı bilinmediği için kapatıldı.
@@ -2253,362 +2256,378 @@ window.addEventListener("message", function (event) {
   });
 } */
 
-//TODO: SELLERFULL kapalı
-// function createDeleteProductSuppressedListingPageItems(n) {
-//   function t() {
-//     $(".sfDeleteProduct").click(async function () {
-//       var asinList = [];
-//       var skuList = [];
-//       var reasonList = [];
+function createDeleteProductSuppressedListingPageItems(n) {
+  function t() {
+    $(".sfDeleteProduct").click(async function () {
+      var asinList = [];
+      var skuList = [];
+      var reasonList = [];
 
-//       n
-//         ? $("#tableBody .item-row").each(function (n, i) {
-//             if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-//               var r = $(i).find("div.asin"),
-//                 u = $(r)
-//                   .text()
-//                   .replace(/ASIN\s*: /, "")
-//                   .trim();
-//               asinList.push(u);
-//             }
-//           })
-//         : $("div[data-column='asin']")
-//             .find("span")
-//             .each(function (n, i) {
-//               var r = $(i).text().trim();
-//               asinList.push(r);
-//             });
+      n
+        ? $("#tableBody .item-row").each(function (n, i) {
+            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+              var r = $(i).find("div.asin"),
+                u = $(r)
+                  .text()
+                  .replace(/ASIN\s*: /, "")
+                  .trim();
+              asinList.push(u);
+            }
+          })
+        : $("div[data-column='asin']")
+            .find("span")
+            .each(function (n, i) {
+              var r = $(i).text().trim();
+              asinList.push(r);
+            });
 
-//       n
-//         ? $("#tableBody .item-row").each(function (n, i) {
-//             if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-//               var r = $(i).find("div.sku"),
-//                 u = $(r)
-//                   .text()
-//                   .replace(/SKU\s*: /, "")
-//                   .trim();
-//               skuList.push(u);
-//             }
-//           })
-//         : $("div[data-column='sku']")
-//             .find("a")
-//             .each(function (n, i) {
-//               var r = $(i).text().trim();
-//               skuList.push(r);
-//             });
+      n
+        ? $("#tableBody .item-row").each(function (n, i) {
+            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+              var r = $(i).find("div.sku"),
+                u = $(r)
+                  .text()
+                  .replace(/SKU\s*: /, "")
+                  .trim();
+              skuList.push(u);
+            }
+          })
+        : $("div[data-column='sku']")
+            .find("a")
+            .each(function (n, i) {
+              var r = $(i).text().trim();
+              skuList.push(r);
+            });
 
-//       n
-//         ? $("#tableBody .item-row").each(function (n, i) {
-//             if ($(i).find("kat-checkbox").attr("checked") != undefined) {
-//               var r = $(i).find("div.reason-code"),
-//                 u = $(r).contents().text().trim();
-//               reasonList.push(u);
-//             }
-//           })
-//         : "";
+      n
+        ? $("#tableBody .item-row").each(function (n, i) {
+            if ($(i).find("kat-checkbox").attr("checked") != undefined) {
+              var r = $(i).find("div.reason-code"),
+                u = $(r).contents().text().trim();
+              reasonList.push(u);
+            }
+          })
+        : "";
 
-//       var pList = [];
+      var pList = [];
 
-//       for (let i = 0; i < asinList.length; ++i) {
-//         var obj = {};
-//         obj["Asin"] = asinList[i];
-//         obj["Sku"] = skuList[i];
-//         if (
-//           reasonList != null &&
-//           reasonList.length > i &&
-//           reasonList[i] != null
-//         ) {
-//           obj["Reason"] = reasonList[i];
-//         } else {
-//           obj["Reason"] = "Inventory page";
-//         }
-//         pList.push(obj);
-//       }
+      for (let i = 0; i < asinList.length; ++i) {
+        var obj = {};
+        obj["Asin"] = asinList[i];
+        obj["Sku"] = skuList[i];
+        if (
+          reasonList != null &&
+          reasonList.length > i &&
+          reasonList[i] != null
+        ) {
+          obj["Reason"] = reasonList[i];
+        } else {
+          obj["Reason"] = "Inventory page";
+        }
+        pList.push(obj);
+      }
 
-//       const [mp] = await getSellingPartnerInfo();
+      const [mp] = await getSellingPartnerInfo();
 
-//       var url =
-//         this.id == "sfDeleteProducts"
-//           ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
-//           : user.apiSubdomain +
-//             "api/inventoryItem/removeAndBlockInventoryItems";
+      // TODO eğer bloklama gerekiyorsa blok atılacak
+      var url =
+        this.id == "sfDeleteProducts"
+          ? `${baseUrls[user.platform]}/${endPoints.StoreProduct.storeProducts}`
+          : `${baseUrls[user.platform]}/${
+              endPoints.Restricted.addRestrictedProducts
+            }`;
 
-//       $.ajax({
-//         url: url,
-//         type: "POST",
-//         contentType: "application/json;charset=utf-8",
-//         headers: { Authorization: "Bearer " + user.token },
-//         data: JSON.stringify({
-//           customerId: user.customerId,
-//           marketPlaceCode: mp,
-//           productList: pList,
-//         }),
-//         success: function () {},
-//         failure: function (response) {
-//           console.log("Error (failure)! ", response);
-//         },
-//         complete: function (data) {
-//           if (data.status == 200) {
-//             $(".sf-alert-content").html(language["1000008"][activeLanguage]);
-//           } else {
-//             $(".sf-alert-content").html(
-//               "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-//                 language["1000009"][activeLanguage]
-//             );
-//           }
-//         },
-//       });
+      var formData =
+        this.id == "sfDeleteProducts"
+          ? {
+              asiNs: pList,
+              storeIds: [user.storeId],
+            }
+          : {
+              asiNs: pList,
+              storeIds: [user.storeId],
+              restrictionReason: "Extension",
+              infringementType: "Copyright",
+            };
 
-//       $(".sf-alert-container-info").remove();
-//     });
-//   }
-//   var i = `
-//         <div id="sfMessage" class="sf-alert a-section">
-//         <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
-//         <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;">  ${language["1000002"][activeLanguage]}</button><br>
-//         <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;"> ${language["1000003"][activeLanguage]} </button>
-//         </div>`,
-//     r;
-//   function n() {
-//     $(document).delegate(
-//       "div.bulk-container div.select-options div.option, #bulk-delete-listing button, .fyp-bulk-selection-bar-button button, .fyp-bulk-selection-bar-button",
-//       "click",
-//       function () {
-//         setTimeout(function () {
-//           var r = $(
-//             "kat-modal-content .kat-row, #delete-listing-modal .kat-row"
-//           ).last();
-//           r.find(".sf-alert").remove();
-//           r.append(i);
-//           n();
-//           t();
-//         }, 500);
-//       }
-//     );
-//   }
-//   n();
-// }
+      $.ajax({
+        url: url,
+        type: this.id == "sfDeleteProducts" ? "DELETE" : "POST",
+        contentType: "application/json;charset=utf-8",
+        headers: { Authorization: "Bearer " + user.token },
+        data: JSON.stringify(formData),
+        success: function () {},
+        failure: function (response) {
+          console.log("Error (failure)! ", response);
+        },
+        complete: function (data) {
+          if (data.status == 200) {
+            $(".sf-alert-content").html(language["1000008"][activeLanguage]);
+          } else {
+            $(".sf-alert-content").html(
+              "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+                language["1000009"][activeLanguage]
+            );
+          }
+        },
+      });
+
+      $(".sf-alert-container-info").remove();
+    });
+  }
+  var i = `
+        <div id="sfMessage" class="sf-alert a-section">
+        <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
+        <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;">  ${language["1000002"][activeLanguage]}</button><br>
+        <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;"> ${language["1000003"][activeLanguage]} </button>
+        </div>`,
+    r;
+  function n() {
+    $(document).delegate(
+      "div.bulk-container div.select-options div.option, #bulk-delete-listing button, .fyp-bulk-selection-bar-button button, .fyp-bulk-selection-bar-button",
+      "click",
+      function () {
+        setTimeout(function () {
+          var r = $(
+            "kat-modal-content .kat-row, #delete-listing-modal .kat-row"
+          ).last();
+          r.find(".sf-alert").remove();
+          r.append(i);
+          n();
+          t();
+        }, 500);
+      }
+    );
+  }
+  n();
+}
 // TODO: Envanterden ürün silmek için kullanılıyor fakat ne için kullanıldığı bilinmiyor bu yüzden kapatıldı
-// function createDeleteProductPageItems() {
-//   let asinList = [];
-//   let skuList = [];
-//   let totalSKUs = 0;
-//   let collectedSKUs = 0;
-//   let isScrolling = true;
+function createDeleteProductPageItems() {
+  let asinList = [];
+  let skuList = [];
+  let totalSKUs = 0;
+  let collectedSKUs = 0;
+  let isScrolling = true;
 
-//   function extractDataFromVisibleRows() {
-//     const selectedRows = document.querySelectorAll(
-//       ".JanusTable-module__tableContentRow--MGDsi .TableCell-module__statusCellLayout--PWzJM kat-checkbox[checked]"
-//     );
+  function extractDataFromVisibleRows() {
+    const selectedRows = document.querySelectorAll(
+      ".JanusTable-module__tableContentRow--MGDsi .TableCell-module__statusCellLayout--PWzJM kat-checkbox[checked]"
+    );
 
-//     selectedRows.forEach((row) => {
-//       const asinElement = row
-//         .closest(".JanusTable-module__tableContentRow--MGDsi")
-//         .querySelector(
-//           ".JanusSplitBox-module__panel--AbYDg:nth-child(2) .JanusRichText-module__defaultText--pMlk1"
-//         );
-//       const skuElement = row
-//         .closest(".JanusTable-module__tableContentRow--MGDsi")
-//         .querySelector(".JanusSplitBox-module__panel--AbYDg a");
+    selectedRows.forEach((row) => {
+      const asinElement = row
+        .closest(".JanusTable-module__tableContentRow--MGDsi")
+        .querySelector(
+          ".JanusSplitBox-module__panel--AbYDg:nth-child(2) .JanusRichText-module__defaultText--pMlk1"
+        );
+      const skuElement = row
+        .closest(".JanusTable-module__tableContentRow--MGDsi")
+        .querySelector(".JanusSplitBox-module__panel--AbYDg a");
 
-//       const asin = asinElement
-//         ? asinElement.textContent.trim()
-//         : "ASIN bulunamadı";
-//       const sku = skuElement ? skuElement.textContent.trim() : "SKU bulunamadı";
+      const asin = asinElement
+        ? asinElement.textContent.trim()
+        : "ASIN bulunamadı";
+      const sku = skuElement ? skuElement.textContent.trim() : "SKU bulunamadı";
 
-//       if (!asinList.includes(asin) && !skuList.includes(sku)) {
-//         asinList.push(asin);
-//         skuList.push(sku);
-//         collectedSKUs++;
-//       }
-//     });
-//   }
+      if (!asinList.includes(asin) && !skuList.includes(sku)) {
+        asinList.push(asin);
+        skuList.push(sku);
+        collectedSKUs++;
+      }
+    });
+  }
 
-//   function getTotalSKUs() {
-//     const container = document.querySelector(
-//       ".GenericActionContent-module__container--xc4YP"
-//     );
+  function getTotalSKUs() {
+    const container = document.querySelector(
+      ".GenericActionContent-module__container--xc4YP"
+    );
 
-//     if (!container) {
-//       totalSKUs = 0;
-//       console.log("totalSKUs not found", totalSKUs);
-//       return;
-//     }
+    if (!container) {
+      totalSKUs = 0;
+      console.log("totalSKUs not found", totalSKUs);
+      return;
+    }
 
-//     const innerTextMatch = container
-//       .querySelector("div")
-//       ?.innerText.match(/(\d+) listings/);
-//     if (innerTextMatch) {
-//       totalSKUs = parseInt(innerTextMatch[1], 10);
-//       console.log("totalSKUs (via innerText):", totalSKUs);
-//       return;
-//     }
+    const innerTextMatch = container
+      .querySelector("div")
+      ?.innerText.match(/(\d+) listings/);
+    if (innerTextMatch) {
+      totalSKUs = parseInt(innerTextMatch[1], 10);
+      console.log("totalSKUs (via innerText):", totalSKUs);
+      return;
+    }
 
-//     const innerHTMLMatch = container.innerHTML.match(/(\d+) listings/);
-//     totalSKUs = innerHTMLMatch ? parseInt(innerHTMLMatch[1], 10) : 0;
-//     console.log("totalSKUs (via innerHTML):", totalSKUs);
-//   }
+    const innerHTMLMatch = container.innerHTML.match(/(\d+) listings/);
+    totalSKUs = innerHTMLMatch ? parseInt(innerHTMLMatch[1], 10) : 0;
+    console.log("totalSKUs (via innerHTML):", totalSKUs);
+  }
 
-//   function displayStatus() {
-//     $("#statusMessage")?.remove();
-//     if (totalSKUs === 0 && collectedSKUs === 0) {
-//       $("#sfMessage").remove();
-//       const warningMessage = `
-//         <div class="sf-info a-section">
-//                 ${language["1000189"][activeLanguage]}<br>
-//         </div>
-//           `;
-//       const deleteButton = document.querySelector(
-//         "kat-button[label='Delete listing']"
-//       );
-//       if (deleteButton) {
-//         deleteButton.insertAdjacentHTML("beforebegin", warningMessage);
-//       }
-//     } else {
-//       let statusText =
-//         collectedSKUs >= totalSKUs
-//           ? language["1000191"][activeLanguage]
-//           : language["1000190"][activeLanguage];
+  function displayStatus() {
+    $("#statusMessage")?.remove();
+    if (totalSKUs === 0 && collectedSKUs === 0) {
+      $("#sfMessage").remove();
+      const warningMessage = `
+        <div class="sf-info a-section">
+                ${language["1000189"][activeLanguage]}<br>
+        </div>
+          `;
+      const deleteButton = document.querySelector(
+        "kat-button[label='Delete listing']"
+      );
+      if (deleteButton) {
+        deleteButton.insertAdjacentHTML("beforebegin", warningMessage);
+      }
+    } else {
+      let statusText =
+        collectedSKUs >= totalSKUs
+          ? language["1000191"][activeLanguage]
+          : language["1000190"][activeLanguage];
 
-//       const statusMessage = `
-//       <h6 id="statusMessage" style="margin:5px">
-//       <b>${statusText}</br><br>
-//               <b>${language["1000192"][activeLanguage]}</b> ${collectedSKUs}
-//       </h6>
-//       `;
-//       const deleteButton = document.querySelector(
-//         "kat-button[label='Delete listing']"
-//       );
-//       if (deleteButton) {
-//         deleteButton.insertAdjacentHTML("beforebegin", statusMessage);
-//       }
-//     }
-//   }
+      const statusMessage = `
+      <h6 id="statusMessage" style="margin:5px">
+      <b>${statusText}</br><br>
+              <b>${language["1000192"][activeLanguage]}</b> ${collectedSKUs}
+      </h6>
+      `;
+      const deleteButton = document.querySelector(
+        "kat-button[label='Delete listing']"
+      );
+      if (deleteButton) {
+        deleteButton.insertAdjacentHTML("beforebegin", statusMessage);
+      }
+    }
+  }
 
-//   function scrollPage() {
-//     if (!isScrolling) return;
+  function scrollPage() {
+    if (!isScrolling) return;
 
-//     window.scrollBy(0, 450);
-//     setTimeout(() => {
-//       extractDataFromVisibleRows();
-//       if (collectedSKUs < totalSKUs) {
-//         var scrollTop = $(window).scrollTop();
-//         var windowHeight = $(window).height();
-//         var documentHeight = $(document).height();
+    window.scrollBy(0, 450);
+    setTimeout(() => {
+      extractDataFromVisibleRows();
+      if (collectedSKUs < totalSKUs) {
+        var scrollTop = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        var documentHeight = $(document).height();
 
-//         if (scrollTop + windowHeight >= documentHeight - 50) {
-//           window.scrollTo(0, 0);
-//           setTimeout(scrollPage, 100);
-//         } else scrollPage();
-//         displayStatus();
-//       } else if (collectedSKUs < totalSKUs && window.scrollY === 0) {
-//         isScrolling = false;
-//         displayStatus();
-//         $("#sfDeleteProducts").prop("disabled", false);
-//         $("#sfDeleteAndBlockProducts").prop("disabled", false);
-//         t();
-//       } else {
-//         isScrolling = false;
-//         displayStatus();
-//         if (collectedSKUs > 0) {
-//           $("#sfDeleteProducts").prop("disabled", false);
-//           $("#sfDeleteAndBlockProducts").prop("disabled", false);
-//           t();
-//         }
-//       }
-//     }, 100);
-//   }
+        if (scrollTop + windowHeight >= documentHeight - 50) {
+          window.scrollTo(0, 0);
+          setTimeout(scrollPage, 100);
+        } else scrollPage();
+        displayStatus();
+      } else if (collectedSKUs < totalSKUs && window.scrollY === 0) {
+        isScrolling = false;
+        displayStatus();
+        $("#sfDeleteProducts").prop("disabled", false);
+        $("#sfDeleteAndBlockProducts").prop("disabled", false);
+        t();
+      } else {
+        isScrolling = false;
+        displayStatus();
+        if (collectedSKUs > 0) {
+          $("#sfDeleteProducts").prop("disabled", false);
+          $("#sfDeleteAndBlockProducts").prop("disabled", false);
+          t();
+        }
+      }
+    }, 100);
+  }
 
-//   function observePageChanges() {
-//     const observer = new MutationObserver(() => {
-//       if (isScrolling) {
-//         extractDataFromVisibleRows();
-//       }
-//     });
+  function observePageChanges() {
+    const observer = new MutationObserver(() => {
+      if (isScrolling) {
+        extractDataFromVisibleRows();
+      }
+    });
 
-//     observer.observe(document.body, { childList: true, subtree: true });
-//     scrollPage();
-//   }
+    observer.observe(document.body, { childList: true, subtree: true });
+    scrollPage();
+  }
 
-//   function t() {
-//     $(".sfDeleteProduct").click(async function () {
-//       var pList = [];
+  function t() {
+    $(".sfDeleteProduct").click(async function () {
+      var pList = [];
 
-//       for (let i = 0; i < asinList.length; ++i) {
-//         var obj = {};
-//         obj["Asin"] = asinList[i];
-//         obj["Sku"] = skuList[i];
-//         obj["Reason"] = "Inventory page";
-//         pList.push(obj);
-//       }
+      for (let i = 0; i < asinList.length; ++i) {
+        var obj = {};
+        obj["Asin"] = asinList[i];
+        obj["Sku"] = skuList[i];
+        obj["Reason"] = "Inventory page";
+        pList.push(obj);
+      }
 
-//       const [mp] = await getSellingPartnerInfo();
-//       var url =
-//         this.id == "sfDeleteProducts"
-//           ? user.apiSubdomain + "api/inventoryItem/removeInventoryItems"
-//           : user.apiSubdomain +
-//             "api/inventoryItem/removeAndBlockInventoryItems";
+      const [mp] = await getSellingPartnerInfo();
+      // TODO eğer bloklama gerekiyorsa blok atılacak
+      var url =
+        this.id == "sfDeleteProducts"
+          ? `${baseUrls[user.platform]}/${endPoints.StoreProduct.storeProducts}`
+          : `${baseUrls[user.platform]}/${
+              endPoints.Restricted.addRestrictedProducts
+            }`;
 
-//       $.ajax({
-//         url: url,
-//         type: "POST",
-//         contentType: "application/json;charset=utf-8",
-//         headers: { Authorization: "Bearer " + user.token },
-//         data: JSON.stringify({
-//           customerId: user.customerId,
-//           marketPlaceCode: mp,
-//           productList: pList,
-//         }),
-//         success: function () {},
-//         failure: function (response) {
-//           console.log("Error (failure)! ", response);
-//         },
-//         complete: function (data) {
-//           if (data.status == 200) {
-//             $(".sf-alert-content").html(
-//               language["1000008"][activeLanguage] + "<br>"
-//             );
-//             setTimeout(function () {
-//               location.reload();
-//             }, 3000);
-//           } else {
-//             $(".sf-alert-content").html(
-//               "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-//                 language["1000009"][activeLanguage]
-//             );
-//           }
-//         },
-//       });
+      var formData =
+        this.id == "sfDeleteProducts"
+          ? {
+              asiNs: pList,
+              storeIds: [user.storeId],
+            }
+          : {
+              asiNs: pList,
+              storeIds: [user.storeId],
+              restrictionReason: "Extension",
+              infringementType: "Copyright",
+            };
 
-//       $(".sf-alert-container-info").remove();
-//     });
-//   }
-//   getTotalSKUs();
-//   window.scrollTo(0, 0);
-//   var i = `
-//   <div id="sfMessage" class="sf-alert a-section">
-//   <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
-//   <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;" disabled>  ${language["1000002"][activeLanguage]}</button><br>
-//   <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;" disabled> ${language["1000003"][activeLanguage]} </button>
-//   </div>`,
-//     r;
+      $.ajax({
+        url: url,
+        type: this.id == "sfDeleteProducts" ? "DELETE" : "POST",
+        contentType: "application/json;charset=utf-8",
+        headers: { Authorization: "Bearer " + user.token },
+        data: JSON.stringify(formData),
+        success: function () {},
+        failure: function (response) {
+          console.log("Error (failure)! ", response);
+        },
+        complete: function (data) {
+          if (data.status == 200) {
+            $(".sf-alert-content").html(language["1000008"][activeLanguage]);
+          } else {
+            $(".sf-alert-content").html(
+              "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+                language["1000009"][activeLanguage]
+            );
+          }
+        },
+      });
 
-//   r = document.querySelector("kat-button[label='Delete listing']");
-//   if (r) {
-//     r.insertAdjacentHTML("beforebegin", i);
-//   }
-//   observePageChanges();
-// }
+      $(".sf-alert-container-info").remove();
+    });
+  }
+  getTotalSKUs();
+  window.scrollTo(0, 0);
+  var i = `
+  <div id="sfMessage" class="sf-alert a-section">
+  <div class="sf-alert-content" > ${language["1000001"][activeLanguage]}<br> </div>
+  <button id="sfDeleteProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;" disabled>  ${language["1000002"][activeLanguage]}</button><br>
+  <button id="sfDeleteAndBlockProducts" class="sfDeleteProduct green-button" style="width: fit-content;margin-top:10px;" disabled> ${language["1000003"][activeLanguage]} </button>
+  </div>`,
+    r;
+
+  r = document.querySelector("kat-button[label='Delete listing']");
+  if (r) {
+    r.insertAdjacentHTML("beforebegin", i);
+  }
+  observePageChanges();
+}
 function createOrderDetailPageItems() {
   var orderIdFromUrl = location.href.replace(
     location.origin + "/orders-v3/order/",
     ""
   );
 
-  var btn = `
-            <button id='sfCopyAddress' class="green-button">
-            ${language["1000004"][activeLanguage]}</button>
-      `;
+  // var btn = `
+  //           <button id='sfCopyAddress' class="green-button">
+  //           ${language["1000004"][activeLanguage]}</button>
+  //     `;
 
   setTimeout(function () {
     if ($("span[data-test-id=shipping-section-label]").length) {
