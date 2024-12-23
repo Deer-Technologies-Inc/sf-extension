@@ -1443,7 +1443,7 @@ async function createRequestApprovalRemoveItems() {
           url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
           headers: { Authorization: "Bearer " + user.token },
           success: function (response) {
-            let storeId = response.find((i) => i.marketplaceId == mp);
+            let store = response.find((i) => i.marketplaceId == mp);
             $.ajax({
               url: `${baseUrls[user.platform]}${
                 endPoints.StoreProduct.storeProducts
@@ -1455,7 +1455,7 @@ async function createRequestApprovalRemoveItems() {
                 skUs: pList,
                 storeProductIds: [],
                 asiNs: [],
-                storeId: storeId,
+                storeId: store.id,
               }),
               success: function () {},
               failure: function (response) {
