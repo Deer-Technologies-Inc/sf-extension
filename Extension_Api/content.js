@@ -1416,7 +1416,7 @@ async function createRequestApprovalRemoveItems() {
         }
 
         var pList = notApprovedSkus.map((sku) => {
-          return { Sku: sku }; // Using SKU directly
+          return sku; // Using SKU directly
         });
         $.ajax({
           url: `${baseUrls[user.platform]}${
