@@ -638,5 +638,25 @@
   "1000183": {
     "TR": "Otomatik onayda istenen belgeleri sağlanamayacak ürünler silinir.",
     "EN": "Products that cannot provide the required documents in automatic approval will be deleted."
+  },
+  "1000185": {
+    "TR": "TEST 1",
+    "EN": "Processed: "
+  },
+  "1000186": {
+    "TR": "TEST 2",
+    "EN": "Delete products that cannot be approved"
+  },
+  "1000187": {
+    "TR": "TEST 3",
+    "EN": "Products that cannot provide the required documents in automatic approval will be deleted."
+  },
+  "1000188": {
+    "TR": "TEST 4",
+    "EN": "Products that cannot provide the required documents in automatic approval will be deleted."
+  },
+  "1000193": {
+    "TR": "TEST 5",
+    "EN": "Products that cannot provide the required documents in automatic approval will be deleted."
   }
 }
