@@ -1381,8 +1381,6 @@ async function getSellingPartnerInfo() {
 }
 
 async function createRequestApprovalRemoveItems() {
-  const [mp] = await getSellingPartnerInfo();
-  const storeId = await getStoreIdWithMP(mp);
   setTimeout(async () => {
     var divMenu = `
         <div>
@@ -1415,7 +1413,7 @@ async function createRequestApprovalRemoveItems() {
     }
 
     const [mp, , sellingPartnerId] = await getSellingPartnerInfo();
-
+    const storeId = await getStoreIdWithMP(mp);
     $(element).append(divMenu);
     document
       .getElementById("approveRemoveButtonSf")
