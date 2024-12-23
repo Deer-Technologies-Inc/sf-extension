@@ -963,6 +963,8 @@ function waitForElm(selector) {
 }
 
 async function createRequestApprovalPageItems() {
+  const [mp] = await getSellingPartnerInfo();
+  console.log(mp);
   setTimeout(async () => {
     var divMenu = `
         <div id="sfApprovalButton">
