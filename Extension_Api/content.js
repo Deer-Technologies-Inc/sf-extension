@@ -655,6 +655,25 @@ var tmpBuyerOrderId = "",
   tmpSellerOrderId = "";
 var checkOrderIdAttempt = 0;
 
+// TODO: SellerFull Store ID search
+async function getStoreIdWithMP(mp) {
+  let storeId = null;
+  $.ajax({
+    type: "GET",
+    url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
+    headers: { Authorization: "Bearer " + user.token },
+    success: function (response) {
+      if (response.marketplaceId == mp) {
+        storeId = response.id;
+        return storeId;
+      }
+    },
+    failure: function (response) {
+      console.log("Marketplace bilgileri alınamadı!", response);
+    },
+  });
+}
+
 function createOrderResultPageItems() {
   chromeGetOrderDetails();
 
@@ -963,9 +982,6 @@ function waitForElm(selector) {
 }
 
 async function createRequestApprovalPageItems() {
-  const [marketplace, country, sellingPartnerId] =
-    await getSellingPartnerInfo();
-  console.log(marketplace, country, sellingPartnerId);
   setTimeout(async () => {
     var divMenu = `
         <div id="sfApprovalButton">
@@ -1365,6 +1381,8 @@ async function getSellingPartnerInfo() {
 }
 
 async function createRequestApprovalRemoveItems() {
+  const [mp] = await getSellingPartnerInfo();
+  const storeId = await getStoreIdWithMP(mp);
   setTimeout(async () => {
     var divMenu = `
         <div>
@@ -1432,6 +1450,7 @@ async function createRequestApprovalRemoveItems() {
             skUs: pList,
             storeProductIds: [],
             asiNs: [],
+            storeId: storeId,
           }),
           success: function () {},
           failure: function (response) {
