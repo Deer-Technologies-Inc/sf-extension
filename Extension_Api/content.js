@@ -2369,45 +2369,60 @@ function createDeleteProductSuppressedListingPageItems(n) {
       console.log(mp);
 
       // TODO eğer bloklama gerekiyorsa blok atılacak
-      var url =
-        this.id == "sfDeleteProducts"
-          ? `${baseUrls[user.platform]}/${endPoints.StoreProduct.storeProducts}`
-          : `${baseUrls[user.platform]}/${
-              endPoints.Restricted.addRestrictedProducts
-            }`;
-
-      var formData =
-        this.id == "sfDeleteProducts"
-          ? {
-              asiNs: pList,
-              storeIds: [user.storeId],
-            }
-          : {
-              asiNs: pList,
-              storeIds: [user.storeId],
-              restrictionReason: "Extension",
-              infringementType: "Copyright",
-            };
-
       $.ajax({
-        url: url,
-        type: this.id == "sfDeleteProducts" ? "DELETE" : "POST",
-        contentType: "application/json;charset=utf-8",
+        type: "GET",
+        url: `${baseUrls[user.platform]}${endPoints.Store.stores}`,
         headers: { Authorization: "Bearer " + user.token },
-        data: JSON.stringify(formData),
-        success: function () {},
-        failure: function (response) {
-          console.log("Error (failure)! ", response);
+        success: function (response) {
+          let store = response.find((i) => i.marketplaceId == mp);
+          var url =
+            this.id == "sfDeleteProducts"
+              ? `${baseUrls[user.platform]}/${
+                  endPoints.StoreProduct.storeProducts
+                }`
+              : `${baseUrls[user.platform]}/${
+                  endPoints.Restricted.addRestrictedProducts
+                }`;
+
+          var formData =
+            this.id == "sfDeleteProducts"
+              ? {
+                  asiNs: asinList,
+                  storeIds: store.id,
+                }
+              : {
+                  asiNs: asinList,
+                  storeIds: store.id,
+                  restrictionReason: "Extension",
+                  infringementType: "Copyright",
+                };
+
+          $.ajax({
+            url: url,
+            type: this.id == "sfDeleteProducts" ? "DELETE" : "POST",
+            contentType: "application/json;charset=utf-8",
+            headers: { Authorization: "Bearer " + user.token },
+            data: JSON.stringify(formData),
+            success: function () {},
+            failure: function (response) {
+              console.log("Error (failure)! ", response);
+            },
+            complete: function (data) {
+              if (data.status == 200) {
+                $(".sf-alert-content").html(
+                  language["1000008"][activeLanguage]
+                );
+              } else {
+                $(".sf-alert-content").html(
+                  "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
+                    language["1000009"][activeLanguage]
+                );
+              }
+            },
+          });
         },
-        complete: function (data) {
-          if (data.status == 200) {
-            $(".sf-alert-content").html(language["1000008"][activeLanguage]);
-          } else {
-            $(".sf-alert-content").html(
-              "<i class='fa fa-exclamation-circle' style='margin-right: 5px;' /> " +
-                language["1000009"][activeLanguage]
-            );
-          }
+        failure: function (response) {
+          console.log("Marketplace bilgileri alınamadı!", response);
         },
       });
 
