@@ -206,15 +206,15 @@ $(document).ready(function () {
 
 function createExtensionTools() {
   console.log("createExtensionTools");
-  $(document).ajaxError(function (event, jqXHR) {
-    if (jqXHR.status === 401) {
-      console.log("createExtensionTools 401");
-      // Redirect the user to the login page
-      signOut();
-      location.reload();
-      createSellerFlashMenu(false);
-    }
-  });
+  // $(document).ajaxError(function (event, jqXHR) {
+  //   if (jqXHR.status === 401) {
+  //     console.log("createExtensionTools 401");
+  //     // Redirect the user to the login page
+  //     signOut();
+  //     location.reload();
+  //     createSellerFlashMenu(false);
+  //   }
+  // });
 
   if (user != null && user.token.length > 0) {
     console.log("user var");
