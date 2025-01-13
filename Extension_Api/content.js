@@ -172,8 +172,6 @@ $(document).ready(function () {
     activeLanguage = localStorage.getItem("activeLanguage");
   }
 
-  checkLogin();
-
   var date = new Date().valueOf();
   //TODO: AÇ!
   fetch(
@@ -203,14 +201,13 @@ $(document).ready(function () {
     .then(function () {
       createExtensionTools();
     });
+  checkLogin();
 });
 
 function createExtensionTools() {
-  console.log("createExtensionTools start");
   $(document).ajaxError(function (event, jqXHR) {
     if (jqXHR.status === 401) {
       // Redirect the user to the login page
-      console.log("createExtensionTools 401");
       signOut();
       location.reload();
       createSellerFlashMenu(false);
@@ -218,7 +215,6 @@ function createExtensionTools() {
   });
 
   if (user != null && user.token.length > 0) {
-    createSellerFlashMenu(false);
   } else {
     createSellerFlashMenu(false);
     return;
