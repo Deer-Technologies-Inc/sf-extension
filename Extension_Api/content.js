@@ -209,8 +209,8 @@ function createExtensionTools() {
   $(document).ajaxError(function (event, jqXHR) {
     if (jqXHR.status === 401) {
       // Redirect the user to the login page
-      // signOut();
-      // location.reload();
+      signOut();
+      location.reload();
       createSellerFlashMenu(false);
     }
   });
@@ -3191,9 +3191,9 @@ function checkLogin() {
     }
   }
 
-  if (accessToken > 0) {
-    return;
-  }
+  // if (accessToken > 0) {
+  //   return;
+  // }
 
   checkStoredLoginInformation();
 }
