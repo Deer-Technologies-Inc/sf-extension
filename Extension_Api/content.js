@@ -171,7 +171,11 @@ $(document).ready(function () {
   ) {
     activeLanguage = localStorage.getItem("activeLanguage");
   }
+
+  checkLogin();
+
   var date = new Date().valueOf();
+  //TODO: AÇ!
   fetch(
     "https://extensions-bucket.fra1.cdn.digitaloceanspaces.com/content.css?v=" +
       date
@@ -197,34 +201,26 @@ $(document).ready(function () {
       language = json;
     })
     .then(function () {
-      console.log("extension toollarını aç");
       createExtensionTools();
     });
-
-  checkLogin();
 });
 
 function createExtensionTools() {
-  console.log("createExtensionTools");
-  // $(document).ajaxError(function (event, jqXHR) {
-  //   if (jqXHR.status === 401) {
-  //     console.log("createExtensionTools 401");
-  //     // Redirect the user to the login page
-  //     signOut();
-  //     location.reload();
-  //     createSellerFlashMenu(false);
-  //   }
-  // });
+  $(document).ajaxError(function (event, jqXHR) {
+    if (jqXHR.status === 401) {
+      // Redirect the user to the login page
+      // signOut();
+      // location.reload();
+      createSellerFlashMenu(false);
+    }
+  });
 
   if (user != null && user.token.length > 0) {
-    console.log("user var");
   } else {
-    console.log("user yok");
     createSellerFlashMenu(false);
     return;
   }
 
-  console.log("user var 2");
   createSellerFlashMenu(true);
   $("#sf-logout").click(function () {
     signOut();
@@ -3225,6 +3221,7 @@ function checkStoredLoginInformation() {
       } else {
         setTimeout(() => {
           console.log("No stored login information");
+          createSellerFlashMenu(false);
           checkLogin();
         }, 2000);
       }
